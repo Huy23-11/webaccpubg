@@ -21,5 +21,8 @@ def giohang():
 @WAG.route('/lichsumuaacc')
 def lichsumuaacc():
     return render_template('lichsumuaacc.html')
+@WAG.route('/dangnhap')
+def dangnhap():
+    return render_template('dangnhap.html')
 if __name__ == '__main__':
     WAG.run(debug = True)
