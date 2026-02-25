@@ -1,0 +1,259 @@
+body{
+    background-color:rgb(221, 221, 221)
+}
+.tieude{
+    display:flex;
+    align-items:center;
+    position:fixed;
+    background-color:white;
+    width:100%;
+    top:0;
+    height:16%;
+    font-size:30px;
+    gap:15px;
+    z-index:9;
+}
+.tieude span{
+    margin-left:240px;
+    color: rgb(136, 185, 241);
+}
+/*Xong phần tiêu đề----------------------------------------------------------------------------------*/
+.bangmenu{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    position:fixed;
+    top:0;
+    left:0;
+    color:white;
+    width:180px;
+    height:100%;
+    padding:20px;
+    background-color:rgb(123, 192, 248);
+    z-index:10;
+}
+.bangmenu span{
+    font-size:40px;
+    font-weight:bold;
+    margin-top:13px;
+    margin-left:18px;
+}
+.bangmenu .danhsachchucnang{
+    margin-top:50px;
+    font-size:20px;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+/*Xong phần bảng menu----------------------------------------------------------------------------------*/
+.noibat{
+    margin-top:120px;
+    margin-left:240px;
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+.noibat div{
+    background-color:white;
+    width:200px;
+    height:80px;
+    border-radius:10px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    padding:5px;
+}
+.noibat div .giatri{
+    color:rgb(12, 171, 55);
+}
+/*Xong phần nổi bật --------------------------------------------------------------------------------------*/
+.theotuan{
+    display:flex;
+    justify-content:center;
+    margin-left:220px;
+    gap:60px;
+}
+/*----------------------------------------------------------------------------------------------------------*/
+.dabantheotuan{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    border-radius:10px;
+    padding:30px;
+    background-color:white;
+    width:370px;
+    height:220px;
+    margin-top:30px;
+}
+.dabantheotuan .phandau{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-right:30px;
+}
+.dabantheotuan .cacmoc{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:10px;
+}
+.dabantheotuan .cacmoc div{
+    display:flex;
+}
+.dabantheotuan .cacmoc div span{
+    width:40px;
+    margin-right:0px;
+}
+.dabantheotuan .cacmoc div hr{
+    flex:1;
+    margin-top:20px;
+    opacity:0.6;
+}
+.dabantheotuan .caccot{
+    position:absolute;
+    display:flex;
+    gap:25px;
+    margin-left:65px;
+    height:250px;
+    align-items: flex-end;
+    bottom:26px;
+}
+.dabantheotuan .caccot div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.dabantheotuan .caccot div div{
+    background-color:rgb(169, 169, 247);
+    width:15px;
+    height:70px;
+    border-radius:5px 5px 0 0;
+}
+.dabantheotuan .caccot div span{
+    opacity:0.6;
+}
+/*-------------------------------------------------------------------------------------------------------------*/
+.doanhthutheotuan{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    border-radius:10px;
+    padding:30px;
+    background-color:white;
+    width:370px;
+    height:220px;
+    margin-top:30px;
+}
+.doanhthutheotuan .phandau{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-right:30px;
+}
+.doanhthutheotuan .cacmoc{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:10px;
+}
+.doanhthutheotuan .cacmoc div{
+    display:flex;
+}
+.doanhthutheotuan .cacmoc div span{
+    width:40px;
+    margin-right:0px;
+}
+.doanhthutheotuan .cacmoc div hr{
+    flex:1;
+    margin-top:20px;
+    opacity:0.6;
+}
+.doanhthutheotuan .caccot{
+    position:absolute;
+    display:flex;
+    gap:25px;
+    margin-left:65px;
+    height:250px;
+    align-items: flex-end;
+    bottom:26px;
+}
+.doanhthutheotuan .caccot div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.doanhthutheotuan .caccot div div{
+    background-color:rgb(147, 243, 179);
+    width:15px;
+    height:140px;
+    border-radius:5px 5px 0 0;
+}
+.doanhthutheotuan .caccot div span{
+    opacity:0.6;
+}
+/*------------------------------------------------------------------------------------------------------------*/
+.doanhthutheonam{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    border-radius:10px;
+    padding:30px;
+    background-color:white;
+    width:370px;
+    height:220px;
+    margin-top:40px;
+    margin-left:385px;
+    width:600px;
+}
+.doanhthutheonam .phandau{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-right:30px;
+}
+.doanhthutheonam .cacmoc{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:10px;
+}
+.doanhthutheonam .cacmoc div{
+    display:flex;
+}
+.doanhthutheonam .cacmoc div span{
+    width:40px;
+    margin-right:0px;
+}
+.doanhthutheonam .cacmoc div hr{
+    flex:1;
+    margin-top:20px;
+    opacity:0.6;
+}
+.doanhthutheonam .caccot{
+    position:absolute;
+    display:flex;
+    gap:25px;
+    margin-left:65px;
+    height:250px;
+    align-items: flex-end;
+    bottom:26px;
+}
+.doanhthutheonam .caccot div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.doanhthutheonam .caccot div div{
+    background-color:rgb(147, 243, 179);
+    width:15px;
+    height:158px;
+    border-radius:5px 5px 0 0;
+}
+.doanhthutheonam .caccot div span{
+    opacity:0.6;
+}

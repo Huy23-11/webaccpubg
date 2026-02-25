@@ -1,0 +1,230 @@
+body{
+    background-color:rgb(221, 221, 221)
+}
+.tieude{
+    display:flex;
+    align-items:center;
+    position:fixed;
+    background-color:white;
+    width:100%;
+    top:0;
+    height:16%;
+    font-size:30px;
+    gap:15px;
+    z-index:9;
+}
+.tieude span{
+    margin-left:240px;
+    color: rgb(136, 185, 241);
+}
+/*Xong phần tiêu đề----------------------------------------------------------------------------------*/
+.bangmenu{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    position:fixed;
+    top:0;
+    left:0;
+    color:white;
+    width:180px;
+    height:100%;
+    padding:20px;
+    background-color:rgb(123, 192, 248);
+    z-index:10;
+}
+.bangmenu span{
+    font-size:40px;
+    font-weight:bold;
+    margin-top:13px;
+    margin-left:18px;
+}
+.bangmenu .danhsachchucnang{
+    margin-top:50px;
+    font-size:20px;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+/*Xong phần bảng menu----------------------------------------------------------------------------------*/
+.noibat{
+    margin-top:120px;
+    margin-left:240px;
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+.noibat div{
+    background-color:white;
+    width:200px;
+    height:80px;
+    border-radius:10px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    padding:5px;
+}
+.noibat div .ten{
+    font-weight:bold;
+}
+.noibat div .giatri{
+    color:rgb(12, 171, 55);
+}
+/*Xong phần nổi bật --------------------------------------------------------------------------------------*/
+.linhtinh{
+    margin-top:30px;
+    margin-left:260px;
+    margin-right:20px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.linhtinh .trai{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.linhtinh .trai .loc{
+    background-color:white;
+    width:34px;
+    height:17px;
+    border-radius:5px;
+    padding:7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.linhtinh .trai .chonthem{
+    background-color:blue;
+    width:80px;
+    height:17px;
+    border-radius:5px;
+    padding:7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+.linhtinh input{
+    width:250px;
+    height:30px;
+    border-radius:5px;
+    outline:none;
+    border:none;
+    padding:5px;
+    margin-right:20px;
+}
+/*Xong phần linh tinh----------------------------------------------------------------------------------*/
+.bang{
+    margin-top:10px;
+    margin-left:245px;
+    margin-right:20px;
+    background-color:white;
+    border-radius:5px;
+    display:flex;
+    flex-direction:column;
+}
+.bang .hangtieude{
+    display:flex;
+    align-items:center;
+    gap:60px;
+    padding:10px;
+    background-color: rgb(241, 239, 239);
+    border-radius:5px 5px 0 0;
+    opacity:0.6;
+    font-size:15px;
+}
+.bang .hangtieude .cot1{
+    margin-left:50px;
+}
+.bang .hangtieude .cot2{
+    margin-left:60px;
+}
+.bang .hang{
+    display:flex;
+    align-items:center;
+    gap:60px;
+    padding:10px;
+    background-color: white;
+    font-size:15px;
+}
+.bang .hang input{
+    margin-left:10px;
+}
+.bang .hang .cot1{
+    margin-left:-35px;
+    display:flex;
+    gap:3px;
+    flex-direction:column;
+}
+.bang .hang .cot1 .sdt{
+    opacity:0.6;
+    font-size:13px;
+}
+.bang .hang .cot1 .email{
+    opacity:0.6;
+    font-size:13px;
+}
+.bang .hang .cot2{
+    margin-left:60px;
+    color:rgb(12, 171, 55);
+}
+.bang .hang .cot3{
+    margin-left:60px;
+    color:rgb(12, 171, 55);
+}
+.bang .hang .cot4{
+    margin-left:60px;
+    color:rgb(12, 171, 55);
+}
+.bang .hang .cot5{
+    margin-left:30px;
+    color:rgb(12, 171, 55);
+}
+.bang .hang i{
+    opacity:0.5;
+}
+.fa-solid.fa-delete-left{
+    margin-left:-10px;
+}
+.fa-solid.fa-pen{
+    margin-left:-30px;
+}
+.bang hr{
+    width:100%;
+    opacity:0.4;
+    margin-top:-1px;
+}
+.bang .cuoibang{
+    display:flex;
+    align-items:center;
+    padding:10px;
+}
+.bang .cuoibang .trangtruoc{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid rgb(200, 200, 201);
+    border-radius:5px;
+    padding:5px;
+    margin-left:20px;
+    margin-top:-8px;
+    opacity:0.8;
+}
+.bang .cuoibang span{
+    margin-left:363px;
+    margin-top:-8px;
+}
+.bang .cuoibang .trangsau{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid rgb(200, 200, 201);
+    border-radius:5px;
+    padding:5px;
+    margin-left:363px;
+    margin-top:-8px;
+    opacity:0.8;
+    width:40px;
+}

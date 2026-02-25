@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>webaccgame</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/quanlyacc.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/quanlyacc.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="ngoaibangmenu"></div>
+        <div class="tieude">
+            <span>Xin chào, Huy</span>
+            <i class="fa-regular fa-hand-spock"></i>
+        </div>
+        <div class="bangmenu">
+            <span>ADMIN</span>
+            <div class="danhsachchucnang">
+                <div>Doanh thu</div>
+                <div>Quản lý người mua</div>
+                <div>Quản lý acc</div>
+            </div>
+        </div>
+        <div class="noibat">
+            <div>
+                <span>Số acc có tuyệt phẩm</span>
+                <span class="giatri">26</span>
+            </div>
+            <div>
+                <span>Được xem nhiều nhất</span>
+                <span class="ten">#001</span>
+                <span class="giatri">2026</span>
+            </div>
+            <div>
+                <span>Giá cao nhất</span>
+                <span class="ten">#2026</span>
+                <span class="giatri">20.262.026đ</span>
+            </div>
+            <div>
+                <span>Số acc trên 10tr</span>
+                <span class="giatri">120</span>
+            </div>
+        </div>
+        <div class="linhtinh">
+            <div class="trai">
+                <div class="loc">Lọc</div>
+                <div class="chonthem">Chọn thêm</div>
+                <i class="fa-solid fa-plus"></i>
+                <div class="dachon">Đã chọn 0 hàng</div>
+            </div>
+            <input type="text" placeholder="Tìm kiếm theo tên người mua">
+        </div>
+        <div class="bang">
+            <div class="hangtieude">
+                <span class="cot1">Mã số</span>
+                <span class="cot2">Siêu xe</span>
+                <span class="cot3">Bape</span>
+                <span class="cot4">Mũ đinh</span>
+                <span class="cot5">Găng băng</span>
+                <span class="cot6">Giá</span>
+            </div>
+            {% for i in range(11)%}
+            <div class="hang">
+                <input class="nuttichhang" type="checkbox">
+                <span class="cot1">#001</span>
+                <input class="cot2" type="checkbox">
+                <input class="cot3" type="checkbox">
+                <input class="cot4" type="checkbox">
+                <input class="cot5" type="checkbox">
+                <span class="cot6">20.262.026đ</span>
+                <i class="fa-solid fa-delete-left"></i>
+                <i class="fa-solid fa-pen"></i>
+            </div>
+            <hr>
+            {% endfor %}
+            <div class="suaacc">
+                <div class="suama">
+                    <span>Mã:</span>
+                    <input type="text" placeholder="...">
+                    <hr>
+                </div>
+                <div class="suamota">
+                    <span>Mô tả:</span>
+                    <input type="text" placeholder="...">
+                    <hr>
+                </div>
+                <div class="anh">
+                    <span>Ảnh acc</span>
+                    <div>Sửa</div>
+                </div>
+            </div>
+            <div class="cuoibang">
+                <div class="trangtruoc">Trước</div>
+                <span>Trang 0/0</span>
+                <div class="trangsau">Tiếp</div>
+            </div>
+        </div>
+    </body>
+</html>

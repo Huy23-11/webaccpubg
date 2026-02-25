@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>webaccgame</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/chitietacc.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/chitietacc.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="bangmenu">
+            <span class="tenshop">Shop Huy2k5</span>
+            <span class="chumenu">menu</span>
+            <hr>
+            <span>Lịch sử mua acc</span>
+            <hr>
+            <span>Nạp tiền</span>
+            <hr>
+            <span>Giỏ hàng của bạn</span>
+        </div>
+        <div class="ngoaibangmenu"></div>
+        <div class="tieude">
+            <div class="tenshop-iconlist">
+                <span class="tenshop">SHOP HUY2K5</span>
+                <i class="fa-solid fa-list"></i>
+            </div>
+            <div class="conlaitieude">
+                <i class="fa-solid fa-user"></i>
+                <div class="ten-sodu">
+                    <span class="ten">ten</span>
+                    <span class="sodu">2.400.000đ</span>
+                </div>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </div>
+        </div>
+        <div class="iconcanhan">
+            <span>Đăng nhập</span>
+            <hr>
+            <span>Tạo tài khoản</span>
+            <hr>
+            <span>Đổi mật khẩu</span>
+        </div>
+        <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
+        <div class="thongtinchuacc">
+            <span class="dong1">Mã số: 1001: Siêu phẩm có 1 0 2 pubgvn</span>
+            <span class="dong2">
+                <span>01/01/2026</span>
+                <span>
+                    <i class="fa-solid fa-eye"></i>
+                    1502
+                </span>
+            </span>
+            <span class="dong3">Giá bán: 50.000.000đ</span>
+            <div class="dong4">
+                <div class="nutthemgio">Thêm vào giỏ hàng</div>
+                <div class="nutmua">Mua ngay</div>
+            </div>
+        </div>
+        <!--Xong phần thông tin chữ acc ------------------------------------------------------------------------------->
+        <div class="anhchitiet">
+            {% for i in range(4) %}
+            <img src="{{url_for('static',filename='images/anhdaidienacc1.png')}}">
+            <img src="{{url_for('static',filename='images/chitietacc1.png')}}">
+            {%endfor%}
+        </div>   
+        <!--Xong phần ảnh chi tiết acc ----------------------------------------------------------------------------------> 
+        <div class="chantrang">
+            <span>SHOP HUY2K5 © 2026</span>
+            <span>Liên hệ: 0347132311</span>
+        </div> 
+    </body>
+</html>

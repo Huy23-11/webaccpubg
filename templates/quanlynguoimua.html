@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>webaccgame</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/quanlynguoimua.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/quanlynguoimua.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="tieude">
+            <span>Xin chào, Huy</span>
+            <i class="fa-regular fa-hand-spock"></i>
+        </div>
+        <div class="bangmenu">
+            <span>ADMIN</span>
+            <div class="danhsachchucnang">
+                <div>Doanh thu</div>
+                <div>Quản lý người mua</div>
+                <div>Quản lý acc</div>
+            </div>
+        </div>
+        <div class="noibat">
+            <div>
+                <span>Mua nhiều nhất tháng</span>
+                <span class="ten">Huy</span>
+                <span class="giatri">26</span>
+            </div>
+            <div>
+                <span>Nạp nhiều nhất tháng</span>
+                <span class="ten">Huy</span>
+                <span class="giatri">2.600.000đ</span>
+            </div>
+            <div>
+                <span>Mua nhiều nhất</span>
+                <span class="ten">Huy</span>
+                <span class="giatri">26</span>
+            </div>
+            <div>
+                <span>Nạp nhiều nhất</span>
+                <span class="ten">Huy</span>
+                <span class="giatri">2.026.2026đ</span>
+            </div>
+        </div>
+        <div class="linhtinh">
+            <div class="trai">
+                <div class="loc">Lọc</div>
+                <div class="chonthem">Chọn thêm</div>
+                <div class="dachon">Đã chọn 0 hàng</div>
+            </div>
+            <input type="text" placeholder="Tìm kiếm theo tên người mua">
+        </div>
+        <div class="bang">
+            <div class="hangtieude">
+                <span class="cot1">Người mua</span>
+                <span class="cot2">Tháng này đã mua</span>
+                <span class="cot3">Tháng này đã nạp</span>
+                <span class="cot4">Tổng đã mua</span>
+                <span class="cot5">Tổng đã nạp</span>
+            </div>
+            {% for i in range(9)%}
+            <div class="hang">
+                <input type="checkbox">
+                <div class="cot1">
+                    <span>Huy2026</span>
+                    <span class="sdt">020262026</span>
+                    <span class="email">huy2026@gmail.com</span>
+                </div>
+                <span class="cot2">10</span>
+                <span class="cot3">1.000.000đ</span>
+                <span class="cot4">26</span>
+                <span class="cot5">2.026.2026đ</span>
+                <i class="fa-solid fa-delete-left"></i>
+                <i class="fa-solid fa-pen"></i>
+            </div>
+            <hr>
+            {% endfor %}
+            <div class="cuoibang">
+                <div class="trangtruoc">Trước</div>
+                <span>Trang 0/0</span>
+                <div class="trangsau">Tiếp</div>
+            </div>
+        </div>
+    </body>
+</html>

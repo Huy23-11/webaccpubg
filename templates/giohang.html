@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>webaccgame</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/giohang.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/giohang.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="bangmenu">
+            <span class="tenshop">Shop Huy2k5</span>
+            <span class="chumenu">menu</span>
+            <hr>
+            <span>Lịch sử mua acc</span>
+            <hr>
+            <span>Nạp tiền</span>
+            <hr>
+            <span>Giỏ hàng của bạn</span>
+        </div>
+        <div class="ngoaibangmenu"></div>
+        <div class="tieude">
+            <div class="tenshop-iconlist">
+                <span class="tenshop">SHOP HUY2K5</span>
+                <i class="fa-solid fa-list"></i>
+            </div>
+            <div class="conlaitieude">
+                <i class="fa-solid fa-user"></i>
+                <div class="ten-sodu">
+                    <span class="ten">ten</span>
+                    <span class="sodu">2.400.000đ</span>
+                </div>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </div>
+        </div>
+        <div class="iconcanhan">
+            <span>Đăng nhập</span>
+            <hr>
+            <span>Tạo tài khoản</span>
+            <hr>
+            <span>Đổi mật khẩu</span>
+        </div>
+        <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
+        <div class="divto2">
+            <div class="soacctronggio">
+                <span>Số lượng acc trong giỏ hàng: 0</span>
+            </div>
+            <div class="thanhtimkiem">
+                <input type="text" placeholder="Tìm kiếm theo mã">
+            </div>
+        </div>
+        <!--Xong phần div lớn 2 ------------------------------------------------------------------------------->
+        <div class="danhsachacctronggio">
+            {%for i in range(4)%}
+            <div class="acctronggio">
+                <div class="bentrai">
+                    <span>Mã acc: 012</span>
+                    <span>
+                        <span>Giá: </span>
+                        <span class="gia">2.400.000đ</span>
+                    </span>
+                    <span>Đã thêm vào ngày: 17/02/2026</span>
+                    <span>
+                        <span>Trạng thái: </span>
+                        <span class="trangthai">Còn hàng</span>
+                    </span>
+                </div>
+                <div class="benphai">Xem</div>
+            </div>
+            <div class="acctronggio">
+                <div class="bentrai">
+                    <span>Mã acc: 012</span>
+                    <span>
+                        <span>Giá: </span>
+                        <span class="gia">2.400.000đ</span>
+                    </span>
+                    <span>Đã thêm vào ngày: 17/02/2026</span>
+                    <span>
+                        <span>Trạng thái: </span>
+                        <span class="trangthai">Hết hàng</span>
+                    </span>
+                </div>
+                <div class="benphai">Xem</div>
+            </div>
+            {%endfor%}
+        </div>
+        <div class="trang">
+            <i class="fa-solid fa-angle-left"></i>
+            <div>Trang 0/0</div>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <!--Xong phần trang ----------------------------------------------------------------------->
+        <div class="chantrang">
+            <span>SHOP HUY2K5 © 2026</span>
+            <span>Liên hệ: 0347132311</span>
+        </div>
+    </body>
+</html>

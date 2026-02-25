@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>webaccgame</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/trangchu.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/trangchu.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="bangmenu">
+            <span class="tenshop">Shop Huy2k5</span>
+            <span class="chumenu">menu</span>
+            <hr>
+            <span>Lịch sử mua acc</span>
+            <hr>
+            <span>Nạp tiền</span>
+            <hr>
+            <span>Giỏ hàng của bạn</span>
+        </div>
+        <div class="ngoaibangmenu"></div>
+        <div class="tieude">
+            <div class="tenshop-iconlist">
+                <span class="tenshop">SHOP HUY2K5</span>
+                <i class="fa-solid fa-list"></i>
+            </div>
+            <div class="conlaitieude">
+                <i class="fa-solid fa-user"></i>
+                <div class="ten-sodu">
+                    <span class="ten">ten</span>
+                    <span class="sodu">2.400.000đ</span>
+                </div>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </div>
+        </div>
+        <div class="iconcanhan">
+            <span>Đăng nhập</span>
+            <hr>
+            <span>Tạo tài khoản</span>
+            <hr>
+            <span>Đổi mật khẩu</span>
+        </div>
+        <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
+        <div class = "anhbia-topnap">
+            <img class = "anhbia" src="{{url_for('static',filename='images/anh-pubg-3d-cuc-ngau-16-14-51-15.jpg')}}" alt="Ảnh bìa">
+            <div class="topnap">
+                <div class="topnapthang">Top nạp tháng 12</div>
+                <div class="topnap1">
+                    <span class="topnap-ten">1.PhamHuy2311</span>
+                    <span class="topnap-sotien">5.000.000đ</span>
+                </div>
+                <div class="topnap1">
+                    <span class="topnap-ten">2.PhamHuy2311</span>
+                    <span class="topnap-sotien">5.000.000đ</span>
+                </div>
+                <div class="topnap1">
+                    <span class="topnap-ten">3.PhamHuy2311</span>
+                    <span class="topnap-sotien">5.000.000đ</span>
+                </div>
+                <div class="topnap1">
+                    <span class="topnap-ten">4.PhamHuy2311</span>
+                    <span class="topnap-sotien">5.000.000đ</span>
+                </div>
+                <div class="topnap1">
+                    <span class="topnap-ten">5.PhamHuy2311</span>
+                    <span class="topnap-sotien">5.000.000đ</span>
+                </div>
+            </div>
+        </div>
+        <!--Xong phần ảnh bìa và top nạp ----------------------------------------------------------------------->
+        <div class="timtheonhucau">
+            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/quanbape.png')}}">
+            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/sieuxe.png')}}">
+            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/mudinh.png')}}">
+            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/gangbang.png')}}">
+        </div>
+        <!--Xong phần tìm acc theo nhu cầu ----------------------------------------------------------------------->
+        <div class="thanhtimkiem">
+            <input type="text" placeholder="Tìm kiếm theo mã">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <!--Xong phần thanh tìm kiếm -------------------------------------------------------------------------->
+        <div class="linhtinh">
+            <span>Danh sách acc bán</span>
+            <span>Số lượng: 36</span>
+            <span class="sapxep">Sắp xếp</span>
+        </div>
+        <hr>
+        <div class="timtheogia">
+            <div>Tất cả</div>
+            <div>Dưới 5m</div>
+            <div>5m-10m</div>
+            <div>10m-20m</div>
+            <div>20m-30m</div>
+            <div>Trên 30m</div>
+        </div>
+        <!--Xong phần tìm acc theo giá ----------------------------------------------------------------------->
+        <div class="danhsachacc">
+            {%for i in range(4)%}
+            <div class="acc">
+                <img src="{{url_for('static',filename='images/anhdaidienacc1.png')}}">
+                <div class="thongtinacc">
+                    <div class="dong1">
+                        <span>Mã: 001</span>
+                        <div class="saochep">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Sao chép mã</span>
+                        </div>
+                    </div>
+                    <div class="dong2">
+                        <span class="thoidiemdang">01/01/2026</span>
+                        <div class="luotxem">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>2026</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="dong3">
+                        <div class="giaacc">
+                            <span>Giá:</span>
+                            <span class="so">50.000đ</span>
+                        </div>
+                        <div class="chitiet">Chi tiết</div>
+                    </div>
+                </div>
+            </div>
+            <div class="acc">
+                <img src="{{url_for('static',filename='images/anhdaidienacc2.png')}}">
+                <div class="thongtinacc">
+                    <div class="dong1">
+                        <span>Mã: 001</span>
+                        <div class="saochep">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Sao chép mã</span>
+                        </div>
+                    </div>
+                    <div class="dong2">
+                        <span class="thoidiemdang">01/01/2026</span>
+                        <div class="luotxem">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>2026</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="dong3">
+                        <div class="giaacc">
+                            <span>Giá:</span>
+                            <span class="so">50.000đ</span>
+                        </div>
+                        <div class="chitiet">Chi tiết</div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+        <!--Xong danh sách acc--------------------------------------------------------------->
+        <div class="trang">
+            <i class="fa-solid fa-angle-left"></i>
+            <div>Trang 0/0</div>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <!--Xong phần trang ----------------------------------------------------------------------->
+        <div class="chantrang">
+            <span>SHOP HUY2K5 © 2026</span>
+            <span>Liên hệ: 0347132311</span>
+        </div>
+    </body>
+</html>

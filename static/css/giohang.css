@@ -1,0 +1,186 @@
+body{
+    background-color:rgb(221, 221, 221)
+}
+.bangmenu{
+    display:flex;
+    flex-direction: column;
+    background-color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    width:220px;
+    height:100%;
+    z-index:10;
+    padding:10px;
+    transform: translateX(-100%);
+}
+.bangmenu.hien{
+    transform: translateX(0%);
+}
+.bangmenu .tenshop{
+    margin-top:15px;
+    margin-left:30px;
+    font-size:30px;
+    color: rgb(136, 185, 241);
+}
+.bangmenu .chumenu{
+    margin-top:20px;
+    opacity:0.5;
+}
+.bangmenu hr{
+    width:220px;
+}
+.ngoaibangmenu{
+    position:fixed;
+    inset:0;
+    z-index:9;
+    width:100%;
+    height:100%;
+    background-color:rgba(85, 83, 83, 0.5);
+    z-index:9;
+    display:none;
+}
+.tieude{
+    position:fixed;
+    width:1200px;
+    height:50px;
+    top:0;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(247, 247, 249);
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 20px;
+    margin:auto;
+}
+.tenshop-iconlist{
+    display:flex;
+    align-items: center;
+    font-size:40px;
+    gap:10px;
+    color:rgb(136, 185, 241);
+}
+.conlaitieude{
+    display:flex;
+    align-items: center;
+    gap: 15px;
+}
+.ten-sodu{
+    display:flex;
+    flex-direction: column;
+    font-size: 
+}
+.sodu{
+    color:red;
+}
+.iconcanhan{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:5px;
+    font-size:20px;
+    background-color:white;
+    padding:10px;
+    position:fixed;
+    left:80%;
+    width:150px;
+    top:60px;
+    border-radius:10px;
+    z-index:10;
+    transform: translateY(-150%);
+}
+.iconcanhan.hien{
+    transform: translateY(0%);
+}
+.iconcanhan hr{
+    width:100%;
+}
+/*-------------------------------------------------------------------------------------------------
+ Xong phần tiêu đề */
+.divto2{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-top:100px;
+    padding-left:100px;
+    padding-right:100px;
+    font-size:22px;
+}
+.divto2 .soacctronggio{
+    background-color:white;
+    padding:20px;
+    border-radius: 10px;
+}
+.divto2 .soacctronggio span{
+    opacity:0.6;
+}
+.divto2 .thanhtimkiem input{
+    outline:none;
+    font-size:15px;
+    padding:4px;
+    border-radius:5px;
+    border:1px solid rgb(175, 175, 176);
+}
+/*-------------------------------------------------------------------------------------------------
+ Xong phần div lớn 2 */
+.danhsachacctronggio{
+    display:flex;
+    flex-direction: column;
+    margin-top:10px;
+    gap:5px;
+}
+.danhsachacctronggio .acctronggio{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    gap:20px;
+    background-color:white;
+    padding:10px;
+    padding-left:80px;
+    padding-right:50px;
+    border-radius: 10px;
+    font-size:18px;
+}
+.danhsachacctronggio .acctronggio .bentrai{
+    display:flex;
+    flex-direction:column;
+}
+.danhsachacctronggio .acctronggio .bentrai .gia{
+    color:red;
+}
+.danhsachacctronggio .acctronggio .benphai{
+    padding:8px;
+    border-radius:10px;
+    border: 1px solid rgb(175, 175, 176);
+}
+/*-------------------------------------------------------------------------------------------------
+ Xong phần danh sách acc trong giỏ hàng */
+.trang{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+    margin-top:30px;
+    font-size:20px;
+}
+.trang div{
+    background-color:white;
+    padding:10px;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+}
+/*-------------------------------------------------------------------------------------------------
+ Xong phần trang*/
+.chantrang{
+    margin-top: 50px;
+    height:80px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    align-items:center;
+    font-size:20px;
+}
