@@ -24,5 +24,8 @@ def lichsumuaacc():
 @WAG.route('/dangnhap')
 def dangnhap():
     return render_template('dangnhap.html')
+@WAG.route('/dangky')
+def dangky():
+    return render_template('dangky.html')
 if __name__ == '__main__':
     WAG.run(debug = True)
