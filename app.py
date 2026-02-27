@@ -27,5 +27,8 @@ def dangnhap():
 @WAG.route('/dangky')
 def dangky():
     return render_template('dangky.html')
+@WAG.route('/trangnaptien')
+def trangnaptien():
+    return render_template('trangnaptien.html')
 if __name__ == '__main__':
     WAG.run(debug = True)

@@ -59,4 +59,28 @@ document.addEventListener("DOMContentLoaded", function() {
         ngoaibangmenu.style.display = "none";
     });
     //Xong phần click icon cá nhân ----------------------------------------------------------------------------
+    const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
+    const nutnaptien = document.querySelector('.naptien');
+    const nutgiohang = document.querySelector('.giohang');
+    nutlichsumuaacc.addEventListener('click', function(){
+        window.location.href = "/lichsumuaacc";
+    });
+    nutnaptien.addEventListener('click', function(){
+        window.location.href = "/trangnaptien";
+    });
+    nutgiohang.addEventListener('click', function(){
+        window.location.href = "/giohang";
+    });
+    const nutdangnhap = document.querySelector('.dangnhap');
+    const nuttaotaikhoan = document.querySelector('.taotaikhoan');
+    const nutdoimatkhau = document.querySelector('.doimatkhau');
+    nutdangnhap.addEventListener('click', function(){
+        window.location.href = "/dangnhap";
+    });
+    nuttaotaikhoan.addEventListener('click', function(){
+        window.location.href = "/dangky";
+    });
+    nutdoimatkhau.addEventListener('click', function(){
+        window.location.href = "/doimatkhau";
+    });
 })

@@ -2,9 +2,9 @@
 <html lang="vi">
     <head>
         <title>webaccgame</title>
-        <link rel="stylesheet" href="{{url_for('static',filename='css/lichsumuaacc.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/trangnaptien.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="{{url_for('static',filename='js/lichsumuaacc.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/trangnaptien.js')}}" defer></script>
     </head>
     <body>
         <div class="bangmenu">
@@ -40,38 +40,28 @@
             <span class="doimatkhau">Đổi mật khẩu</span>
         </div>
         <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
-        <div class="divto2">
-            <div class="bentrai">
-                <span class="soluongacc">Bạn đã mua: 0 acc</span>
-                <span class="span2">
-                    <span>Acc giá cao nhất: </span>
-                    <span class="gia">20.262.026đ</span>
-                </span>
-            </div>
-            <div class="thanhtimkiem">
-                <input type="text" placeholder="Tìm kiếm theo mã">
-            </div>
+        <div class="luuy">
+            <span>Nạp ATM tự động không bị trừ chiết khấu (nạp 10k được 10k), tiền cộng trong vài phút</span>
+            <span>Quét mã QR để nạp trực tiếp không cần chỉnh sửa nội dung</span>
+            <span>Nạp bằng copy số tài khoản cần ghi đúng nội dung, ghi sai sẽ không được cộng tiền</span>
+            <span>Ghi sai nội dung hoặc nạp quá 30 phút mà chưa được cộng tiền trên shop liên hệ zalo 0966645030 để xử lý</span>
         </div>
-        <!--Xong phần div lớn 2 ------------------------------------------------------------------------------->
-        <div class="danhsachacctronggio">
-            {%for i in range(8)%}
-            <div class="acctronggio">
-                <div class="bentrai">
-                    <span>Mã acc: 012</span>
-                    <span>
-                        <span>Giá: </span>
-                        <span class="gia">2.400.000đ</span>
-                    </span>
-                    <span>Thời điểm mua: 17/02/2026</span>
-                </div>
-                <div class="benphai">Xem</div>
-            </div>
-            {%endfor%}
-        </div>
-        <div class="trang">
-            <i class="fa-solid fa-angle-left"></i>
-            <div>Trang 0/0</div>
-            <i class="fa-solid fa-angle-right"></i>
+        <img src="{{url_for('static',filename='images/logovietcombank.png')}}" class="logovcb">
+        <div class="ttchuyenkhoan">
+            <span class="dong1">
+                <span>Vietcombank:</span>
+                <span>202620262026202620</span>
+            </span>
+            <span class="dong2">
+                <span>Chủ tài khoản:</span>
+                <span>Pham Quang Huy</span>
+            </span>
+            <span class="dong3">
+                <span>Nội dung:</span>
+                <span>pqh2026</span>
+            </span>
+            <span class="dong4">Nhập đúng nội dung tiền sẽ tự động cộng sau vài phút</span>
+            <img src="{{url_for('static',filename='images/qrcode.png')}}" class="qrcode">
         </div>
         <!--Xong phần trang ----------------------------------------------------------------------->
         <div class="chantrang">
