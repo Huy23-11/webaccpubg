@@ -30,5 +30,8 @@ def dangky():
 @WAG.route('/trangnaptien')
 def trangnaptien():
     return render_template('trangnaptien.html')
+@WAG.route('/doimatkhau')
+def doimatkhau():
+    return render_template('doimatkhau.html')
 if __name__ == '__main__':
     WAG.run(debug = True)
