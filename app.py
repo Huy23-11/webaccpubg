@@ -1,5 +1,14 @@
 from flask import Flask, render_template
+from extensions import db
+from config import Config
+from routes.lienketanh_acc import lienketanh_acc
+from routes.dsacc_quanlyacc import quanlyacc
+
 WAG = Flask(__name__)
+WAG.config.from_object(Config)
+db.init_app(WAG)
+WAG.register_blueprint(lienketanh_acc)
+WAG.register_blueprint(quanlyacc)
 @WAG.route('/')
 def trangchu():
     return render_template('trangchu.html')
@@ -9,9 +18,6 @@ def chitietacc():
 @WAG.route('/quanlynguoimua')
 def quanlynguoimua():
     return render_template('quanlynguoimua.html')
-@WAG.route('/quanlyacc')
-def quanlyacc():
-    return render_template('quanlyacc.html')
 @WAG.route('/doanhthu')
 def doanhthu():
     return render_template('doanhthu.html')
@@ -33,5 +39,6 @@ def trangnaptien():
 @WAG.route('/doimatkhau')
 def doimatkhau():
     return render_template('doimatkhau.html')
+print(Config.SQLALCHEMY_DATABASE_URI)
 if __name__ == '__main__':
     WAG.run(debug = True)

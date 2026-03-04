@@ -58,33 +58,36 @@
                 <span class="cot5">Găng băng</span>
                 <span class="cot6">Giá</span>
             </div>
-            {% for i in range(11)%}
+            {% for acc in dsacc %}
             <div class="hang">
                 <input class="nuttichhang" type="checkbox">
-                <span class="cot1">#001</span>
-                <input class="cot2" type="checkbox">
-                <input class="cot3" type="checkbox">
-                <input class="cot4" type="checkbox">
-                <input class="cot5" type="checkbox">
-                <span class="cot6">20.262.026đ</span>
-                <i class="fa-solid fa-delete-left"></i>
-                <i class="fa-solid fa-pen"></i>
+                <span class="cot1">#{{ "%03d"|format(acc.ma_acc) }}</span>
+                <input class="cot2" type="checkbox" {% if acc.gang_tay %}checked{% endif %} disabled>
+                <input class="cot3" type="checkbox" {% if acc.mu_dinh %}checked{% endif %} disabled>
+                <input class="cot4" type="checkbox" {% if acc.sieu_xe %}checked{% endif %} disabled>
+                <input class="cot5" type="checkbox" {% if acc.bape %}checked{% endif %} disabled>
+                <span class="cot6">
+                    {{ "{:,.0f}".format(acc.gia) }}đ
+                </span>
+                <i class="fa-solid fa-delete-left" data-ma="{{ acc.ma_acc }}"></i>
+                <i class="fa-solid fa-pen" data-ma="{{ acc.ma_acc }}" data-mota="{{ acc.mo_ta }}" data-gia="{{ acc.gia }}" data-anh="{{ acc.anh }}"></i>
             </div>
             <hr>
             {% endfor %}
             <div class="suaacc">
-                <div class="suama">
-                    <span>Mã:</span>
-                    <input type="text" placeholder="...">
-                    <hr>
-                </div>
                 <div class="suamota">
                     <span>Mô tả:</span>
-                    <input type="text" placeholder="...">
+                    <input type="text" id="input-mota" placeholder="...">
+                    <hr>
+                </div>
+                <div class="suagia">
+                    <span>Giá:</span>
+                    <input type="text" id="input-gia" placeholder="...">
                     <hr>
                 </div>
                 <div class="anh">
-                    <span>Ảnh acc</span>
+                    <span>Ảnh acc:</span>
+                    <input type="text" id="input-anh" placeholder="Thêm link ảnh">
                     <div>Sửa</div>
                 </div>
             </div>
