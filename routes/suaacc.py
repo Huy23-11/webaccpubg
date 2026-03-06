@@ -1,10 +1,12 @@
-from app import WAG
-from flask import request, jsonify
+from flask import Blueprint,request, jsonify
 from extensions import db
 import os
 import shutil
+from sqlalchemy import text
 
-@WAG.route("/suaacc", methods=["POST"])
+suaacc_bp = Blueprint("suaacc_bp", __name__)
+
+@suaacc_bp.route("/suaacc", methods=["POST"])
 def suaacc():
     data = request.get_json()
     ma = data["ma"]
@@ -13,15 +15,15 @@ def suaacc():
     anh = data["anh"]
     sql_update = """
         UPDATE Acc
-        SET mo_ta = ?, 
-            gia = ?
-        WHERE ma_acc = ?
+        SET mo_ta = :mo_ta, 
+            gia = :gia
+        WHERE ma_acc = :ma_acc 
     """
-    db.session.execute(sql_update, (mota, gia, ma))
+    db.session.execute(text(sql_update), {"mo_ta": mota, "gia": gia, "ma_acc": ma})
     db.session.commit()
     if anh.strip() != "":
-        sql_count = "SELECT COUNT(*) FROM AnhAcc WHERE ma_acc = ?"
-        result = db.session.execute(sql_count, (ma,))
+        sql_count = "SELECT COUNT(*) FROM AnhAcc WHERE ma_acc = :ma_acc"
+        result = db.session.execute(text(sql_count), {"ma_acc": ma})
         so_anh_hien_tai = result.scalar()
         danhsach_anh = [a.strip() for a in anh.split(",") if a.strip() != ""]
         thu_tu = so_anh_hien_tai

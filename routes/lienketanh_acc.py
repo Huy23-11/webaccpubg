@@ -19,7 +19,7 @@ def lay_anh_acc(ma_acc):
         ket_qua.append({
             "ma_anh": i.ma_anh,
             "ma_acc": ma_acc,
-            "thu_tu": row.thu_tu,
-            "url": duong_dan
+            "thu_tu": i.thu_tu,
+            "duong_dan": duong_dan
         })
     return jsonify(ket_qua)

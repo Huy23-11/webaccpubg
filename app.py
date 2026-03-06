@@ -3,12 +3,18 @@ from extensions import db
 from config import Config
 from routes.lienketanh_acc import lienketanh_acc
 from routes.dsacc_quanlyacc import quanlyacc
+from routes.xoaanhacc import xoaanhacc_bp
+from routes.hienthianhacc import hienthianhacc_bp
+from routes.suaacc import suaacc_bp
 
 WAG = Flask(__name__)
 WAG.config.from_object(Config)
 db.init_app(WAG)
 WAG.register_blueprint(lienketanh_acc)
 WAG.register_blueprint(quanlyacc)
+WAG.register_blueprint(xoaanhacc_bp)
+WAG.register_blueprint(hienthianhacc_bp)
+WAG.register_blueprint(suaacc_bp)
 @WAG.route('/')
 def trangchu():
     return render_template('trangchu.html')

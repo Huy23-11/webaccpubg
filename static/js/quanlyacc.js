@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded',function(){
                     cb.disabled = true;
                 });
                 if(maAcc){
-                    fetch('/suaacc', {
+                    fetch('/', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
@@ -39,7 +39,10 @@ document.addEventListener('DOMContentLoaded',function(){
     const danhsachnutsua = document.querySelectorAll('.bang .hang .fa-solid.fa-pen');
     const menusua = document.querySelector('.bang .suaacc');
     const ngoaimenu = document.querySelector('.ngoaibangmenu');
+    const divCacAnh = document.querySelector('.cacanhtheoacc');
     let maaccdangsua = null;
+    divCacAnh.style.display = 'none';
+    divCacAnh.innerHTML = '';
     danhsachnutsua.forEach(nutsua=>{
         nutsua.addEventListener('click',function(){
             maaccdangsua = this.dataset.ma;
@@ -51,11 +54,80 @@ document.addEventListener('DOMContentLoaded',function(){
             document.getElementById('input-anh').value = anh;
             menusua.style.display='flex';
             ngoaimenu.style.display='block';
+            //Gửi dữ liệu khi nhấn nút sửa -------------------------------------------------------------------------------
+            const btn = document.querySelector(".anh div");
+            btn.addEventListener("click", function() {
+                const mota = document.querySelector(".suamota input").value;
+                const gia = document.querySelector(".suagia input").value;
+                const anh = document.querySelector(".anh input").value;
+                fetch("/suaacc", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        ma: maaccdangsua,
+                        mota: mota,
+                        gia: gia,
+                        anh: anh
+                    })
+                })
+                .then(res => res.json())
+                .then(data => console.log(data));
+                menusua.style.display='none';
+                ngoaimenu.style.display='none';
+            });
+            // Nếu nhấn vào ảnh acc trong popup để chỉnh sửa các ảnh cho acc.
+            const anhSpan = document.querySelector(".suaacc .anh span");
+            anhSpan.addEventListener("click", function () {
+                fetch("/hienthianhacc", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ ma_acc: maaccdangsua })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const arr = data.danhsachanh || [];
+                        if (arr.length) {
+                            let html = '';
+                            arr.forEach(anh => {
+                                html += `
+                                <div class="anh" data-ma="${anh.ma_anh}" style="width:98%;height:auto">
+                                    <img src="${anh.duong_dan}" alt="ảnh acc" style="width:98%;height:auto;border-radius:6px">
+                                    <button class="btn-xoa">Xóa</button>
+                                </div>`;
+                                divCacAnh.innerHTML = html;
+                                divCacAnh.style.display = 'flex';
+                                menusua.style.display='none';
+                                const xoabtn=document.querySelector('.anh .btn-xoa');
+                                xoabtn.addEventListener('click',function(){
+                                    const maAnh = this.parentElement.dataset.ma;
+                                    fetch('/xoaanhacc', {
+                                        method: 'POST',
+                                        headers: {'Content-Type': 'application/json'},
+                                        body: JSON.stringify({ ma_anh: maAnh })
+                                    })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        if (data.status === 'success') {
+                                            this.parentElement.remove();
+                                        }
+                                    });
+                                });
+                            });
+                        } else {
+                            divCacAnh.style.display = 'none';
+                            divCacAnh.innerHTML = '';
+                        }
+                    }
+                });
+            });
         });
     });
     ngoaimenu.addEventListener('click',function(){
         menusua.style.display='none';
         ngoaimenu.style.display='none';
+        divCacAnh.style.display = 'none';
+        divCacAnh.innerHTML = '';
     });
 
     // Phân trang-----------------------------------------------------------------------------------
@@ -134,7 +206,7 @@ document.addEventListener('DOMContentLoaded',function(){
         //Sự kiện khi nhấn nút sửa cho hàng mới ---------------------------------------------------------------
         const nutsua = hangmoi.querySelector('.fa-pen');
         nutsua.addEventListener('click',function(){
-            document.getElementById('input-mota').value = '';
+            document.getElementById('input-mota').value = '...';
             document.getElementById('input-gia').value = '';
             document.getElementById('input-anh').value = '';
             menusua.style.display='flex';
@@ -153,27 +225,6 @@ document.addEventListener('DOMContentLoaded',function(){
             const dachon = document.querySelector('.linhtinh .trai .dachon');
             dachon.textContent = `Đã chọn ${soluongdatich} hàng`;
         });
-    });
-
-    //Gửi dữ liệu khi nhấn nút sửa -------------------------------------------------------------------------------
-    const btn = document.querySelector(".anh div");
-    btn.addEventListener("click", function() {
-        const mota = document.querySelector(".suamota input").value;
-        const gia = document.querySelector(".suagia input").value;
-        const anh = document.querySelector(".anh input").value;
-        fetch("/suaacc", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                mota: mota,
-                gia: gia,
-                anh: anh
-            })
-        })
-        .then(res => res.json())
-        .then(data => console.log(data));
-        menusua.style.display='none';
-        ngoaimenu.style.display='none';
     });
 
     //Xóa acc--------------------------------------------------------------------------------------------------

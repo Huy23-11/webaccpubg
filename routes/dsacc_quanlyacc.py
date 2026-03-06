@@ -12,9 +12,7 @@ def dsacc_quanlyacc():
         FROM Acc
         ORDER BY ma_acc ASC
     """
-
     result = db.session.execute(text(sql))
-
     danh_sach_acc = []
     for row in result:
         danh_sach_acc.append({
