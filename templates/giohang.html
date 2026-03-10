@@ -4,6 +4,7 @@
         <title>webaccgame</title>
         <link rel="stylesheet" href="{{url_for('static',filename='css/giohang.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/dangxuat.js')}}" defer></script>
         <script src="{{url_for('static',filename='js/giohang.js')}}" defer></script>
     </head>
     <body>
@@ -26,8 +27,8 @@
             <div class="conlaitieude">
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
-                    <span class="ten">ten</span>
-                    <span class="sodu">2.400.000đ</span>
+                    <span class="ten">{{session.get("ten","ten")}}</span>
+                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0))}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
@@ -42,7 +43,7 @@
         <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
         <div class="divto2">
             <div class="soacctronggio">
-                <span>Số lượng acc trong giỏ hàng: 0</span>
+                <span>Số lượng acc trong giỏ hàng: {{soluong}}</span>
             </div>
             <div class="thanhtimkiem">
                 <input type="text" placeholder="Tìm kiếm theo mã">
@@ -50,33 +51,22 @@
         </div>
         <!--Xong phần div lớn 2 ------------------------------------------------------------------------------->
         <div class="danhsachacctronggio">
-            {%for i in range(4)%}
+            {%for i in dsacc%}
             <div class="acctronggio">
                 <div class="bentrai">
-                    <span>Mã acc: 012</span>
+                    <span>Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
                     <span>
                         <span>Giá: </span>
-                        <span class="gia">2.400.000đ</span>
+                        <span class="gia">{{ "{:,.0f}".format(acc.gia) }}đ</span>
                     </span>
-                    <span>Đã thêm vào ngày: 17/02/2026</span>
+                    <span>Đã thêm vào ngày: {{acc.thoidiem_them}}</span>
                     <span>
                         <span>Trạng thái: </span>
+                        {% if acc.trangthai == 1 %}
                         <span class="trangthai">Còn hàng</span>
-                    </span>
-                </div>
-                <div class="benphai">Xem</div>
-            </div>
-            <div class="acctronggio">
-                <div class="bentrai">
-                    <span>Mã acc: 012</span>
-                    <span>
-                        <span>Giá: </span>
-                        <span class="gia">2.400.000đ</span>
-                    </span>
-                    <span>Đã thêm vào ngày: 17/02/2026</span>
-                    <span>
-                        <span>Trạng thái: </span>
+                        {% else %}
                         <span class="trangthai">Hết hàng</span>
+                        {% endif %}
                     </span>
                 </div>
                 <div class="benphai">Xem</div>

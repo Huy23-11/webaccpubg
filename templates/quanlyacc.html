@@ -23,21 +23,21 @@
         <div class="noibat">
             <div>
                 <span>Số acc có tuyệt phẩm</span>
-                <span class="giatri">26</span>
+                <span class="giatri">{{ tuyetpham }}</span>
             </div>
             <div>
                 <span>Được xem nhiều nhất</span>
-                <span class="ten">#001</span>
-                <span class="giatri">2026</span>
+                <span class="ten">#{{ "%03d"|format(xemnhieu.ma_acc) }}</span>
+                <span class="giatri">{{ xemnhieu.so_luot_xem }}</span>
             </div>
             <div>
                 <span>Giá cao nhất</span>
-                <span class="ten">#2026</span>
-                <span class="giatri">20.262.026đ</span>
+                <span class="ten">#{{ "%03d"|format(giacao.ma_acc) }}</span>
+                <span class="giatri">{{ "{:,.0f}".format(giacao.gia) }}đ</span>
             </div>
             <div>
                 <span>Số acc trên 10tr</span>
-                <span class="giatri">120</span>
+                <span class="giatri">{{ tren10tr }}</span>
             </div>
         </div>
         <div class="linhtinh">
@@ -59,13 +59,13 @@
                 <span class="cot6">Giá</span>
             </div>
             {% for acc in dsacc %}
-            <div class="hang">
+            <div class="hang" data-ma="{{acc.ma_acc}}">
                 <input class="nuttichhang" type="checkbox">
                 <span class="cot1">#{{ "%03d"|format(acc.ma_acc) }}</span>
-                <input class="cot2" type="checkbox" {% if acc.gang_tay %}checked{% endif %} disabled>
-                <input class="cot3" type="checkbox" {% if acc.mu_dinh %}checked{% endif %} disabled>
-                <input class="cot4" type="checkbox" {% if acc.sieu_xe %}checked{% endif %} disabled>
-                <input class="cot5" type="checkbox" {% if acc.bape %}checked{% endif %} disabled>
+                <input class="cot2" type="checkbox" {% if acc.sieu_xe %}checked{% endif %} disabled>
+                <input class="cot3" type="checkbox" {% if acc.bape %}checked{% endif %} disabled>
+                <input class="cot4" type="checkbox" {% if acc.mu_dinh %}checked{% endif %} disabled>
+                <input class="cot5" type="checkbox" {% if acc.gang_tay %}checked{% endif %} disabled>
                 <span class="cot6">
                     {{ "{:,.0f}".format(acc.gia) }}đ
                 </span>
@@ -87,9 +87,9 @@
                 </div>
                 <div class="anh">
                     <span>Ảnh acc:</span>
-                    <input type="text" id="input-anh" placeholder="Thêm link ảnh">
-                    <div>Sửa</div>
+                    <input type="file" id="input-anh" multiple>
                 </div>
+                <div class="nutsua">Sửa</div>
             </div>
             <div class="cacanhtheoacc">
             </div>

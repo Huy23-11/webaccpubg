@@ -6,6 +6,7 @@ quanlyacc = Blueprint("quanlyacc", __name__)
 
 @quanlyacc.route("/quanlyacc")
 def dsacc_quanlyacc():
+    # danh sách acc
     sql = """
         SELECT ma_acc, gia, ngay_dang, mo_ta, so_luot_xem,
                gang_tay, mu_dinh, sieu_xe, bape, trang_thai
@@ -27,5 +28,46 @@ def dsacc_quanlyacc():
             "bape": row.bape,
             "trang_thai": row.trang_thai
         })
+    #Số acc có tuyệt phẩm ------------------------------
+    sql_tuyetpham = """
+        SELECT COUNT(*) AS soluong
+        FROM Acc
+        WHERE gang_tay = 1
+           OR mu_dinh = 1
+           OR sieu_xe = 1
+           OR bape = 1
+    """
+    tuyetpham = db.session.execute(text(sql_tuyetpham)).scalar()
 
-    return render_template("quanlyacc.html", dsacc=danh_sach_acc)
+    # Acc xem nhiều nhất --------------------------------------------
+    sql_xemnhieu = """
+        SELECT TOP 1 ma_acc, so_luot_xem
+        FROM Acc
+        ORDER BY so_luot_xem DESC
+    """
+    xemnhieu = db.session.execute(text(sql_xemnhieu)).fetchone()
+
+    #Acc giá cao nhất ------------------------------------------------
+    sql_giacao = """
+        SELECT TOP 1 ma_acc, gia
+        FROM Acc
+        ORDER BY gia DESC
+    """
+    giacao = db.session.execute(text(sql_giacao)).fetchone()
+
+    # Số acc trên 10 tr--------------------------------------------------------
+    sql_tren10tr = """
+        SELECT COUNT(*) 
+        FROM Acc
+        WHERE gia >= 10000000
+    """
+    tren10tr = db.session.execute(text(sql_tren10tr)).scalar()
+
+    return render_template(
+        "quanlyacc.html",
+        dsacc=danh_sach_acc,
+        tuyetpham=tuyetpham,
+        xemnhieu=xemnhieu,
+        giacao=giacao,
+        tren10tr=tren10tr
+    )

@@ -46,4 +46,27 @@ document.addEventListener("DOMContentLoaded", function() {
     nutdoimatkhau.addEventListener('click', function(){
         window.location.href = "/doimatkhau";
     });
+
+    //Đăng nhập
+    document.querySelector(".nut").onclick = async function(){
+        const taikhoan = document.querySelector(".nhaptk input").value
+        const matkhau = document.querySelector(".nhapmk input").value
+        const res = await fetch("/dangnhap",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                tai_khoan: taikhoan,
+                mat_khau: matkhau
+            })
+        })
+        const kq = await res.json()
+        if(kq.status === "success"){
+            window.location.href="/"
+        }
+        else{
+            alert("Sai tài khoản hoặc mật khẩu")
+        }
+    }
 })

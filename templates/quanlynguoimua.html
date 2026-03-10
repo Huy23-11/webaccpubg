@@ -22,23 +22,23 @@
         <div class="noibat">
             <div>
                 <span>Mua nhiều nhất tháng</span>
-                <span class="ten">Huy</span>
-                <span class="giatri">26</span>
+                <span class="ten">{{muathang.ten}}</span>
+                <span class="giatri">{{muathang.soluong}}</span>
             </div>
             <div>
                 <span>Nạp nhiều nhất tháng</span>
-                <span class="ten">Huy</span>
-                <span class="giatri">2.600.000đ</span>
+                <span class="ten">{{napthang.ten}}</span>
+                <span class="giatri">{{"{:,.0f}".format(napthang.tongtien)}}đ</span>
             </div>
             <div>
                 <span>Mua nhiều nhất</span>
-                <span class="ten">Huy</span>
-                <span class="giatri">26</span>
+                <span class="ten">{{muanhieu.ten}}</span>
+                <span class="giatri">{{muanhieu.soluong}}</span>
             </div>
             <div>
                 <span>Nạp nhiều nhất</span>
-                <span class="ten">Huy</span>
-                <span class="giatri">2.026.2026đ</span>
+                <span class="ten">{{napnhieu.ten}}</span>
+                <span class="giatri">{{"{:,.0f}".format(napnhieu.tongtien)}}đ</span>
             </div>
         </div>
         <div class="linhtinh">
@@ -57,23 +57,27 @@
                 <span class="cot4">Tổng đã mua</span>
                 <span class="cot5">Tổng đã nạp</span>
             </div>
-            {% for i in range(9)%}
+            {% for nguoimua in dsnguoi%}
             <div class="hang">
                 <input type="checkbox">
                 <div class="cot1">
-                    <span>Huy2026</span>
-                    <span class="sdt">020262026</span>
-                    <span class="email">huy2026@gmail.com</span>
+                    <span>{{nguoimua.ten}}</span>
+                    <span class="email">{{nguoimua.email}}</span>
                 </div>
-                <span class="cot2">10</span>
-                <span class="cot3">1.000.000đ</span>
-                <span class="cot4">26</span>
-                <span class="cot5">2.026.2026đ</span>
-                <i class="fa-solid fa-delete-left"></i>
-                <i class="fa-solid fa-pen"></i>
+                <span class="cot2">{{nguoimua.mua_thang}}</span>
+                <span class="cot3">{{"{:,.0f}".format(nguoimua.nap_thang)}}đ</span>
+                <span class="cot4">{{nguoimua.mua_tong}}</span>
+                <span class="cot5">{{"{:,.0f}".format(nguoimua.nap_tong)}}đ</span>
+                <i class="fa-solid fa-delete-left" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
+                <i class="fa-solid fa-pen" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
             </div>
             <hr>
             {% endfor %}
+            <div class="popupsodu">
+                <span class="soducua">Số dư của: </span>
+                <input type="text" class="inputsodu">
+                <button class="luusodu">Lưu</button>
+            </div>
             <div class="cuoibang">
                 <div class="trangtruoc">Trước</div>
                 <span>Trang 0/0</span>

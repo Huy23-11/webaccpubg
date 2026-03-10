@@ -4,6 +4,7 @@
         <title>webaccgame</title>
         <link rel="stylesheet" href="{{url_for('static',filename='css/doanhthu.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
         <script src="{{url_for('static',filename='js/doanhthu.js')}}" defer></script>
     </head>
     <body>
@@ -22,19 +23,19 @@
         <div class="noibat">
             <div>
                 <span>Đã bán(Tháng này)</span>
-                <span class="giatri">2026</span>
+                <span class="giatri">{{ ban_thang }}</span>
             </div>
             <div>
                 <span>Đã bán(Hôm nay)</span>
-                <span class="giatri">2026</span>
+                <span class="giatri">{{ ban_homnay }}</span>
             </div>
             <div>
                 <span>Tổng nạp(Tháng này)</span>
-                <span class="giatri">+2.600.000đ</span>
+                <span class="giatri">+{{ "{:,.0f}".format(nap_thang) }}đ</span>
             </div>
             <div>
                 <span>Tổng nạp(Hôm nay)</span>
-                <span class="giatri">+2.026.026đ</span>
+                <span class="giatri">+{{ "{:,.0f}".format(nap_homnay) }}đ</span>
             </div>
         </div>
         <!----------------------------------------------------------------------------------->

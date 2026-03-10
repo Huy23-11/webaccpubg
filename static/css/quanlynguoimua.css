@@ -144,7 +144,6 @@ body{
 .bang .hang{
     display:flex;
     align-items:center;
-    gap:60px;
     padding:10px;
     background-color: white;
     font-size:15px;
@@ -153,43 +152,64 @@ body{
     margin-left:10px;
 }
 .bang .hang .cot1{
-    margin-left:-35px;
+    margin-left:20px;
     display:flex;
     gap:3px;
     flex-direction:column;
-}
-.bang .hang .cot1 .sdt{
-    opacity:0.6;
-    font-size:13px;
+    width:200px;
 }
 .bang .hang .cot1 .email{
     opacity:0.6;
     font-size:13px;
 }
 .bang .hang .cot2{
-    margin-left:60px;
+    margin-left:15px;
     color:rgb(12, 171, 55);
+    display:flex;
+    justify-content:center;
+    width:60px;
 }
 .bang .hang .cot3{
-    margin-left:60px;
+    margin-left:65px;
     color:rgb(12, 171, 55);
+    display:flex;
+    justify-content:center;
+    width:150px;
 }
 .bang .hang .cot4{
-    margin-left:60px;
+    margin-left:65px;
     color:rgb(12, 171, 55);
+    display:flex;
+    justify-content:center;
+    width:30px;
 }
 .bang .hang .cot5{
-    margin-left:30px;
+    margin-left:47px;
     color:rgb(12, 171, 55);
+    display:flex;
+    justify-content:center;
+    width:150px;
 }
 .bang .hang i{
     opacity:0.5;
 }
 .fa-solid.fa-delete-left{
-    margin-left:-10px;
+    margin-left:30px;
 }
 .fa-solid.fa-pen{
-    margin-left:-30px;
+    margin-left:15px;
+}
+.popupsodu{
+    display:flex;
+    position: fixed;
+    margin: auto;
+    width:200px;
+    flex-direction:column;
+    background-color: white;
+    border: 1px solid rgb(134, 133, 133);
+    padding: 20px;
+    border-radius: 5px;
+    gap: 10px;
 }
 .bang hr{
     width:100%;

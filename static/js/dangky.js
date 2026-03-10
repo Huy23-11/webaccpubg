@@ -46,4 +46,32 @@ document.addEventListener("DOMContentLoaded", function() {
     nutdoimatkhau.addEventListener('click', function(){
         window.location.href = "/doimatkhau";
     });
+
+    //Đăng ký ----------------------------------------------------
+    document.querySelector(".nut").onclick = async function(){
+        const taikhoan = document.querySelector(".nhaptk input").value
+        const matkhau = document.querySelector(".nhapmk input").value
+        if(!taikhoan || !matkhau){
+            alert("Vui lòng nhập tài khoản và mật khẩu")
+            return
+        }
+        const res = await fetch("/dangky",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                tai_khoan: taikhoan,
+                mat_khau: matkhau
+            })
+        })
+        const kq = await res.json()
+        if(kq.status === "success"){
+            alert("Đăng ký thành công")
+            window.location.href="/dangnhap"
+        }
+        else if(kq.status === "exist"){
+            alert("Tài khoản đã tồn tại")
+        }
+    }
 })

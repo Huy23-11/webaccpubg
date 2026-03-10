@@ -9,22 +9,30 @@ document.addEventListener('DOMContentLoaded',function(){
     });
     const danhsachnguoimua = document.querySelectorAll('.bang .hang');
     const nganhang = document.querySelectorAll('.bang hr');
-    let tranghientai=1;
-    const tongsohang = danhsachnguoimua.length;
-    const tongsotrang = Math.ceil(tongsohang/5);
+    let trangthai = JSON.parse(localStorage.getItem("trangthai")) || new Array(danhsachnguoimua.length).fill(1);
+    let tranghientai = 1;
     function hientrang(trang){
-        for(let i=0;i<tongsohang;i++){
+        for(let i=0;i<danhsachnguoimua.length;i++){
             danhsachnguoimua[i].style.display='none';
             nganhang[i].style.display='none';
         }
+        let dsHople = [];
+        for(let i=0;i<trangthai.length;i++){
+            if(trangthai[i] === 1){
+                dsHople.push(i);
+            }
+        }
+        const tongsohang = dsHople.length;
+        const tongsotrang = Math.ceil(tongsohang/5);
         const batdau = (trang-1)*5;
         const ketthuc = Math.min(batdau+5,tongsohang);
         for(let i=batdau;i<ketthuc;i++){
-            danhsachnguoimua[i].style.display='flex';
-            nganhang[i].style.display='block';
+            const index = dsHople[i];
+            danhsachnguoimua[index].style.display='flex';
+            nganhang[index].style.display='block';
         }
         const sotrang = document.querySelector('.bang .cuoibang span');
-        sotrang.textContent=`Trang ${trang}/${tongsotrang}`;
+        sotrang.textContent = `Trang ${trang}/${tongsotrang}`;
     }
     const nuttrangtruoc = document.querySelector('.bang .cuoibang .trangtruoc');
     const nuttrangsau = document.querySelector('.bang .cuoibang .trangsau');
@@ -41,4 +49,77 @@ document.addEventListener('DOMContentLoaded',function(){
         }
     })
     hientrang(tranghientai);
+    //Xóa người mua -------------------------------------------------
+    const bang = document.querySelector(".bang");
+    bang.addEventListener("click", function(e){
+        if(!e.target.classList.contains("fa-delete-left")) return;
+        const nut = e.target;
+        if(!confirm("Bạn có chắc muốn xóa người mua này?")) return;
+        const manguoimua = nut.dataset.ma;
+        fetch('/xoanguoimua',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({
+                ma_nguoi_mua: manguoimua
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success"){
+                const hang = nut.closest(".hang");
+                const index = Array.from(danhsachnguoimua).indexOf(hang);
+                trangthai[index] = 0;
+                localStorage.setItem("trangthai", JSON.stringify(trangthai));
+                hientrang(tranghientai);
+            }
+        });
+    });
+    //sửa số dư---------------------------------------------------
+    const popup = document.querySelector(".popupsodu");
+    const spanTen = document.querySelector(".popupsodu .soducua");
+    const inputSoDu = document.querySelector(".popupsodu input");
+    const btnLuu = document.querySelector(".popupsodu .luusodu");
+    let maNguoiMuaDangSua = null;
+    popup.style.display = "none";
+    const danhsachnutsua = document.querySelectorAll(".fa-solid.fa-pen");
+    danhsachnutsua.forEach(nut => {
+        nut.addEventListener("click", function(){
+            const ma = this.dataset.ma;
+            fetch("/popupsodunguoimua",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    ma_nguoi_mua: ma
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === "success"){
+                    maNguoiMuaDangSua = ma;
+                    spanTen.textContent = `Số dư của: ${data.ten}`;
+                    inputSoDu.value = Number(data.so_du).toLocaleString("vi-VN");
+                    popup.style.display = "flex";
+                }
+            });
+        });
+    });
+    // lưu số dư--------------------------------
+    btnLuu.addEventListener("click", function(){
+        const sodumoi = inputSoDu.value.replace(/\./g,'');
+        fetch("/suasodu",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({
+                ma_nguoi_mua: maNguoiMuaDangSua,
+                so_du_moi: sodumoi
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success"){
+                popup.style.display = "none";
+                location.reload();
+            }
+        });
+    });
 })

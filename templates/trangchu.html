@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="{{url_for('static',filename='css/trangchu.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <script src="{{url_for('static',filename='js/trangchu.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/dangxuat.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/loctheogia.js')}}" defer></script>
     </head>
     <body>
         <div class="bangmenu">
@@ -26,8 +28,8 @@
             <div class="conlaitieude">
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
-                    <span class="ten">ten</span>
-                    <span class="sodu">2.400.000đ</span>
+                    <span class="ten">{{session.get("ten","ten")}}</span>
+                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0))}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
@@ -43,27 +45,17 @@
         <div class = "anhbia-topnap">
             <img class = "anhbia" src="{{url_for('static',filename='images/anh-pubg-3d-cuc-ngau-16-14-51-15.jpg')}}" alt="Ảnh bìa">
             <div class="topnap">
-                <div class="topnapthang">Top nạp tháng 12</div>
+                <div class="topnapthang">Top nạp tháng {{thang}}</div>
+                {% for user in topnap %}
                 <div class="topnap1">
-                    <span class="topnap-ten">1.PhamHuy2311</span>
-                    <span class="topnap-sotien">5.000.000đ</span>
+                    <span class="topnap-ten">
+                        {{loop.index}}.{{user.ten}}
+                    </span>
+                    <span class="topnap-sotien">
+                        {{ "{:,.0f}".format(user.tong_nap) }}đ
+                    </span>
                 </div>
-                <div class="topnap1">
-                    <span class="topnap-ten">2.PhamHuy2311</span>
-                    <span class="topnap-sotien">5.000.000đ</span>
-                </div>
-                <div class="topnap1">
-                    <span class="topnap-ten">3.PhamHuy2311</span>
-                    <span class="topnap-sotien">5.000.000đ</span>
-                </div>
-                <div class="topnap1">
-                    <span class="topnap-ten">4.PhamHuy2311</span>
-                    <span class="topnap-sotien">5.000.000đ</span>
-                </div>
-                <div class="topnap1">
-                    <span class="topnap-ten">5.PhamHuy2311</span>
-                    <span class="topnap-sotien">5.000.000đ</span>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <!--Xong phần ảnh bìa và top nạp ----------------------------------------------------------------------->
@@ -95,62 +87,39 @@
         </div>
         <!--Xong phần tìm acc theo giá ----------------------------------------------------------------------->
         <div class="danhsachacc">
-            {%for i in range(4)%}
-            <div class="acc">
-                <img src="{{url_for('static',filename='images/anhdaidienacc1.png')}}">
-                <div class="thongtinacc">
-                    <div class="dong1">
-                        <span>Mã: 001</span>
-                        <div class="saochep">
-                            <i class="fa-regular fa-copy"></i>
-                            <span>Sao chép mã</span>
-                        </div>
-                    </div>
-                    <div class="dong2">
-                        <span class="thoidiemdang">01/01/2026</span>
-                        <div class="luotxem">
-                            <i class="fa-solid fa-eye"></i>
-                            <span>2026</span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="dong3">
-                        <div class="giaacc">
-                            <span>Giá:</span>
-                            <span class="so">50.000đ</span>
-                        </div>
-                        <div class="chitiet">Chi tiết</div>
+        {% for acc in dsacc %}
+        <div class="acc" data-gia="{{acc.gia}}" data-gangtay="{{acc.gang_tay}}" data-mudinh="{{acc.mu_dinh}}" data-sieuxe="{{acc.sieu_xe}}" data-bape="{{acc.bape}}">
+            <img src="{{ acc.duong_dan }}">
+            <div class="thongtinacc">
+                <div class="dong1">
+                    <span>Mã: {{ "%03d"|format(acc.ma_acc) }}</span>
+                    <div class="saochep">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Sao chép mã</span>
                     </div>
                 </div>
-            </div>
-            <div class="acc">
-                <img src="{{url_for('static',filename='images/anhdaidienacc2.png')}}">
-                <div class="thongtinacc">
-                    <div class="dong1">
-                        <span>Mã: 001</span>
-                        <div class="saochep">
-                            <i class="fa-regular fa-copy"></i>
-                            <span>Sao chép mã</span>
-                        </div>
-                    </div>
-                    <div class="dong2">
-                        <span class="thoidiemdang">01/01/2026</span>
-                        <div class="luotxem">
-                            <i class="fa-solid fa-eye"></i>
-                            <span>2026</span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="dong3">
-                        <div class="giaacc">
-                            <span>Giá:</span>
-                            <span class="so">50.000đ</span>
-                        </div>
-                        <div class="chitiet">Chi tiết</div>
+                <div class="dong2">
+                    <span class="thoidiemdang">
+                        {{acc.ngay_dang.strftime('%d/%m/%Y')}}
+                    </span>
+                    <div class="luotxem">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>{{acc.so_luot_xem}}</span>
                     </div>
                 </div>
+                <hr>
+                <div class="dong3">
+                    <div class="giaacc">
+                        <span>Giá:</span>
+                        <span class="so">
+                            {{"{:,.0f}".format(acc.gia)}}đ
+                        </span>
+                    </div>
+                    <div class="chitiet">Chi tiết</div>
+                </div>
             </div>
-            {%endfor%}
+        </div>
+        {% endfor %}
         </div>
         <!--Xong danh sách acc--------------------------------------------------------------->
         <div class="trang">

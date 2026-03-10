@@ -4,6 +4,7 @@
         <title>webaccgame</title>
         <link rel="stylesheet" href="{{url_for('static',filename='css/trangnaptien.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/dangxuat.js')}}" defer></script>
         <script src="{{url_for('static',filename='js/trangnaptien.js')}}" defer></script>
     </head>
     <body>
@@ -26,8 +27,8 @@
             <div class="conlaitieude">
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
-                    <span class="ten">ten</span>
-                    <span class="sodu">2.400.000đ</span>
+                    <span class="ten">{{session.get("ten","ten")}}</span>
+                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0))}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>

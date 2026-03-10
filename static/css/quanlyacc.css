@@ -213,8 +213,8 @@ body{
     padding:15px;
     gap:10px;
     border-radius:5px;
-    width:270px;
-    height:120px;
+    width:290px;
+    height:140px;
     z-index:10;
     margin:auto;
     top:40%;
@@ -233,16 +233,16 @@ body{
 .suaacc input{
     border:none;
     outline:none;
+    width:230px;
 }
-.suaacc .anh{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-.suaacc .anh div{
+.suaacc .nutsua{
     border: 1px solid rgb(200, 200, 201);
     padding: 5px;
     border-radius:5px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    width:200px;
 }
 .suaacc hr{
     width:100%;

@@ -5,7 +5,8 @@ CREATE TABLE ChuShop (
     tai_khoan NVARCHAR(50) NOT NULL UNIQUE,
     mat_khau NVARCHAR(255) NOT NULL
 );
-
+select * from AnhAcc where ma_acc=1;
+select * from NguoiMua;
 CREATE TABLE NguoiMua (
     ma_nguoi_mua INT IDENTITY(1,1) PRIMARY KEY,
     ten NVARCHAR(100) NOT NULL,
@@ -40,12 +41,18 @@ CREATE TABLE DonMuaAcc (
     thoi_diem DATETIME NOT NULL DEFAULT GETDATE(),
 
     CONSTRAINT FK_DonMua_NguoiMua
-        FOREIGN KEY (ma_nguoi_mua) REFERENCES NguoiMua(ma_nguoi_mua),
+        FOREIGN KEY (ma_nguoi_mua) REFERENCES NguoiMua(ma_nguoi_mua)
+        ON DELETE CASCADE,
 
     CONSTRAINT FK_DonMua_Acc
         FOREIGN KEY (ma_acc) REFERENCES Acc(ma_acc)
+        ON DELETE CASCADE
 );
-
+exec sp_help DonMuaAcc;
+alter table DonMuaAcc
+add CONSTRAINT FK_DonMua_NguoiMua
+        FOREIGN KEY (ma_nguoi_mua) REFERENCES NguoiMua(ma_nguoi_mua)
+        ON DELETE CASCADE;
 CREATE TABLE DonNapTien (
     ma_don INT IDENTITY(1,1) PRIMARY KEY,
     ma_nguoi_mua INT NOT NULL,
@@ -91,8 +98,6 @@ CREATE TABLE AnhAcc (
         FOREIGN KEY (ma_acc) REFERENCES Acc(ma_acc)
         ON DELETE CASCADE
 );
-
-<-- Xong tạo bảng------------------------------------------------------------------------>
 INSERT INTO Acc (gia, ngay_dang, mo_ta, so_luot_xem, gang_tay, mu_dinh, sieu_xe, bape, trang_thai)
     VALUES(1500000.00, '2026-03-03', N'Acc full đồ hiếm, có siêu xe và mũ đinh', 0, 1, 1, 1, 0, 'ACTIVE');
 INSERT INTO Acc 
@@ -118,3 +123,25 @@ INSERT INTO AnhAcc (ma_acc, duong_dan, thu_tu) VALUES
 (5, N'/static/images/anhacc/5_2.png', 2),
 (6, N'/static/images/anhacc/6_1.png', 1),
 (6, N'/static/images/anhacc/6_2.png', 2);
+
+INSERT INTO NguoiMua (ten, email, tai_khoan, mat_khau, so_du, qr_nap_tien) VALUES
+(N'Nguyễn Văn An', 'an.nguyen@gmail.com', 'nguyenvanan', '123456', 500000, 'qr_an.png'),
+(N'Trần Thị Bình', 'binh.tran@gmail.com', 'tranthibinh', '123456', 250000, 'qr_binh.png'),
+(N'Lê Hoàng Nam', 'nam.le@gmail.com', 'lehoangnam', '123456', 1200000, 'qr_nam.png'),
+(N'Phạm Thu Trang', 'trang.pham@gmail.com', 'phamthutrang', '123456', 800000, 'qr_trang.png'),
+(N'Đỗ Minh Quân', 'quan.do@gmail.com', 'dominhnquan', '123456', 300000, 'qr_quan.png'),
+(N'Vũ Khánh Linh', 'linh.vu@gmail.com', 'vukhanhlinh', '123456', 950000, 'qr_linh.png'),
+(N'Hoàng Gia Bảo', 'bao.hoang@gmail.com', 'hoanggiabao', '123456', 150000, 'qr_bao.png'),
+(N'Ngô Đức Huy', 'huy.ngo@gmail.com', 'ngoduchuy', '123456', 600000, 'qr_huy.png');
+
+INSERT INTO DonNapTien (ma_nguoi_mua, so_tien, trang_thai) VALUES
+(1, 100000, 'SUCCESS'),
+(2, 200000, 'SUCCESS'),
+(3, 150000, 'SUCCESS'),
+(4, 300000, 'SUCCESS'),
+(5, 500000, 'SUCCESS'),
+(6, 250000, 'SUCCESS'),
+(7, 400000, 'SUCCESS'),
+(8, 1000000, 'SUCCESS'),
+(1, 350000, 'SUCCESS'),
+(3, 700000, 'SUCCESS');
