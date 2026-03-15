@@ -56,4 +56,13 @@ document.addEventListener('DOMContentLoaded',function(){
     socket.on("update_doanhthutheonam", function(msg){
         updateChartDTTN(msg.data)
     })
+    //Chuyển hướng
+    const quanlyacc = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(3)")
+    quanlyacc.addEventListener('click',function(){
+        window.location.href = "/quanlyacc"
+    })
+    const quanlynguoimua = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(2)")
+    quanlynguoimua.addEventListener('click',function(){
+        window.location.href = "/quanlynguoimua"
+    })
 })

@@ -11,7 +11,7 @@ def giohang():
     ma = session["ma_nguoi_mua"]
     sql = """
     SELECT 
-        g.ma_acc,
+        g.ma_acc,CAST(g.thoi_diem AS DATE) as thoi_diem,
         a.gia,
         a.trang_thai
     FROM AccTrongGio g

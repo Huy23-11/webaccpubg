@@ -7,31 +7,20 @@ document.addEventListener('DOMContentLoaded',function(){
             dachon.textContent = `Đã chọn ${soluongdatich} hàng`;
         });
     });
-    const danhsachnguoimua = document.querySelectorAll('.bang .hang');
-    const nganhang = document.querySelectorAll('.bang hr');
-    let trangthai = JSON.parse(localStorage.getItem("trangthai")) || new Array(danhsachnguoimua.length).fill(1);
+    let danhsachnguoimua = Array.from(document.querySelectorAll('.bang .hang'));
     let tranghientai = 1;
+    const tongsohang = danhsachnguoimua.length
+    let tongsotrang = Math.ceil(tongsohang/5)
+    const sotrang = document.querySelector('.bang .cuoibang span');
     function hientrang(trang){
-        for(let i=0;i<danhsachnguoimua.length;i++){
+        for(let i=0;i<tongsohang;i++){
             danhsachnguoimua[i].style.display='none';
-            nganhang[i].style.display='none';
         }
-        let dsHople = [];
-        for(let i=0;i<trangthai.length;i++){
-            if(trangthai[i] === 1){
-                dsHople.push(i);
-            }
-        }
-        const tongsohang = dsHople.length;
-        const tongsotrang = Math.ceil(tongsohang/5);
         const batdau = (trang-1)*5;
         const ketthuc = Math.min(batdau+5,tongsohang);
         for(let i=batdau;i<ketthuc;i++){
-            const index = dsHople[i];
-            danhsachnguoimua[index].style.display='flex';
-            nganhang[index].style.display='block';
+            danhsachnguoimua[i].style.display='flex';
         }
-        const sotrang = document.querySelector('.bang .cuoibang span');
         sotrang.textContent = `Trang ${trang}/${tongsotrang}`;
     }
     const nuttrangtruoc = document.querySelector('.bang .cuoibang .trangtruoc');
@@ -67,10 +56,12 @@ document.addEventListener('DOMContentLoaded',function(){
         .then(data => {
             if(data.status === "success"){
                 const hang = nut.closest(".hang");
-                const index = Array.from(danhsachnguoimua).indexOf(hang);
-                trangthai[index] = 0;
-                localStorage.setItem("trangthai", JSON.stringify(trangthai));
-                hientrang(tranghientai);
+                const hr = hang.nextElementSibling;
+                if(hr.tagName === "HR"){
+                    hr.remove()
+                }
+                hang.remove()
+                location.reload()
             }
         });
     });
@@ -122,4 +113,39 @@ document.addEventListener('DOMContentLoaded',function(){
             }
         });
     });
+    //Chuyển hướng
+    const doanhthu = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(1)")
+    doanhthu.addEventListener('click',function(){
+        window.location.href = "/doanhthu"
+    })
+    const quanlyacc = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(3)")
+    quanlyacc.addEventListener('click',function(){
+        window.location.href = "/quanlyacc"
+    })
+    // Sắp xếp
+    const nutsapxep = document.querySelector(".linhtinh .trai .sapxep")
+    nutsapxep.addEventListener("click",function(){
+        danhsachnguoimua.sort((b,a)=>{
+            return a.dataset.naptong - b.dataset.naptong
+        })
+        const container = document.querySelector(".bang .dsnguoimua")
+        danhsachnguoimua.forEach(nguoimua =>{
+            container.appendChild(nguoimua)
+        })
+        hientrang(1)
+    })
+    // Tìm kiếm
+    const inputten = document.querySelector(".linhtinh input")
+    inputten.addEventListener("keydown",function(e){
+        if(e.key === "Enter"){
+            danhsachnguoimua.forEach(nguoimua=>{
+                const ten = nguoimua.dataset.ten
+                if(ten === inputten.value) nguoimua.style.display = "flex"
+                else nguoimua.style.display = "none"
+            })
+            tranghientai = 1
+            tongsotrang = 1
+            sotrang.textContent = `Trang ${tranghientai}/${tongsotrang}`
+        }
+    })
 })

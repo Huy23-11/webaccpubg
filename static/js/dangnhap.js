@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if(kq.status === "success"){
             window.location.href="/"
         }
+        else if(kq.status === "success2"){
+            window.location.href="/quanlyacc"
+        }
         else{
             alert("Sai tài khoản hoặc mật khẩu")
         }

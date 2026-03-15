@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded',function(){
     const danhsachnuttich = document.querySelectorAll('.bang .hang .nuttichhang');
+    const sotrang = document.querySelector('.bang .cuoibang span');
     danhsachnuttich.forEach(nuttich => {
         nuttich.addEventListener('change', function () {
             const hang = this.closest('.hang');
@@ -104,7 +105,6 @@ document.addEventListener('DOMContentLoaded',function(){
         }
     });
 
-
     //Gửi dữ liệu sửa
     const btn = document.querySelector(".suaacc .nutsua");
     btn.addEventListener("click", function() {
@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded',function(){
         location.reload();
     });
 
-
     ngoaimenu.addEventListener('click',function(){
         menusua.style.display='none';
         ngoaimenu.style.display='none';
@@ -138,34 +137,19 @@ document.addEventListener('DOMContentLoaded',function(){
     });
 
     //Phân trang ------------------------------------
-    const danhsachnguoimua = document.querySelectorAll('.bang .hang');
-    const nganhang = document.querySelectorAll('.bang hr');
+    let danhsachnguoimua = Array.from(document.querySelectorAll('.bang .hang'))
     let tranghientai = 1;
-    let trangthai = JSON.parse(localStorage.getItem("trangthai_acc"));
-    if(!trangthai){
-        trangthai = new Array(danhsachnguoimua.length).fill(1);
-    }
+    const tongsohang = danhsachnguoimua.length;
+    let tongsotrang = Math.ceil(tongsohang/8);
     function hientrang(trang){
         for(let i=0;i<danhsachnguoimua.length;i++){
             danhsachnguoimua[i].style.display='none';
-            nganhang[i].style.display='none';
         }
-        let dsHople = [];
-        for(let i=0;i<trangthai.length;i++){
-            if(trangthai[i] === 1){
-                dsHople.push(i);
-            }
-        }
-        const tongsohang = dsHople.length;
-        const tongsotrang = Math.ceil(tongsohang/8);
         const batdau = (trang-1)*8;
         const ketthuc = Math.min(batdau+8,tongsohang);
         for(let i=batdau;i<ketthuc;i++){
-            const index = dsHople[i];
-            danhsachnguoimua[index].style.display='flex';
-            nganhang[index].style.display='block';
+            danhsachnguoimua[i].style.display='flex';
         }
-        const sotrang = document.querySelector('.bang .cuoibang span');
         sotrang.textContent=`Trang ${trang}/${tongsotrang}`;
     }
     const nuttrangtruoc = document.querySelector('.bang .cuoibang .trangtruoc');
@@ -178,9 +162,6 @@ document.addEventListener('DOMContentLoaded',function(){
     });
 
     nuttrangsau.addEventListener('click',function(){
-        let tongsohang = trangthai.filter(x=>x===1).length;
-        let tongsotrang = Math.ceil(tongsohang/8);
-
         if(tranghientai<tongsotrang){
             tranghientai++;
             hientrang(tranghientai);
@@ -190,16 +171,96 @@ document.addEventListener('DOMContentLoaded',function(){
 
     //xóa acc---------------------------------------------
     const danhsachnutxoa = document.querySelectorAll('.bang .hang .fa-delete-left');
-    danhsachnutxoa.forEach((nutxoa,index) => {
+    danhsachnutxoa.forEach(nutxoa => {
         nutxoa.addEventListener('click', function(){
             if(!confirm("Bạn có chắc muốn xóa hàng này không?")) return;
-            trangthai[index] = 0;
-            localStorage.setItem("trangthai_acc", JSON.stringify(trangthai));
-            hientrang(tranghientai);
+            fetch("/xoaacc",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body:JSON.stringify({ma_acc: nutxoa.dataset.ma})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === "success"){
+                    const acc = this.closest(".hang")
+                    const HR = acc.nextElementSibling
+                    acc.remove()
+                    if(HR.tagName === "HR"){
+                        HR.remove()
+                    } 
+                    location.reload()
+                }
+            })
         });
     });
     const soluongdatich = document.querySelectorAll('.bang .hang .nuttichhang:checked').length;
     const dachon = document.querySelector('.linhtinh .trai .dachon');
     dachon.textContent = `Đã chọn ${soluongdatich} hàng`;
+    
+    //Thêm acc -------------------------------------------------
+    const nutthemacc = document.querySelector(".fa-solid.fa-plus")
+    nutthemacc.addEventListener('click', function(){
+        fetch("/themacc",{
+            method: 'POST'
+        })
+        .then(res => res.json())
+        .then(data=>{
+            if(data.status === "success"){
+                location.reload()
+            }
+        })
+    })
 
+    //Sửa trạng thái acc------------------------------
+    const dsnuttrangthai = document.querySelectorAll(".bang .hang .trangthai")
+    dsnuttrangthai.forEach(nuttrangthai =>nuttrangthai.addEventListener('click',function(){
+        const acc = this.closest(".hang")
+        fetch("/suatrangthaiacc",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                ma_acc: acc.dataset.ma,
+                trang_thai: acc.dataset.trangthai
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.status === 'success')location.reload()
+        })
+    }))
+    //Chuyển hướng
+    const doanhthu = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(1)")
+    doanhthu.addEventListener('click',function(){
+        window.location.href = "/doanhthu"
+    })
+    const quanlynguoimua = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(2)")
+    quanlynguoimua.addEventListener('click',function(){
+        window.location.href = "/quanlynguoimua"
+    })
+    //Sắp xếp
+    const nutsapxep = document.querySelector(".linhtinh .trai .sapxep")
+    nutsapxep.addEventListener('click',function(){
+        danhsachnguoimua.sort((a,b) => {
+            return a.dataset.gia - b.dataset.gia
+        })
+        const container = document.querySelector(".bang .dsacc")
+        danhsachnguoimua.forEach(acc=>{
+            container.appendChild(acc)
+        })
+        hientrang(1)
+    })
+    // Tìm kiếm
+    const inputma = document.querySelector(".linhtinh input")
+    inputma.addEventListener("keydown",function(e){
+        if(e.key === "Enter"){
+            danhsachnguoimua.forEach(acc=>{
+                const maacc = parseInt(acc.dataset.ma)
+                if(maacc === parseInt(inputma.value)) acc.style.display = "flex"
+                else acc.style.display = "none"
+            })
+            tranghientai = 1
+            tongsotrang = 1
+            sotrang.textContent = `Trang ${tranghientai}/${tongsotrang}`
+        }
+    })
 });

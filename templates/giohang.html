@@ -51,18 +51,18 @@
         </div>
         <!--Xong phần div lớn 2 ------------------------------------------------------------------------------->
         <div class="danhsachacctronggio">
-            {%for i in dsacc%}
-            <div class="acctronggio">
+            {%for acc in dsacc%}
+            <div class="acctronggio" data-maacc = "{{acc.ma_acc}}" data-trangthai ="{{acc.trang_thai}}">
                 <div class="bentrai">
                     <span>Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
                     <span>
                         <span>Giá: </span>
                         <span class="gia">{{ "{:,.0f}".format(acc.gia) }}đ</span>
                     </span>
-                    <span>Đã thêm vào ngày: {{acc.thoidiem_them}}</span>
+                    <span>Đã thêm vào ngày: {{acc.thoi_diem}}</span>
                     <span>
                         <span>Trạng thái: </span>
-                        {% if acc.trangthai == 1 %}
+                        {% if acc.trang_thai == 'ACTIVE' %}
                         <span class="trangthai">Còn hàng</span>
                         {% else %}
                         <span class="trangthai">Hết hàng</span>

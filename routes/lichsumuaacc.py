@@ -11,8 +11,7 @@ def lichsumuaacc():
     ma = session["ma_nguoi_mua"]
     sql = """
     SELECT 
-        a.ma_acc,
-        a.gia,
+        a.ma_acc, a.gia, a.tai_khoan, a.mat_khau,
         d.thoi_diem
     FROM DonMuaAcc d
     JOIN Acc a ON d.ma_acc = a.ma_acc

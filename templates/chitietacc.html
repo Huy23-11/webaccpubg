@@ -5,6 +5,9 @@
         <link rel="stylesheet" href="{{url_for('static',filename='css/chitietacc.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <script src="{{url_for('static',filename='js/chitietacc.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/dangxuat.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/muaacc.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/themgiohang.js')}}" defer></script>
     </head>
     <body>
         <div class="bangmenu">
@@ -26,8 +29,8 @@
             <div class="conlaitieude">
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
-                    <span class="ten">ten</span>
-                    <span class="sodu">2.400.000đ</span>
+                    <span class="ten">{{nguoimua.ten}}</span>
+                    <span class="sodu">{{"{:,.0f}".format(nguoimua.so_du)}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
@@ -41,27 +44,30 @@
         </div>
         <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
         <div class="thongtinchuacc">
-            <span class="dong1">Mã số: 1001: Siêu phẩm có 1 0 2 pubgvn</span>
+            <span class="dong1">Mã số: {{"%03d"|format(acc.ma_acc)}}: {{acc.mo_ta}}</span>
             <span class="dong2">
-                <span>01/01/2026</span>
+                <span>{{acc.ngay_dang}}</span>
                 <span>
                     <i class="fa-solid fa-eye"></i>
-                    1502
+                    {{acc.so_luot_xem}}
                 </span>
             </span>
-            <span class="dong3">Giá bán: 50.000.000đ</span>
+            <span class="dong3">Giá bán: {{"{:,.0f}".format(acc.gia)}}đ</span>
             <div class="dong4">
-                <div class="nutthemgio">Thêm vào giỏ hàng</div>
-                <div class="nutmua">Mua ngay</div>
+                <div class="nutthemgio" data-maacc = "{{acc.ma_acc}}" data-manguoimua = "{{nguoimua.ma_nguoi_mua}}">Thêm vào giỏ hàng</div>
+                <div class="nutmua" data-maacc = "{{acc.ma_acc}}" data-manguoimua = "{{nguoimua.ma_nguoi_mua}}">Mua ngay</div>
             </div>
         </div>
         <!--Xong phần thông tin chữ acc ------------------------------------------------------------------------------->
         <div class="anhchitiet">
-            {% for i in range(4) %}
-            <img src="{{url_for('static',filename='images/anhdaidienacc1.png')}}">
-            <img src="{{url_for('static',filename='images/chitietacc1.png')}}">
+            {% for anh in dsanh %}
+            <img src="{{anh.duong_dan}}">
             {%endfor%}
-        </div>   
+        </div> 
+        <div class = "popuptkmk">
+            <span class="tk">Tài khoản: {{acc.tai_khoan}}</span>
+            <span class="mk">Mật khẩu: {{acc.mat_khau}}</span>
+        </div>  
         <!--Xong phần ảnh chi tiết acc ----------------------------------------------------------------------------------> 
         <div class="chantrang">
             <span>SHOP HUY2K5 © 2026</span>

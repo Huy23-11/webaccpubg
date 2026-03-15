@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     hienthisoacctronggio.textContent = `Bạn đã mua: ${soacctronggio} acc`;
     //Xong phần hiển thị số lượng acc trong giỏ hàng----------------------------------------------------------------------------
     const soacc1trang = 5;
-    const tongsotrang = Math.ceil(soacctronggio / soacc1trang);
+    let tongsotrang = Math.ceil(soacctronggio / soacc1trang);
     const hienthitranghientai = document.querySelector('.trang div');
     function hienthi(trang){
         danhsachacctronggio.forEach(acc=>{
@@ -83,4 +83,30 @@ document.addEventListener("DOMContentLoaded", function() {
     nutdoimatkhau.addEventListener('click', function(){
         window.location.href = "/doimatkhau";
     });
+    //Xem tài khoản mật khẩu
+    const popuptkmk = document.querySelector(".popuptkmk")
+    const dsnutxem = document.querySelectorAll(".danhsachacctronggio .acctronggio .benphai")
+    dsnutxem.forEach(nutxem=>{
+        nutxem.addEventListener('click',function(){
+            popuptkmk.style.display = "flex"
+            ngoaibangmenu.style.display = "block"
+        })
+    })
+    ngoaibangmenu.addEventListener("click",function(){
+        ngoaibangmenu.style.display = "none"
+        popuptkmk.style.display = "none"
+    })
+    const inputma = document.querySelector(".divto2 .thanhtimkiem input")
+    inputma.addEventListener("keydown",function(e){
+        if(e.key === "Enter"){
+            danhsachacctronggio.forEach(acc=>{
+                const maacc = parseInt(acc.dataset.maacc)
+                if(maacc === parseInt(inputma.value)) acc.style.display = "flex"
+                else acc.style.display = "none"
+            })
+            tranghientai = 1
+            tongsotrang = 1
+            hienthitranghientai.textContent = `Trang ${tranghientai}/${tongsotrang}`
+        }
+    })
 })

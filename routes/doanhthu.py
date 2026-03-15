@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session,redirect
 from extensions import db
 from sqlalchemy import text
 from extensions import socketio
@@ -6,6 +6,8 @@ from extensions import socketio
 doanhthu_bp = Blueprint("doanhthu_bp", __name__)
 @doanhthu_bp.route("/doanhthu")
 def thongke_doanhthu():
+    if "role" not in session or session["role"] != "admin":
+        return redirect("/dangnhap")
     #acc bán tháng này
     sql_ban_thang = """
         SELECT COUNT(*) 
@@ -53,13 +55,30 @@ def thongke_doanhthu():
 #đã bán theo tuần -----------------------------------------------
 @doanhthu_bp.route("/api/daban-theotuan")
 def daban_theotuan():
+    """
+    Thống kê số acc đã bán theo tuần hiện tại
+    ---
+    tags:
+      - ThongKe
+    responses:
+      200:
+        description: Danh sách số acc bán theo từng ngày trong tuần
+        schema:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: integer
+              example: [3,5,2,0,1,4,2]
+    """
     sql = """
     SELECT 
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         COUNT(*) AS soluong
     FROM DonMuaAcc
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07'),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07')+1,0)
+    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
+    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
     result = db.session.execute(text(sql))
@@ -75,8 +94,8 @@ def emit_update_dabantheotuan():
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         COUNT(*) AS soluong
     FROM DonMuaAcc
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07'),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07')+1,0)
+    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
+    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
     result = db.session.execute(text(sql))
@@ -89,13 +108,30 @@ def emit_update_dabantheotuan():
 #doanh thu theo tuần -------------------------------------------------
 @doanhthu_bp.route("/api/doanhthu-theotuan")
 def doanhthu_theotuan():
+    """
+    Thống kê doanh thu nạp tiền theo tuần hiện tại
+    ---
+    tags:
+      - ThongKe
+    responses:
+      200:
+        description: Doanh thu theo từng ngày trong tuần (triệu đồng)
+        schema:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: number
+              example: [5,10,0,2,3,8,1]
+    """
     sql = """
     SELECT 
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         SUM(so_tien) AS tongtien
     FROM DonNapTien
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07'),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07')+1,0)
+    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
+    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
     AND trang_thai = 'SUCCESS'
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
@@ -113,8 +149,8 @@ def emit_update_doanhthutheotuan():
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         SUM(so_tien) AS tongtien
     FROM DonNapTien
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07'),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,'2026-03-07')+1,0)
+    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
+    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
     AND trang_thai = 'SUCCESS'
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
@@ -128,6 +164,23 @@ def emit_update_doanhthutheotuan():
 #doanh thu theo năm----------------------
 @doanhthu_bp.route("/api/doanhthu-theonam")
 def doanhthu_theonam():
+    """
+    Thống kê doanh thu nạp tiền theo từng tháng trong năm
+    ---
+    tags:
+      - ThongKe
+    responses:
+      200:
+        description: Doanh thu theo từng tháng (triệu đồng)
+        schema:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: number
+              example: [12,8,15,20,10,5,0,0,0,0,0,0]
+    """
     sql = """
     SELECT 
         MONTH(thoi_diem) AS thang,

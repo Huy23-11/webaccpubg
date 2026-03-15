@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from extensions import db, socketio
 from config import Config
+from flasgger import Swagger
 from routes.suatrangthaitimkiemacc import suatrangthaitimkiemacc_bp
 from routes.dsacc_quanlyacc import quanlyacc
 from routes.xoaanhacc import xoaanhacc_bp
@@ -17,11 +18,20 @@ from routes.dangky import dangky_bp
 from routes.lichsumuaacc import lichsumuaacc_bp
 from routes.giohang import giohang_bp
 from routes.trangnaptien import trangnaptien_bp
+from routes.xoaacc import xoaacc_bp
+from routes.themacc import themacc_bp
+from routes.suatrangthaiacc import suatrangthaiacc_bp
+from routes.hienthichitietacc import hienthichitietacc_bp
+from routes.congsoluotxem import congsoluotxem_bp
+from routes.muaacc import muaacc_bp
+from routes.themgiohang import themgiohang_bp
 
 WAG = Flask(__name__)
 WAG.config.from_object(Config)
 db.init_app(WAG)
 socketio.init_app(WAG)
+swagger = Swagger(WAG)
+
 WAG.register_blueprint(quanlyacc)
 WAG.register_blueprint(xoaanhacc_bp)
 WAG.register_blueprint(hienthianhacc_bp)
@@ -38,12 +48,16 @@ WAG.register_blueprint(dangky_bp)
 WAG.register_blueprint(lichsumuaacc_bp)
 WAG.register_blueprint(giohang_bp)
 WAG.register_blueprint(trangnaptien_bp)
+WAG.register_blueprint(xoaacc_bp)
+WAG.register_blueprint(themacc_bp)
+WAG.register_blueprint(suatrangthaiacc_bp)
+WAG.register_blueprint(hienthichitietacc_bp)
+WAG.register_blueprint(congsoluotxem_bp)
+WAG.register_blueprint(muaacc_bp)
+WAG.register_blueprint(themgiohang_bp)
 
 WAG.secret_key = "shopaccgame123"
 
-@WAG.route('/chitietacc')
-def chitietacc():
-    return render_template('chitietacc.html')
 @WAG.route('/quanlynguoimua')
 def quanlynguoimua():
     return render_template('quanlynguoimua.html')

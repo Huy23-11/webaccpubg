@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, redirect
 from sqlalchemy import text
 from extensions import db
 
@@ -6,6 +6,8 @@ dsnguoimua_bp = Blueprint("dsnguoimua_bp",__name__)
 
 @dsnguoimua_bp.route("/quanlynguoimua")
 def dsnguoimua():
+    if "role" not in session or session["role"] != "admin":
+        return redirect("/dangnhap")
     sql = """
     SELECT 
         nm.ma_nguoi_mua,

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, redirect
 from extensions import db
 from sqlalchemy import text
 
@@ -6,6 +6,11 @@ quanlyacc = Blueprint("quanlyacc", __name__)
 
 @quanlyacc.route("/quanlyacc")
 def dsacc_quanlyacc():
+
+   
+    if "role" not in session or session["role"] != "admin":
+        return redirect("/dangnhap")
+
     # danh sách acc
     sql = """
         SELECT ma_acc, gia, ngay_dang, mo_ta, so_luot_xem,
@@ -15,6 +20,7 @@ def dsacc_quanlyacc():
     """
     result = db.session.execute(text(sql))
     danh_sach_acc = []
+
     for row in result:
         danh_sach_acc.append({
             "ma_acc": row.ma_acc,
@@ -28,7 +34,8 @@ def dsacc_quanlyacc():
             "bape": row.bape,
             "trang_thai": row.trang_thai
         })
-    #Số acc có tuyệt phẩm ------------------------------
+
+    # Số acc có tuyệt phẩm
     sql_tuyetpham = """
         SELECT COUNT(*) AS soluong
         FROM Acc
@@ -39,7 +46,7 @@ def dsacc_quanlyacc():
     """
     tuyetpham = db.session.execute(text(sql_tuyetpham)).scalar()
 
-    # Acc xem nhiều nhất --------------------------------------------
+    # Acc xem nhiều nhất
     sql_xemnhieu = """
         SELECT TOP 1 ma_acc, so_luot_xem
         FROM Acc
@@ -47,7 +54,7 @@ def dsacc_quanlyacc():
     """
     xemnhieu = db.session.execute(text(sql_xemnhieu)).fetchone()
 
-    #Acc giá cao nhất ------------------------------------------------
+    # Acc giá cao nhất
     sql_giacao = """
         SELECT TOP 1 ma_acc, gia
         FROM Acc
@@ -55,9 +62,9 @@ def dsacc_quanlyacc():
     """
     giacao = db.session.execute(text(sql_giacao)).fetchone()
 
-    # Số acc trên 10 tr--------------------------------------------------------
+    # Số acc trên 10 triệu
     sql_tren10tr = """
-        SELECT COUNT(*) 
+        SELECT COUNT(*)
         FROM Acc
         WHERE gia >= 10000000
     """

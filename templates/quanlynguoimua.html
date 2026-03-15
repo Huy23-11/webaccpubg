@@ -43,7 +43,7 @@
         </div>
         <div class="linhtinh">
             <div class="trai">
-                <div class="loc">Lọc</div>
+                <div class="sapxep">Sắp xếp</div>
                 <div class="chonthem">Chọn thêm</div>
                 <div class="dachon">Đã chọn 0 hàng</div>
             </div>
@@ -57,22 +57,23 @@
                 <span class="cot4">Tổng đã mua</span>
                 <span class="cot5">Tổng đã nạp</span>
             </div>
-            {% for nguoimua in dsnguoi%}
-            <div class="hang">
-                <input type="checkbox">
-                <div class="cot1">
-                    <span>{{nguoimua.ten}}</span>
-                    <span class="email">{{nguoimua.email}}</span>
+            <div class = "dsnguoimua">
+                {% for nguoimua in dsnguoi%}
+                <div class="hang" data-ten = "{{nguoimua.ten}}" data-naptong = "{{nguoimua.nap_tong}}">
+                    <input type="checkbox">
+                    <div class="cot1">
+                        <span>{{nguoimua.ten}}</span>
+                        <span class="email">{{nguoimua.email}}</span>
+                    </div>
+                    <span class="cot2">{{nguoimua.mua_thang}}</span>
+                    <span class="cot3">{{"{:,.0f}".format(nguoimua.nap_thang)}}đ</span>
+                    <span class="cot4">{{nguoimua.mua_tong}}</span>
+                    <span class="cot5">{{"{:,.0f}".format(nguoimua.nap_tong)}}đ</span>
+                    <i class="fa-solid fa-delete-left" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
+                    <i class="fa-solid fa-pen" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
                 </div>
-                <span class="cot2">{{nguoimua.mua_thang}}</span>
-                <span class="cot3">{{"{:,.0f}".format(nguoimua.nap_thang)}}đ</span>
-                <span class="cot4">{{nguoimua.mua_tong}}</span>
-                <span class="cot5">{{"{:,.0f}".format(nguoimua.nap_tong)}}đ</span>
-                <i class="fa-solid fa-delete-left" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
-                <i class="fa-solid fa-pen" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
+                {% endfor %}
             </div>
-            <hr>
-            {% endfor %}
             <div class="popupsodu">
                 <span class="soducua">Số dư của: </span>
                 <input type="text" class="inputsodu">

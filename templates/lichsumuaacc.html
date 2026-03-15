@@ -56,7 +56,7 @@
         <!--Xong phần div lớn 2 ------------------------------------------------------------------------------->
         <div class="danhsachacctronggio">
             {% for acc in dsacc %}
-            <div class="acctronggio">
+            <div class="acctronggio" data-maacc = "{{acc.ma_acc}}">
                 <div class="bentrai">
                     <span>Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
                     <span>
@@ -71,6 +71,10 @@
                     </span>
                 </div>
                 <div class="benphai">Xem</div>
+                <div class = "popuptkmk">
+                    <span class="tk">Tài khoản: {{acc.tai_khoan}}</span>
+                    <span class="mk">Mật khẩu: {{acc.mat_khau}}</span>
+                </div>
             </div>
             {% endfor %}
         </div>

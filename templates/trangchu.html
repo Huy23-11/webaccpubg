@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <script src="{{url_for('static',filename='js/trangchu.js')}}" defer></script>
         <script src="{{url_for('static',filename='js/dangxuat.js')}}" defer></script>
-        <script src="{{url_for('static',filename='js/loctheogia.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/locacc.js')}}" defer></script>
     </head>
     <body>
         <div class="bangmenu">
@@ -60,10 +60,10 @@
         </div>
         <!--Xong phần ảnh bìa và top nạp ----------------------------------------------------------------------->
         <div class="timtheonhucau">
-            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/quanbape.png')}}">
-            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/sieuxe.png')}}">
-            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/mudinh.png')}}">
-            <img class="anhtimtheonhucau" src="{{url_for('static',filename='images/gangbang.png')}}">
+            <img class="anhtimtheonhucau" id = "bape" src="{{url_for('static',filename='images/quanbape.png')}}">
+            <img class="anhtimtheonhucau" id = "sieuxe" src="{{url_for('static',filename='images/sieuxe.png')}}">
+            <img class="anhtimtheonhucau" id = "mudinh" src="{{url_for('static',filename='images/mudinh.png')}}">
+            <img class="anhtimtheonhucau" id = "gangbang" src="{{url_for('static',filename='images/gangbang.png')}}">
         </div>
         <!--Xong phần tìm acc theo nhu cầu ----------------------------------------------------------------------->
         <div class="thanhtimkiem">
@@ -88,7 +88,7 @@
         <!--Xong phần tìm acc theo giá ----------------------------------------------------------------------->
         <div class="danhsachacc">
         {% for acc in dsacc %}
-        <div class="acc" data-gia="{{acc.gia}}" data-gangtay="{{acc.gang_tay}}" data-mudinh="{{acc.mu_dinh}}" data-sieuxe="{{acc.sieu_xe}}" data-bape="{{acc.bape}}">
+        <div class="acc" data-ma = "{{acc.ma_acc}}" data-gia="{{acc.gia}}" data-gangtay="{{acc.gang_tay}}" data-mudinh="{{acc.mu_dinh}}" data-sieuxe="{{acc.sieu_xe}}" data-bape="{{acc.bape}}">
             <img src="{{ acc.duong_dan }}">
             <div class="thongtinacc">
                 <div class="dong1">

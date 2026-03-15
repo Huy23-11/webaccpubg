@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const tranghientai = document.querySelector('.trang div');
     const tongsotrang = Math.ceil(soacc / 6);
     let sotrang = 1;
+    const soLuongSpan = document.querySelector(".linhtinh span:nth-child(2)");
+    soLuongSpan.textContent = "Số lượng: " + soacc
     function hienacc(trang){
         for(let i = 0; i < soacc; i++){
             danhsachacc[i].style.display= "none";
@@ -16,20 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
         tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
     }
     hienacc(sotrang);
-    const nuttruoc = document.querySelector('.trang .fa-angle-left');
-    const nutsau = document.querySelector('.trang .fa-angle-right');
-    nuttruoc.addEventListener('click', function(){
-        if(sotrang > 1){
-            sotrang--;
-            hienacc(sotrang);
-        }
-    });
-    nutsau.addEventListener('click', function(){
-        if(sotrang < tongsotrang){
-            sotrang++;
-            hienacc(sotrang);
-        }
-    });
     //Xong phần số trang----------------------------------------------------------------------------
     const nutmenu = document.querySelector('.fa-list');
     const bangmenu = document.querySelector('.bangmenu');
@@ -78,4 +66,19 @@ document.addEventListener("DOMContentLoaded", function() {
     nutdoimatkhau.addEventListener('click', function(){
         window.location.href = "/doimatkhau";
     });
+
+    //Chuyển hướng chi tiết acc------------------------------
+    const dsnutchuyenhuongchitietacc = document.querySelectorAll(".acc .thongtinacc .dong3 .chitiet")
+    dsnutchuyenhuongchitietacc.forEach(nutchuyenhuongchitietacc => nutchuyenhuongchitietacc.addEventListener('click', function(){
+        const acc = this.closest(".acc")
+        const ma_acc = acc.dataset.ma
+        window.location.href = `/chitietacc/${ma_acc}`
+        fetch("/congsoluotxem",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                ma_acc: ma_acc 
+            })
+        })
+    }))
 })
