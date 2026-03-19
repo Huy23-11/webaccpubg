@@ -44,7 +44,6 @@ def xoaanhacc():
     if row:
         duong_dan = row.duong_dan
         file_path = os.path.join("static", "images", "anhacc", duong_dan)
-
         if os.path.exists(file_path):
             os.remove(file_path)
 
