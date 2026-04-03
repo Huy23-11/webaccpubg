@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
     const input = document.querySelector(".thanhtimkiem input")
+    const nuttimkiem = document.querySelector(".thanhtimkiem .fa-solid.fa-magnifying-glass")
     input.addEventListener("keydown",function(e){
         if(e.key === 'Enter'){
             const ma = parseInt(input.value)
@@ -144,5 +145,19 @@ document.addEventListener("DOMContentLoaded", function(){
             soLuongSpan.textContent = `Số lượng: 1`
             tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
         }
+    })
+    nuttimkiem.addEventListener("click", function(){
+        const ma = parseInt(input.value)
+        dsacchien.forEach(acc=>{
+            if(parseInt(acc.dataset.ma) === ma){
+                acc.style.display = "flex"
+            }
+            else acc.style.display = "none"
+        })
+        trang = 1
+        tongsotrang = 1
+        soacchien = 1
+        soLuongSpan.textContent = `Số lượng: 1`
+        tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
     })
 });

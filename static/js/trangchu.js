@@ -42,9 +42,14 @@ document.addEventListener("DOMContentLoaded", function() {
         ngoaibangmenu.style.display = "none";
     });
     //Xong phần click icon cá nhân ----------------------------------------------------------------------------
-    const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
-    const nutnaptien = document.querySelector('.naptien');
-    const nutgiohang = document.querySelector('.giohang');
+    const nuttrangchu = document.querySelector('.chucnang .trangchu');
+    const nutlichsumuaacc = document.querySelector('.chucnang .lichsumuaacc');
+    const nutnaptien = document.querySelector('.chucnang .naptien');
+    const nutgiohang = document.querySelector('.chucnang .giohang');
+    const nutnaptienngay = document.querySelector('.naptien-ngay');
+    nuttrangchu.addEventListener('click', function(){
+        window.location.href = "/";
+    });
     nutlichsumuaacc.addEventListener('click', function(){
         window.location.href = "/lichsumuaacc";
     });
@@ -54,9 +59,12 @@ document.addEventListener("DOMContentLoaded", function() {
     nutgiohang.addEventListener('click', function(){
         window.location.href = "/giohang";
     });
-    const nutdangnhap = document.querySelector('.dangnhap');
-    const nuttaotaikhoan = document.querySelector('.taotaikhoan');
-    const nutdoimatkhau = document.querySelector('.doimatkhau');
+    nutnaptienngay.addEventListener('click', function(){
+        window.location.href = "/trangnaptien";
+    });
+    const nutdangnhap = document.querySelector('.iconcanhan .dangnhap');
+    const nuttaotaikhoan = document.querySelector('.iconcanhan .taotaikhoan');
+    const nutdoimatkhau = document.querySelector('.iconcanhan .doimatkhau');
     nutdangnhap.addEventListener('click', function(){
         window.location.href = "/dangnhap";
     });

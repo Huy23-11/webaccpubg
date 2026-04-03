@@ -1,5 +1,6 @@
 body{
-    background-color:rgb(221, 221, 221)
+    background-color:rgb(242, 247, 249);
+    font-family: Arial, sans-serif;
 }
 .bangmenu{
     display:flex;
@@ -13,6 +14,7 @@ body{
     z-index:10;
     padding:10px;
     transform: translateX(-100%);
+    transition: transform 0.3s ease;
 }
 .bangmenu.hien{
     transform: translateX(0%);
@@ -22,13 +24,50 @@ body{
     margin-left:30px;
     font-size:30px;
     color: rgb(136, 185, 241);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:25px;
+    font-weight: bold;
 }
 .bangmenu .chumenu{
-    margin-top:20px;
-    opacity:0.5;
+    margin-top:40px;
+    margin-left:10px;
+    font-weight:bold;
+    font-size:14px;
+    color:rgb(122, 122, 122);
 }
-.bangmenu hr{
-    width:220px;
+.bangmenu .chucnang{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top:20px;
+}
+.bangmenu .chucnang div{
+    display:flex;
+    align-items: center;
+    padding:10px;
+    transition: background-color 0.2s ease;
+}
+.bangmenu .chucnang div:hover {
+    background-color: rgb(235, 235, 237);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.bangmenu .chucnang div i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:14px;
+    font-weight:bold;
+    width:20px;
+    margin-left:5px;
+}
+.bangmenu .chucnang div span{
+    margin-left:10px;
+    font-size:14px;
+    font-weight:bold;
+    color:rgb(84, 84, 84);
 }
 .ngoaibangmenu{
     position:fixed;
@@ -45,21 +84,43 @@ body{
     width:1200px;
     height:50px;
     top:0;
+    left:0;
     display:flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(247, 247, 249);
-    font-size: 25px;
+    font-size: 20px;
     padding: 10px;
-    border-radius: 20px;
-    margin:auto;
+    z-index:8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .tenshop-iconlist{
     display:flex;
     align-items: center;
-    font-size:40px;
+    font-size:25px;
+    font-weight: bold;
     gap:10px;
-    color:rgb(136, 185, 241);
+    margin-left:30px;
+}
+.tenshop-iconlist span{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tenshop-iconlist i {
+    font-size:30px;
+    padding: 8px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+}
+.tenshop-iconlist i:hover {
+    box-shadow: 0 0 0 2px rgb(235, 235, 237);
 }
 .conlaitieude{
     display:flex;
@@ -69,10 +130,24 @@ body{
 .ten-sodu{
     display:flex;
     flex-direction: column;
-    font-size: 
+    font-size: 15px;
+    font-weight:bold; 
+    gap:6px;
 }
 .sodu{
     color:red;
+}
+.conlaitieude i{
+    font-size:30px;
+    padding: 8px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+}
+.conlaitieude i:hover {
+    box-shadow: 0 0 0 2px rgb(235, 235, 237);
 }
 .iconcanhan{
     display:flex;
@@ -81,20 +156,43 @@ body{
     gap:5px;
     font-size:20px;
     background-color:white;
-    padding:10px;
+    padding:15px;
     position:fixed;
     left:80%;
     width:150px;
     top:60px;
-    border-radius:10px;
+    border-radius:5px;
     z-index:10;
     transform: translateY(-150%);
 }
 .iconcanhan.hien{
     transform: translateY(0%);
 }
-.iconcanhan hr{
+.iconcanhan div{
+    display:flex;
+    align-items: center;
     width:100%;
+    transition: background-color 0.2s ease;
+    padding: 7px;
+}
+.iconcanhan div:hover {
+    background-color: rgb(235, 235, 237);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.iconcanhan div i{
+    margin-left:10px;
+    width:30px;
+    font-size:13px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.iconcanhan div span{
+    font-size:13px;
+    font-weight:bold;
+    margin-left:5px;
+    color:rgb(84, 84, 84)
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần tiêu đề */
@@ -108,37 +206,130 @@ body{
 .anhbia{
     width: 650px;
     height:380px;
-    border-radius: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+.anhbia:hover {
+    transform: scale(1.05);
 }
 .topnap{
     display:flex;
     flex-direction: column;
+    align-items: center;
     gap:3px;
+    background-color:white;
+    width: 400px;
+    border-radius:5px;
+    padding-bottom:10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .topnapthang{
     display:flex;
     align-items: center;
     justify-content: center;
-    width: 270px;
+    width: 380px;
     height:40px;
     padding:10px;
-    background-color:rgb(136, 185, 241);
-    border-radius: 20px;
-    font-size: 30px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 23px;
+    font-weight:bold;
     color:white;
+    gap: 10px;
+    margin-bottom:9px;
+}
+.topnapthang i{
+    margin-left:10px;
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .topnap1{
     display:flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(247, 247, 249);
-    border-radius: 20px;
+    background-color: white;
+    border-radius: 5px;
     padding: 10px;
-    width:270px;
-    height:40px;
+    width:350px;
+    height:20px;
+    font-weight:bold;
+    opacity:0.9;
+    transition: all 0.2s ease;
+}
+.topnap .topnap1:nth-of-type(2) {
+  background: linear-gradient(135deg, #ffd700, #fff8dc, #fcd34d);
+  color: #5c4500;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.topnap .topnap1:nth-of-type(3) {
+  background: linear-gradient(135deg, #c0c0c0, #e5e7eb, #9ca3af);
+  color: #2c2c2c;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.6);
+}
+
+.topnap .topnap1:nth-of-type(4) {
+  background: linear-gradient(135deg, #cd7f32, #f4a460, #b87333);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(205, 127, 50, 0.6);
+}
+.topnap1:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.topnap .topnap1:nth-of-type(2):hover {
+  box-shadow: 
+    0 0 0 2px rgba(0, 198, 255, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 12px rgba(255, 215, 0, 0.8);
+}
+.topnap .topnap1:nth-of-type(3):hover {
+  box-shadow: 
+    0 0 0 2px rgba(0, 198, 255, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 12px rgba(255, 215, 0, 0.8);
+}
+.topnap .topnap1:nth-of-type(4):hover {
+  box-shadow: 
+    0 0 0 2px rgba(0, 198, 255, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 12px rgba(255, 215, 0, 0.8);
+}
+.topnap .naptien-ngay:hover {
+  outline: 3px solid rgba(0, 198, 255, 0.6);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
 }
 .topnap-sotien{
     color:red;
+}
+.naptien-ngay{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    width: 370px;
+    height:40px;
+    border-radius: 5px;
+    bottom:-20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(250, 251, 252);
+    margin-top: 10px;
+}
+.naptien-ngay i{
+    background: linear-gradient(135deg, #e7edaf, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần ảnh bìa + top nạp */
@@ -153,6 +344,13 @@ body{
     position:fixed;
     right: 0;
     transform: translateY(-125%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.timtheonhucau img{
+    transition: all 0.25s ease;
+}
+.timtheonhucau img:hover{
+    transform: scale(1.3);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần tìm acc nhanh theo nhu cầu */
@@ -162,10 +360,25 @@ body{
     justify-content: space-between;
     width: 500px;
     background-color:white;
-    border-radius: 25px;
+    border-radius: 8px;
     padding:10px;
     margin:auto;
     margin-top:30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+.thanhtimkiem:hover {
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.thanhtimkiem i{
+    transition: all 0.2s ease;
+}
+.thanhtimkiem i:hover {
+    transform: scale(1.03);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .thanhtimkiem input{
     opacity:0.5;

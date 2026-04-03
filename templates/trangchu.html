@@ -12,12 +12,24 @@
         <div class="bangmenu">
             <span class="tenshop">Shop Huy2k5</span>
             <span class="chumenu">menu</span>
-            <hr>
-            <span class="lichsumuaacc">Lịch sử mua acc</span>
-            <hr>
-            <span class="naptien">Nạp tiền</span>
-            <hr>
-            <span class="giohang">Giỏ hàng của bạn</span>
+            <div class="chucnang">
+                <div class="trangchu">
+                    <i class="fa-regular fa-house"></i>
+                    <span class="trangchu">Trang chủ</span>
+                </div>
+                <div class="lichsumuaacc">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="lichsumua">Lịch sử mua acc</span>
+                </div>
+                <div class="naptien">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="naptien">Nạp tiền</span>
+                </div>
+                <div class="giohang">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="giohang">Giỏ hàng của bạn</span>
+                </div>
+            </div>
         </div>
         <div class="ngoaibangmenu"></div>
         <div class="tieude">
@@ -29,33 +41,47 @@
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
                     <span class="ten">{{session.get("ten","ten")}}</span>
-                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0))}}đ</span>
+                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0)).replace(",", ".")}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
         </div>
         <div class="iconcanhan">
-            <span class="dangnhap">Đăng nhập</span>
-            <hr>
-            <span class="taotaikhoan">Tạo tài khoản</span>
-            <hr>
-            <span class="doimatkhau">Đổi mật khẩu</span>
+            <div class="dangnhap">
+                <i class="fa-solid fa-person-arrow-down-to-line"></i>
+                <span class="dangnhap">Đăng nhập</span>
+            </div>
+            <div class="taotaikhoan">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span class="taotaikhoan">Tạo tài khoản</span>
+            </div>
+            <div class="doimatkhau">
+                <i class="fa-solid fa-arrows-turn-to-dots"></i>
+                <span class="doimatkhau">Đổi mật khẩu</span>
+            </div>
         </div>
         <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
         <div class = "anhbia-topnap">
             <img class = "anhbia" src="{{url_for('static',filename='images/anh-pubg-3d-cuc-ngau-16-14-51-15.jpg')}}" alt="Ảnh bìa">
             <div class="topnap">
-                <div class="topnapthang">Top nạp tháng {{thang}}</div>
+                <div class="topnapthang">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>Top nạp tháng {{thang}}</span>
+                </div>
                 {% for user in topnap %}
                 <div class="topnap1">
                     <span class="topnap-ten">
-                        {{loop.index}}.{{user.ten}}
+                        {{loop.index}}. {{user.ten}}
                     </span>
                     <span class="topnap-sotien">
-                        {{ "{:,.0f}".format(user.tong_nap) }}đ
+                        {{ "{:,.0f}".format(user.tong_nap).replace(",", ".") }}đ
                     </span>
                 </div>
                 {% endfor %}
+                <div class="naptien-ngay">
+                    <i class="fa-solid fa-coins"></i>
+                    <span>Nạp tiền ngay</span>
+                </div>
             </div>
         </div>
         <!--Xong phần ảnh bìa và top nạp ----------------------------------------------------------------------->
