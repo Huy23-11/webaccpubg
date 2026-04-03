@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, jsonify
+from flask import Blueprint,request, render_template, session, redirect, jsonify
 from sqlalchemy import text
 from extensions import db
 

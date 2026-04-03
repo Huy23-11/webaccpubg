@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from sqlalchemy import text
+from routes.auth_decorator import admin_required
 
 hienthianhacc_bp = Blueprint("hienthianhacc_bp", __name__)
 
 @hienthianhacc_bp.route("/hienthianhacc", methods=["POST"])
+@admin_required
 def hienthianhacc():
     """
     Hiển thị danh sách ảnh của acc

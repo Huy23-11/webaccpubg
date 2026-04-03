@@ -1,10 +1,12 @@
 from flask import Blueprint, request
 from sqlalchemy import text
 from extensions import db
+from routes.auth_decorator import admin_required
 
 suatrangthaiacc_bp = Blueprint("suatrangthaiacc_bp",__name__)
 
 @suatrangthaiacc_bp.route("/suatrangthaiacc",methods=["POST"])
+@admin_required
 def suatrangthaiacc():
     """
     Đổi trạng thái account (ACTIVE ↔ SOLD)

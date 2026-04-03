@@ -1,9 +1,11 @@
-from flask import Blueprint, render_template, session,redirect
+from flask import Blueprint, render_template, session, redirect
 from extensions import db
 from sqlalchemy import text
 from extensions import socketio
+from routes.auth_decorator import admin_required
 
 doanhthu_bp = Blueprint("doanhthu_bp", __name__)
+
 @doanhthu_bp.route("/doanhthu")
 def thongke_doanhthu():
     if "role" not in session or session["role"] != "admin":
@@ -54,12 +56,15 @@ def thongke_doanhthu():
 
 #đã bán theo tuần -----------------------------------------------
 @doanhthu_bp.route("/api/daban-theotuan")
+@admin_required
 def daban_theotuan():
     """
     Thống kê số acc đã bán theo tuần hiện tại
     ---
     tags:
       - ThongKe
+    security:
+      - Bearer: []
     responses:
       200:
         description: Danh sách số acc bán theo từng ngày trong tuần
@@ -73,12 +78,15 @@ def daban_theotuan():
               example: [3,5,2,0,1,4,2]
     """
     sql = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
     SELECT 
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         COUNT(*) AS soluong
     FROM DonMuaAcc
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
     result = db.session.execute(text(sql))
@@ -90,12 +98,15 @@ def daban_theotuan():
 
 def emit_update_dabantheotuan():
     sql = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
     SELECT 
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         COUNT(*) AS soluong
     FROM DonMuaAcc
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
     result = db.session.execute(text(sql))
@@ -107,12 +118,15 @@ def emit_update_dabantheotuan():
 
 #doanh thu theo tuần -------------------------------------------------
 @doanhthu_bp.route("/api/doanhthu-theotuan")
+@admin_required
 def doanhthu_theotuan():
     """
     Thống kê doanh thu nạp tiền theo tuần hiện tại
     ---
     tags:
       - ThongKe
+    security:
+      - Bearer: []
     responses:
       200:
         description: Doanh thu theo từng ngày trong tuần (triệu đồng)
@@ -126,12 +140,15 @@ def doanhthu_theotuan():
               example: [5,10,0,2,3,8,1]
     """
     sql = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
     SELECT 
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         SUM(so_tien) AS tongtien
     FROM DonNapTien
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
     AND trang_thai = 'SUCCESS'
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
@@ -145,12 +162,15 @@ def doanhthu_theotuan():
 
 def emit_update_doanhthutheotuan():
     sql = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
     SELECT 
         DATEPART(WEEKDAY, thoi_diem) AS thu,
         SUM(so_tien) AS tongtien
     FROM DonNapTien
-    WHERE thoi_diem >= DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE)),0)
-    AND thoi_diem < DATEADD(WEEK, DATEDIFF(WEEK,0,CAST(GETDATE() AS DATE))+1,0)
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
     AND trang_thai = 'SUCCESS'
     GROUP BY DATEPART(WEEKDAY, thoi_diem)
     """
@@ -159,16 +179,21 @@ def emit_update_doanhthutheotuan():
     for r in result:
         thu = (r.thu + 5) % 7
         data[thu] = float(r.tongtien//1000000)
+    print("===========================================================================")
+    print(data)
     socketio.emit("update_doanhthutheotuan", {"data": data})
 
 #doanh thu theo năm----------------------
 @doanhthu_bp.route("/api/doanhthu-theonam")
+@admin_required
 def doanhthu_theonam():
     """
     Thống kê doanh thu nạp tiền theo từng tháng trong năm
     ---
     tags:
       - ThongKe
+    security:
+      - Bearer: []
     responses:
       200:
         description: Doanh thu theo từng tháng (triệu đồng)

@@ -81,4 +81,12 @@ document.addEventListener("DOMContentLoaded", function() {
             })
         })
     }))
+    //Copy mã acc----------
+    const dsnutcopy = document.querySelectorAll(".saochep")
+    dsnutcopy.forEach(nutcopy => {
+        nutcopy.addEventListener("click",function(){
+            const cha = this.closest(".acc")
+            navigator.clipboard.writeText(cha.dataset.ma)
+        })
+    })
 })

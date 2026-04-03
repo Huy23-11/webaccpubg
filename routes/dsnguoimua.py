@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, jsonify
 from sqlalchemy import text
 from extensions import db
+from routes.auth_decorator import admin_required
 
 dsnguoimua_bp = Blueprint("dsnguoimua_bp",__name__)
 
@@ -21,6 +22,7 @@ def dsnguoimua():
   )
 
 @dsnguoimua_bp.route("/api/quanlynguoimua", methods=["GET"])
+@admin_required
 def api_dsnguoimua():
   """
   API quản lý người mua

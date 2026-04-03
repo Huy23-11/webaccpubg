@@ -1,10 +1,12 @@
 from flask import Blueprint, request
 from sqlalchemy import text
 from extensions import db
+from routes.auth_decorator import admin_required
 
 themacc_bp = Blueprint("themacc_bp",__name__)
 
 @themacc_bp.route("/themacc", methods = ["POST"])
+@admin_required
 def themacc():
     """
     Thêm account mới

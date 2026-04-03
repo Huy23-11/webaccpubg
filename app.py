@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from extensions import db, socketio
 from config import Config
 from flasgger import Swagger
+
 from routes.suatrangthaitimkiemacc import suatrangthaitimkiemacc_bp
 from routes.dsacc_quanlyacc import quanlyacc
 from routes.xoaanhacc import xoaanhacc_bp
@@ -28,9 +29,38 @@ from routes.themgiohang import themgiohang_bp
 
 WAG = Flask(__name__)
 WAG.config.from_object(Config)
+
+WAG.config["SECRET_KEY"] = "shopaccgame123"
+
 db.init_app(WAG)
 socketio.init_app(WAG)
-swagger = Swagger(WAG)
+
+# Swagger config
+swagger_template = {
+    "swagger": "2.0",
+    "info": {
+        "title": "Shop Acc Game API",
+        "description": "API quản lý shop acc",
+        "version": "1.0"
+    },
+
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Nhập JWT dạng: Bearer <token>"
+        }
+    },
+
+    "security": [
+        {
+            "Bearer": []
+        }
+    ]
+}
+
+swagger = Swagger(WAG, template=swagger_template)
 
 WAG.register_blueprint(quanlyacc)
 WAG.register_blueprint(xoaanhacc_bp)
@@ -56,17 +86,19 @@ WAG.register_blueprint(congsoluotxem_bp)
 WAG.register_blueprint(muaacc_bp)
 WAG.register_blueprint(themgiohang_bp)
 
-WAG.secret_key = "shopaccgame123"
-
 @WAG.route('/quanlynguoimua')
 def quanlynguoimua():
     return render_template('quanlynguoimua.html')
+
 @WAG.route('/doanhthu')
 def doanhthu():
     return render_template('doanhthu.html')
+
 @WAG.route('/doimatkhau')
 def doimatkhau():
     return render_template('doimatkhau.html')
+
 print(Config.SQLALCHEMY_DATABASE_URI)
+
 if __name__ == '__main__':
     socketio.run(WAG, debug=True)

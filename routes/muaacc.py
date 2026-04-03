@@ -36,13 +36,12 @@ def muaacc():
               type: string
               example: success
     """
-
+    if "ma_nguoi_mua" not in session:
+        redirect("/dangnhap")
     data = request.get_json()
     ma_nguoi_mua = data.get("ma_nguoi_mua")
     ma_acc = data.get("ma_acc")
 
-    if "ma_nguoi_mua" not in session:
-        return {"status": "unlogin"}
 
     sql1 = """
         SELECT nm.so_du

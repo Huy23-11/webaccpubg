@@ -48,27 +48,28 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     //Đăng nhập
-    document.querySelector(".nut").onclick = async function(){
+    document.querySelector(".nut").onclick = async function() {
         const taikhoan = document.querySelector(".nhaptk input").value
         const matkhau = document.querySelector(".nhapmk input").value
-        const res = await fetch("/dangnhap",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
+        const res = await fetch("/dangnhap", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 tai_khoan: taikhoan,
                 mat_khau: matkhau
             })
         })
         const kq = await res.json()
-        if(kq.status === "success"){
-            window.location.href="/"
-        }
-        else if(kq.status === "success2"){
-            window.location.href="/quanlyacc"
-        }
-        else{
+        if (kq.status === "success" || kq.status === "success2") {
+            localStorage.setItem("token", kq.token); 
+            if (kq.status === "success") {
+                window.location.href = "/"
+            } else {
+                window.location.href = "/quanlyacc"
+            }
+        } else {
             alert("Sai tài khoản hoặc mật khẩu")
         }
     }

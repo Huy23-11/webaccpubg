@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from sqlalchemy import text
+from routes.auth_decorator import admin_required
 
 suatrangthaitimkiemacc_bp = Blueprint("suatrangthaitimkiemacc", __name__)
 
 @suatrangthaitimkiemacc_bp.route("/suatrangthaitimkiemacc", methods=["POST"])
+@admin_required
 def suatrangthaitimkiemacc():
     """
     Cập nhật trạng thái tìm kiếm của acc (sieu_xe, bape, mu_dinh, gang_tay)

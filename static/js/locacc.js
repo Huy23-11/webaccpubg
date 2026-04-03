@@ -96,6 +96,8 @@ document.addEventListener("DOMContentLoaded", function(){
     });
     nutsau.addEventListener('click', function(){
         if(trang < tongsotrang){
+            console.log(trang)
+            console.log(tongsotrang)
             trang++;
             hienacc();
         }

@@ -77,7 +77,11 @@ def get_data():
       "ngay_dang": row.ngay_dang,
       "mo_ta": row.mo_ta if hasattr(row, "mo_ta") else None,
       "so_luot_xem": row.so_luot_xem if hasattr(row, "so_luot_xem") else None,
-      "duong_dan": row.duong_dan
+      "duong_dan": row.duong_dan,
+      "sieu_xe":row.sieu_xe,
+      "bape":row.bape,
+      "mu_dinh":row.mu_dinh,
+      "gang_tay": row.gang_tay
     })
 
   sql = """

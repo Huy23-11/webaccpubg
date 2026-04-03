@@ -2,10 +2,12 @@ from flask import Blueprint, request, jsonify
 from extensions import db
 import os
 from sqlalchemy import text
+from routes.auth_decorator import admin_required
 
 suaacc_bp = Blueprint("suaacc_bp", __name__)
 
 @suaacc_bp.route("/suaacc", methods=["POST"])
+@admin_required
 def suaacc():
     """
     Sửa thông tin acc và thêm ảnh

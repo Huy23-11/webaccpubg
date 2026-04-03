@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, jsonify
 from extensions import db
 from sqlalchemy import text
+from routes.auth_decorator import admin_required
 
 quanlyacc = Blueprint("quanlyacc", __name__)
 
@@ -21,6 +22,7 @@ def dsacc_quanlyacc():
   )
 
 @quanlyacc.route("/api/quanlyacc", methods=["GET"])
+@admin_required
 def api_dsacc_quanlyacc():
   """
   API lấy danh sách account và thống kê

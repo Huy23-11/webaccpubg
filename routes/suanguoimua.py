@@ -4,10 +4,12 @@ from extensions import db
 from decimal import Decimal
 from routes.dsnguoimua import dsnguoimua
 from routes.doanhthu import emit_update_doanhthutheonam, emit_update_doanhthutheotuan
+from routes.auth_decorator import admin_required
 
 suanguoimua_bp = Blueprint("suanguoimua_bp",__name__)
 
 @suanguoimua_bp.route("/popupsodunguoimua", methods=["POST"])
+@admin_required
 def popupsodunguoimua():
     """
     Lấy thông tin người mua (tên + số dư)
@@ -60,6 +62,7 @@ def popupsodunguoimua():
 
 
 @suanguoimua_bp.route("/suasodu", methods=["POST"])
+@admin_required
 def suasodu():
     """
     Sửa số dư người mua

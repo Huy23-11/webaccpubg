@@ -1,8 +1,15 @@
-from flask import Blueprint, request, render_template, session
+from flask import Blueprint, request, render_template, session, current_app
 from sqlalchemy import text
 from extensions import db
+import jwt
+from datetime import datetime, timedelta
 
 dangnhap_bp = Blueprint("dangnhap_bp", __name__)
+
+def _create_jwt(payload: dict, expires_minutes: int = 60):
+    payload = payload.copy()
+    payload["exp"] = datetime.utcnow() + timedelta(minutes=expires_minutes)
+    return jwt.encode(payload, current_app.config["SECRET_KEY"], algorithm="HS256")
 
 @dangnhap_bp.route('/dangnhap')
 def trang_dangnhap():
@@ -56,7 +63,8 @@ def dangnhap():
         session["ma_nguoi_mua"] = user.ma_nguoi_mua
         session["ten"] = user.ten
         session["so_du"] = float(user.so_du)
-        return {"status": "success"}
+        token = _create_jwt({"role": "nguoimua", "ma_nguoi_mua": user.ma_nguoi_mua})
+        return {"status": "success", "token": token}
     
     sql2 = """
         SELECT * 
@@ -66,7 +74,8 @@ def dangnhap():
     admin = db.session.execute(text(sql2),{"tk":taikhoan, "mk": matkhau}).fetchone()
     if admin:
         session["role"] = "admin"
-        return {"status": "success2"}
+        token = _create_jwt({"role": "admin", "tai_khoan": taikhoan})
+        return {"status": "success2", "token": token}
     
     return {"status": "fail"}
 

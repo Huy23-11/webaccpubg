@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from sqlalchemy import text
+from routes.auth_decorator import admin_required
 
 xoanguoimua_bp = Blueprint("xoanguoimua_bp",__name__)
 
 @xoanguoimua_bp.route("/xoanguoimua", methods = ["POST"])
+@admin_required
 def xoanguoimua():
     """
     Xóa người mua

@@ -28,7 +28,9 @@
             <div>
                 <span>Nạp nhiều nhất tháng</span>
                 <span class="ten">{{napthang.ten}}</span>
-                <span class="giatri">{{"{:,.0f}".format(napthang.tongtien)}}đ</span>
+                <span class="giatri">
+                    {{ "{:,.0f}".format(napthang.tongtien) if napthang and napthang.tongtien else "0" }}đ
+                </span>
             </div>
             <div>
                 <span>Mua nhiều nhất</span>

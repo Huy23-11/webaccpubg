@@ -1,10 +1,12 @@
 from flask import Blueprint, request
 from extensions import db
 from sqlalchemy import text
+from routes.auth_decorator import admin_required
 
 xoaacc_bp = Blueprint("xoaacc_bp",__name__)
 
 @xoaacc_bp.route("/xoaacc",methods = ["POST"])
+@admin_required
 def xoaacc():
     """
     Xóa account theo mã acc
