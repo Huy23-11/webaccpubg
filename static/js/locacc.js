@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const nutsieuxe = document.getElementById("sieuxe")
     const nutmudinh = document.getElementById("mudinh")
     const nutgangbang = document.getElementById("gangbang")
-    const nutSapXep = document.querySelector(".sapxep")
+    const nutSapXep = document.querySelector(".linhtinh .nutsapxep")
     let dsacchien = []
     let tongsotrang = Math.ceil(soacc/6)
     let trang = 1
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         })
         soacchien = dsacchien.length;
-        soLuongSpan.textContent = `Số lượng: ${soacchien}`
+        soLuongSpan.textContent = `${soacchien}`
         tongsotrang = Math.ceil(soacchien/6)
         trang = 1
         hienacc()
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         })
         soacchien = dsacchien.length;
-        soLuongSpan.textContent = `Số lượng: ${soacchien}`
+        soLuongSpan.textContent = `${soacchien}`
         tongsotrang = Math.ceil(soacchien/6)
         trang = 1
         hienacc()
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         })
         soacchien = dsacchien.length;
-        soLuongSpan.textContent = `Số lượng: ${soacchien}`
+        soLuongSpan.textContent = `${soacchien}`
         tongsotrang = Math.ceil(soacchien/6)
         trang = 1
         hienacc()
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         })
         soacchien = dsacchien.length;
-        soLuongSpan.textContent = `Số lượng: ${soacchien}`
+        soLuongSpan.textContent = `${soacchien}`
         tongsotrang = Math.ceil(soacchien/6)
         trang = 1
         hienacc()
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 if(hien) dsacchien.push(acc);
             });
             soacchien = dsacchien.length;
-            soLuongSpan.textContent = "Số lượng: " + soacchien;
+            soLuongSpan.textContent = `${soacchien}`;
             trang = 1;
             tongsotrang = Math.ceil(soacchien / 6);
             hienacc();
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function(){
             trang = 1
             tongsotrang = 1
             soacchien = 1
-            soLuongSpan.textContent = `Số lượng: 1`
+            soLuongSpan.textContent = `1`
             tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
         }
     })

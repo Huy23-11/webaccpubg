@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tongsotrang = Math.ceil(soacc / 6);
     let sotrang = 1;
     const soLuongSpan = document.querySelector(".linhtinh span:nth-child(2)");
-    soLuongSpan.textContent = "Số lượng: " + soacc
+    soLuongSpan.textContent = soacc
     function hienacc(trang){
         for(let i = 0; i < soacc; i++){
             danhsachacc[i].style.display= "none";

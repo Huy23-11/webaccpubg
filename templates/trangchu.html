@@ -98,9 +98,12 @@
         </div>
         <!--Xong phần thanh tìm kiếm -------------------------------------------------------------------------->
         <div class="linhtinh">
-            <span>Danh sách acc bán</span>
-            <span>Số lượng: 36</span>
-            <span class="sapxep">Sắp xếp</span>
+            <span class="danhsach">Danh sách acc bán</span>
+            <span class="soluong">36</span>
+            <div class="nutsapxep">
+                <i class="fa-solid fa-sort"></i>
+                <span class="sapxep">Sắp xếp</span>
+            </div>
         </div>
         <hr>
         <div class="timtheogia">
@@ -125,9 +128,12 @@
                     </div>
                 </div>
                 <div class="dong2">
-                    <span class="thoidiemdang">
-                        {{acc.ngay_dang.strftime('%d/%m/%Y')}}
-                    </span>
+                    <div class="thoidiem">
+                        <i class="fa-solid fa-clock"></i>
+                        <span class="thoidiemdang">
+                            {{acc.ngay_dang.strftime('%d/%m/%Y')}}
+                        </span>
+                    </div>
                     <div class="luotxem">
                         <i class="fa-solid fa-eye"></i>
                         <span>{{acc.so_luot_xem}}</span>
