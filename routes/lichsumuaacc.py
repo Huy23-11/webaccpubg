@@ -68,8 +68,9 @@ def get_data(ma):
   sql = """
     SELECT 
       a.ma_acc, a.gia, a.tai_khoan, a.mat_khau,
-      d.thoi_diem
+      d.thoi_diem, aa.duong_dan
     FROM DonMuaAcc d
+    LEFT JOIN AnhAcc aa ON aa.ma_acc = d.ma_acc AND aa.thu_tu=1
     JOIN Acc a ON d.ma_acc = a.ma_acc
     WHERE d.ma_nguoi_mua = :ma
     ORDER BY d.thoi_diem DESC
@@ -84,7 +85,8 @@ def get_data(ma):
       "gia": row.gia,
       "tai_khoan": row.tai_khoan,
       "mat_khau": row.mat_khau,
-      "thoi_diem": row.thoi_diem
+      "thoi_diem": row.thoi_diem,
+      "duong_dan": row.duong_dan
     })
 
   soluong = len(dsacc)

@@ -113,4 +113,24 @@ document.addEventListener("DOMContentLoaded", function() {
             hienthitranghientai.textContent = `Trang ${tranghientai}/${tongsotrang}`
         }
     })
+    //Xem ảnh lớn----------------------
+    const modal = document.querySelector(".modal");
+    const modalImg = document.querySelector(".modal-img");
+    const nutDong = document.querySelector(".dong");
+
+    document.querySelectorAll(".overlay div").forEach(btn => {
+        btn.addEventListener("click", function(e) {
+            e.stopPropagation();
+
+            const img = this.closest(".anh-wrapper").querySelector("img");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        });
+    });
+
+    nutDong.onclick = () => modal.style.display = "none";
+
+    modal.onclick = function(e) {
+        if (e.target === modal) modal.style.display = "none";
+    };
 })

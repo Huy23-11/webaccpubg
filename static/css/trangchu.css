@@ -20,6 +20,7 @@ body{
     transform: translateX(0%);
 }
 .bangmenu .tenshop{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     margin-top:15px;
     margin-left:30px;
     font-size:30px;
@@ -103,6 +104,7 @@ body{
     margin-left:30px;
 }
 .tenshop-iconlist span{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -114,13 +116,14 @@ body{
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.25s ease;
 }
 .tenshop-iconlist i:hover {
-    box-shadow: 0 0 0 2px rgb(235, 235, 237);
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .conlaitieude{
     display:flex;
@@ -128,6 +131,7 @@ body{
     gap: 15px;
 }
 .ten-sodu{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
     flex-direction: column;
     font-size: 15px;
@@ -138,6 +142,7 @@ body{
     color:red;
 }
 .conlaitieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     font-size:30px;
     padding: 8px;
     border-radius: 6px;
@@ -147,7 +152,7 @@ body{
     transition: all 0.25s ease;
 }
 .conlaitieude i:hover {
-    box-shadow: 0 0 0 2px rgb(235, 235, 237);
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .iconcanhan{
     display:flex;
@@ -494,7 +499,6 @@ hr{
     transition: 0.3s;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    width:100%;
 }
 .overlay {
     position: absolute;

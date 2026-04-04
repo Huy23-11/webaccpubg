@@ -92,15 +92,24 @@
         <div class="danhsachacctronggio">
             {% for acc in dsacc %}
             <div class="acctronggio" data-maacc = "{{acc.ma_acc}}">
+                <div class="anh-wrapper">
+                    <img src="{{ acc.duong_dan }}">
+                    <div class="overlay">
+                        <div class="xem">
+                            <i class="fa-regular fa-eye"></i>
+                            <span class="xem">Xem</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="bentrai">
-                    <span>Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
-                    <span>
-                        <span>Giá: </span>
-                        <span class="gia">
-                            {{"{:,.0f}".format(acc.gia)}}đ
+                    <span class="ma">Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
+                    <span class="gia">
+                        <span class="gia1">Giá: </span>
+                        <span class="gia2">
+                            {{"{:,.0f}".format(acc.gia).replace(",", ".")}}đ
                         </span>
                     </span>
-                    <span>
+                    <span class="thoidiem">
                         Thời điểm mua:
                         {{acc.thoi_diem.strftime("%d/%m/%Y")}}
                     </span>
@@ -112,6 +121,10 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="modal">
+            <span class="dong">&times;</span>
+            <img class="modal-img">
         </div>
         <div class="trang">
             <i class="fa-solid fa-angle-left"></i>

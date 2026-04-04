@@ -20,6 +20,7 @@ body{
     transform: translateX(0%);
 }
 .bangmenu .tenshop{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     margin-top:15px;
     margin-left:30px;
     font-size:30px;
@@ -103,6 +104,7 @@ body{
     margin-left:30px;
 }
 .tenshop-iconlist span{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -114,13 +116,14 @@ body{
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.25s ease;
 }
 .tenshop-iconlist i:hover {
-    box-shadow: 0 0 0 2px rgb(235, 235, 237);
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .conlaitieude{
     display:flex;
@@ -128,6 +131,7 @@ body{
     gap: 15px;
 }
 .ten-sodu{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
     flex-direction: column;
     font-size: 15px;
@@ -138,6 +142,7 @@ body{
     color:red;
 }
 .conlaitieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     font-size:30px;
     padding: 8px;
     border-radius: 6px;
@@ -147,7 +152,7 @@ body{
     transition: all 0.25s ease;
 }
 .conlaitieude i:hover {
-    box-shadow: 0 0 0 2px rgb(235, 235, 237);
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .iconcanhan{
     display:flex;
@@ -273,7 +278,17 @@ body{
     font-size:15px;
     padding:4px;
     border-radius:5px;
-    border:1px solid rgb(175, 175, 176);
+    border:1px solid rgb(218, 218, 221);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+.divto2 .thanhtimkiem input::placeholder {
+    font-size: 12px;
+    opacity:0.6;
+}
+.divto2 .thanhtimkiem input:hover {
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần div lớn 2 */
@@ -281,31 +296,131 @@ body{
     display:flex;
     flex-direction: column;
     margin-top:10px;
-    gap:5px;
+    margin-left:40px;
+    gap:10px;
+    border-radius:10px;
+    border: 1px solid rgb(216, 216, 216);
+    padding:10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width:95%;
 }
 .danhsachacctronggio .acctronggio{
     display:flex;
-    justify-content:space-between;
     align-items: center;
-    gap:20px;
     background-color:white;
     padding:10px;
-    padding-left:80px;
+    padding-left:30px;
     padding-right:50px;
     border-radius: 10px;
-    font-size:18px;
+    font-weight:bold;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height:60px;
 }
+.danhsachacctronggio .acctronggio:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+/*-----------------*/
+.anh-wrapper {
+    position: relative;
+    overflow: hidden;
+    width:10%;
+}
+
+.anh-wrapper img {
+    width: 100%;
+    display: block;
+    transition: 0.3s;
+    border-radius:5px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    border-radius:5px;
+    gap:7px;
+}
+
+.overlay div{
+    color: white;
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size:12px;
+    font-weight:bold;
+
+}
+
+.anh-wrapper:hover img {
+    filter: brightness(80%);
+}
+
+.anh-wrapper:hover .overlay {
+    background: rgba(55, 55, 55, 0.4);
+}
+
+.anh-wrapper:hover .overlay div {
+    opacity: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(85, 83, 83, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal .dong {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+/*-----------------*/
 .danhsachacctronggio .acctronggio .bentrai{
     display:flex;
     flex-direction:column;
+    width:700px;
+    font-size:15px;
+    margin-left:10px;
 }
-.danhsachacctronggio .acctronggio .bentrai .gia{
+.danhsachacctronggio .acctronggio .bentrai .gia .gia2{
     color:red;
+}
+.danhsachacctronggio .acctronggio .bentrai .thoidiem{
+    opacity:0.4;
+    font-size:12px;
 }
 .danhsachacctronggio .acctronggio .benphai{
     padding:8px;
+    font-size:14px;
     border-radius:10px;
-    border: 1px solid rgb(175, 175, 176);
+    border: 1px solid rgb(205, 205, 206);
+    margin-left:200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+.danhsachacctronggio .acctronggio .benphai:hover{
+    transform: scale(1.1);
 }
 .popuptkmk{
     position:fixed;
@@ -340,11 +455,27 @@ body{
     font-size:20px;
 }
 .trang div{
+    font-size:15px;
+    font-weight: bold;
+    opacity:0.6;
     background-color:white;
     padding:10px;
     border-radius: 10px;
     width: 150px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.trang i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+.trang .fa-solid.fa-angle-left:hover {
+    transform: translateX(-5px) scale(1.05);
+}
+.trang .fa-solid.fa-angle-right:hover {
+    transform: translateX(5px) scale(1.05);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần trang*/
@@ -354,8 +485,11 @@ body{
     display:flex;
     flex-direction: column;
     justify-content: center;
-    background-color: white;
-    border-radius: 20px;
+    width:100%;
     align-items:center;
-    font-size:20px;
+    font-size:15px;
+    font-weight: bold;
+    color:white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
 }
