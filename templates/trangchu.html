@@ -118,7 +118,15 @@
         <div class="danhsachacc">
         {% for acc in dsacc %}
         <div class="acc" data-ma = "{{acc.ma_acc}}" data-gia="{{acc.gia}}" data-gangtay="{{acc.gang_tay}}" data-mudinh="{{acc.mu_dinh}}" data-sieuxe="{{acc.sieu_xe}}" data-bape="{{acc.bape}}">
-            <img src="{{ acc.duong_dan }}">
+            <div class="anh-wrapper">
+                <img src="{{ acc.duong_dan }}">
+                <div class="overlay">
+                    <div class="xem">
+                        <i class="fa-regular fa-eye"></i>
+                        <span class="xem">Xem</span>
+                    </div>
+                </div>
+            </div>
             <div class="thongtinacc">
                 <div class="dong1">
                     <span>Mã: {{ "%03d"|format(acc.ma_acc) }}</span>
@@ -142,9 +150,9 @@
                 <hr>
                 <div class="dong3">
                     <div class="giaacc">
-                        <span>Giá:</span>
+                        <span class="gia">Giá:</span>
                         <span class="so">
-                            {{"{:,.0f}".format(acc.gia)}}đ
+                            {{"{:,.0f}".format(acc.gia).replace(',', '.')}}đ
                         </span>
                     </div>
                     <div class="chitiet">Chi tiết</div>
@@ -152,6 +160,10 @@
             </div>
         </div>
         {% endfor %}
+        </div>
+        <div class="modal">
+            <span class="dong">&times;</span>
+            <img class="modal-img">
         </div>
         <!--Xong danh sách acc--------------------------------------------------------------->
         <div class="trang">

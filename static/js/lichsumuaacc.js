@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     const danhsachacctronggio = document.querySelectorAll('.danhsachacctronggio .acctronggio');
     const soacctronggio = danhsachacctronggio.length;
-    const hienthisoacctronggio = document.querySelector('.divto2 .bentrai .soluongacc');
-    hienthisoacctronggio.textContent = `Bạn đã mua: ${soacctronggio} acc`;
+    const hienthisoacctronggio = document.querySelector('.divto2 .bentrai .soluong .soluong1 .giatri');
+    hienthisoacctronggio.textContent = `${soacctronggio}`;
     //Xong phần hiển thị số lượng acc trong giỏ hàng----------------------------------------------------------------------------
     const soacc1trang = 5;
     let tongsotrang = Math.ceil(soacctronggio / soacc1trang);
@@ -59,9 +59,13 @@ document.addEventListener("DOMContentLoaded", function() {
         ngoaibangmenu.style.display = "none";
     });
     //Xong phần click icon cá nhân ----------------------------------------------------------------------------
-    const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
-    const nutnaptien = document.querySelector('.naptien');
-    const nutgiohang = document.querySelector('.giohang');
+    const nuttrangchu = document.querySelector('.chucnang .trangchu');
+    const nutlichsumuaacc = document.querySelector('.chucnang .lichsumuaacc');
+    const nutnaptien = document.querySelector('.chucnang .naptien');
+    const nutgiohang = document.querySelector('.chucnang .giohang');
+    nuttrangchu.addEventListener('click', function(){
+        window.location.href = "/";
+    });
     nutlichsumuaacc.addEventListener('click', function(){
         window.location.href = "/lichsumuaacc";
     });
