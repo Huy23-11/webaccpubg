@@ -56,16 +56,20 @@ def suaacc():
     ma = request.form.get("ma")
     mota = request.form.get("mota")
     gia = int(request.form.get("gia").replace(".", ""))
+    tk = request.form.get("tk")
+    mk = request.form.get("mk")
     anh = request.files.getlist("anh")
 
     sql_update = """
         UPDATE Acc
         SET mo_ta = :mo_ta,
-            gia = :gia
+            gia = :gia,
+            tai_khoan = :tk,
+            mat_khau = :mk
         WHERE ma_acc = :ma_acc
     """
 
-    db.session.execute(text(sql_update), {"mo_ta": mota, "gia": gia, "ma_acc": ma})
+    db.session.execute(text(sql_update), {"mo_ta": mota, "gia": gia, "ma_acc": ma, "tk": tk,"mk": mk})
     db.session.commit()
 
     if len(anh) > 0:

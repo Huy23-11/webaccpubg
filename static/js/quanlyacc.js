@@ -75,16 +75,20 @@ document.addEventListener('DOMContentLoaded', function () {
             const mota = this.dataset.mota || '';
             const gia = this.dataset.gia || 0;
             const anh = this.dataset.anh || '';
+            const tk = this.dataset.taikhoan || '';
+            const mk = this.dataset.matkhau || '';
             document.getElementById('input-mota').value = mota;
             document.getElementById('input-gia').value = Number(gia).toLocaleString('vi-VN');
             document.getElementById('input-anh').value = anh;
+            document.getElementById('input-tk').value = tk;
+            document.getElementById('input-mk').value = mk;
             menusua.style.display = 'flex';
             ngoaimenu.style.display = 'block';
         });
     });
 
     // Popup xem danh sách ảnh ----------------------------------------------------
-    const anhSpan = document.querySelector(".suaacc .anh span");
+    const anhSpan = document.querySelector(".suaacc .anh > div > span");
     anhSpan.addEventListener("click", async function () {
         const res = await fetchWithAuth("/hienthianhacc", {
             method: "POST",
@@ -137,12 +141,16 @@ document.addEventListener('DOMContentLoaded', function () {
     btnSua.addEventListener("click", async function () {
         const mota = document.querySelector(".suamota input").value;
         const gia = document.querySelector(".suagia input").value;
+        const tk = document.querySelector(".suatk input").value;
+        const mk = document.querySelector(".suamk input").value;
         const fileanh = document.querySelector(".anh input").files;
         
         const formdata = new FormData();
         formdata.append("ma", maaccdangsua);
         formdata.append("mota", mota);
         formdata.append("gia", gia);
+        formdata.append("tk",tk);
+        formdata.append("mk",mk);
         for (let i = 0; i < fileanh.length; i++) {
             formdata.append("anh", fileanh[i]);
         }

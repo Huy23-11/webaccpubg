@@ -52,8 +52,7 @@ def api_dsacc_quanlyacc():
 
 def get_data():
   sql = """
-    SELECT ma_acc, gia, ngay_dang, mo_ta, so_luot_xem,
-           gang_tay, mu_dinh, sieu_xe, bape, trang_thai
+    SELECT *
     FROM Acc
     ORDER BY ma_acc ASC
   """
@@ -71,7 +70,9 @@ def get_data():
       "mu_dinh": row.mu_dinh,
       "sieu_xe": row.sieu_xe,
       "bape": row.bape,
-      "trang_thai": row.trang_thai
+      "trang_thai": row.trang_thai,
+      "tai_khoan":row.tai_khoan,
+      "mat_khau":row.mat_khau
     })
 
   sql_tuyetpham = """

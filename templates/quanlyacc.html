@@ -104,7 +104,7 @@
                     </span>
                     <div class="tuychon">
                         <i class="fa-solid fa-delete-left" data-ma="{{ acc.ma_acc }}"></i>
-                        <i class="fa-solid fa-pen" data-ma="{{ acc.ma_acc }}" data-mota="{{ acc.mo_ta }}" data-gia="{{ acc.gia }}" data-anh="{{ acc.anh }}"></i>
+                        <i class="fa-solid fa-pen" data-ma="{{ acc.ma_acc }}" data-mota="{{ acc.mo_ta }}" data-gia="{{ acc.gia }}" data-taikhoan="{{acc.tai_khoan}}" data-matkhau="{{acc.mat_khau}}" data-anh="{{ acc.anh }}"></i>
                         <button class="trangthai">{{acc.trang_thai}}</button>
                     </div>
                 </div>
@@ -112,20 +112,27 @@
             </div>
             <div class="suaacc">
                 <div class="suamota">
-                    <span>Mô tả:</span>
+                    <span>Mô tả</span>
                     <input type="text" id="input-mota" placeholder="...">
-                    <hr>
                 </div>
                 <div class="suagia">
-                    <span>Giá:</span>
+                    <span>Giá</span>
                     <input type="text" id="input-gia" placeholder="...">
-                    <hr>
+                </div>
+                <div class="suatk">
+                    <span>Tài khoản</span>
+                    <input type="text" id="input-tk" placeholder="...">
+                </div>
+                <div class="suamk">
+                    <span>Mật khẩu</span>
+                    <input type="text" id="input-mk" placeholder="...">
                 </div>
                 <div class="anh">
-                    <span>Ảnh acc:</span>
-                    <input type="file" id="input-anh" multiple>
+                    <div><span>Xem ảnh acc</span></div>
+                    <input type="file" id="input-anh" multiple hidden>
+                    <label for="input-anh" class="custom-btn"><span>Thêm ảnh acc</span></label>
                 </div>
-                <div class="nutsua">Sửa</div>
+                <div class="nutsua">Lưu</div>
             </div>
             <div class="cacanhtheoacc">
             </div>

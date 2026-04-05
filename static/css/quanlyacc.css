@@ -253,9 +253,10 @@ body{
     padding:10px;
     background-color: rgb(241, 239, 239);
     border-radius:5px 5px 0 0;
-    opacity:0.7;
     font-size:15px;
     font-weight:bold;
+    color:white;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
 }
 .bang .hangtieude .cot1{
     width:40px;
@@ -287,7 +288,7 @@ body{
     background-color: white;
     font-size:15px;
     height:35px;
-    border-bottom: 1px solid #dfdcdc;
+    border-bottom: 1px solid #efecec;
     gap:20px;
     font-weight:bold;
 }
@@ -319,14 +320,33 @@ body{
     justify-content:center;
     margin-right:10px;
 }
-.bang .hang i{
-    opacity:0.5;
+.bang .hang .tuychon > i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.bang .hang .tuychon > i:hover{
+    transition:all 0.3s ease;
+    transform:scale(1.2);
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
 }
 .bang .hang .trangthai{
     width:50px;
     font-size: 12px;
     display:flex;
     justify-content:center;
+    padding:5px;
+    font-weight:bold;
+    font-size:10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(234, 232, 232);
+    border-radius:5px;
+}
+.bang .hang .trangthai:hover{
+    transition:all 0.3s ease;
+    transform:scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 .suaacc{
     display:none;
@@ -338,12 +358,11 @@ body{
     padding:30px;
     gap:10px;
     border-radius:5px;
-    width:290px;
-    height:140px;
     z-index:10;
     margin:auto;
-    top:40%;
+    top:25%;
     left:40%;
+    font-weight:bold;
 }
 .ngoaibangmenu{
     position:fixed;
@@ -355,19 +374,154 @@ body{
     z-index:8;
     display:none;
 }
-.suaacc input{
-    border:none;
+.suaacc > div > span{
+    opacity:0.5;
+    width:80px;
+}
+.suaacc .suamota{
+    display:flex;
+    align-items:center;
+}
+.suaacc .suagia{
+    display:flex;
+    align-items:center;
+}
+.suaacc .suatk{
+    display:flex;
+    align-items:center;
+}
+.suaacc .suamk{
+    display:flex;
+    align-items:center;
+}
+.suaacc .suamota input{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border:solid 1px rgb(219, 219, 220);
+    padding:10px;
+    border-radius:5px;
     outline:none;
     width:230px;
+    font-weight:bold;
+    opacity:0.6;
+}
+.suaacc .suamota input:hover{
+    transition: all 0.3s ease;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.suaacc .suagia input{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border:solid 1px rgb(225, 225, 227);
+    padding:10px;
+    border-radius:5px;
+    outline:none;
+    width:230px;
+    font-weight:bold;
+    opacity:0.6;
+}
+.suaacc .suagia input:hover{
+    transition: all 0.3s ease;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.suaacc .suatk input{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border:solid 1px rgb(225, 225, 227);
+    padding:10px;
+    border-radius:5px;
+    outline:none;
+    width:230px;
+    font-weight:bold;
+    opacity:0.6;
+}
+.suaacc .suatk input:hover{
+    transition: all 0.3s ease;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.suaacc .suamk input{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border:solid 1px rgb(225, 225, 227);
+    padding:10px;
+    border-radius:5px;
+    outline:none;
+    width:230px;
+    font-weight:bold;
+    opacity:0.6;
+}
+.suaacc .suamk input:hover{
+    transition: all 0.3s ease;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.suaacc .anh{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    margin-top:10px;
+}
+.suaacc .anh > div{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:120px;
+    border-radius:5px;
+    padding:8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.suaacc .anh > div:hover{
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.suaacc .anh > div > span{
+    opacity:1;
+    font-size:16px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.suaacc .anh > label{
+    display:flex;
+    width:120px;
+    align-items:center;
+    justify-content:center;
+    border-radius:5px;
+    padding:8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.suaacc .anh > label:hover{
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.suaacc .anh > label > span{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .suaacc .nutsua{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid rgb(200, 200, 201);
-    padding: 5px;
+    padding: 7px;
     border-radius:5px;
     margin:auto;
     display:flex;
     justify-content:center;
-    width:200px;
+    align-items:center;
+    width:280px;
+    color:white;
+    margin-top:15px;
+    font-size:20px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+}
+.suaacc .nutsua:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .suaacc hr{
     width:100%;
