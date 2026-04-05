@@ -664,6 +664,7 @@ hr{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 .trang .fa-solid.fa-angle-left:hover {
     transform: translateX(-5px) scale(1.05);
@@ -684,6 +685,6 @@ hr{
     font-size:15px;
     font-weight: bold;
     color:white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #0a1f46, #1a2a6c, #000000);
 }

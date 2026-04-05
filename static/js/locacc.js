@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function(){
         trang = 1
         tongsotrang = 1
         soacchien = 1
-        soLuongSpan.textContent = `Số lượng: 1`
+        soLuongSpan.textContent = `1`
         tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
     })
 });

@@ -11,12 +11,24 @@
         <div class="bangmenu">
             <span class="tenshop">Shop Huy2k5</span>
             <span class="chumenu">menu</span>
-            <hr>
-            <span class="lichsumuaacc">Lịch sử mua acc</span>
-            <hr>
-            <span class="naptien">Nạp tiền</span>
-            <hr>
-            <span class="giohang">Giỏ hàng của bạn</span>
+            <div class="chucnang">
+                <div class="trangchu">
+                    <i class="fa-regular fa-house"></i>
+                    <span class="trangchu">Trang chủ</span>
+                </div>
+                <div class="lichsumuaacc">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="lichsumua">Lịch sử mua acc</span>
+                </div>
+                <div class="naptien">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="naptien">Nạp tiền</span>
+                </div>
+                <div class="giohang">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="giohang">Giỏ hàng của bạn</span>
+                </div>
+            </div>
         </div>
         <div class="ngoaibangmenu"></div>
         <div class="tieude">
@@ -28,22 +40,42 @@
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
                     <span class="ten">{{session.get("ten","ten")}}</span>
-                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0))}}đ</span>
+                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0)).replace(",", ".")}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
         </div>
         <div class="iconcanhan">
-            <span class="dangnhap">Đăng nhập</span>
-            <hr>
-            <span class="taotaikhoan">Tạo tài khoản</span>
-            <hr>
-            <span class="doimatkhau">Đổi mật khẩu</span>
+            <div class="dangnhap">
+                <i class="fa-solid fa-person-arrow-down-to-line"></i>
+                <span class="dangnhap">Đăng nhập</span>
+            </div>
+            <div class="taotaikhoan">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span class="taotaikhoan">Tạo tài khoản</span>
+            </div>
+            <div class="doimatkhau">
+                <i class="fa-solid fa-arrows-turn-to-dots"></i>
+                <span class="doimatkhau">Đổi mật khẩu</span>
+            </div>
         </div>
         <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
         <div class="divto2">
-            <div class="soacctronggio">
-                <span>Số lượng acc trong giỏ hàng: {{soluong}}</span>
+            <div class="bentrai">
+                <div class="soluong">
+                    <i class="fa-solid fa-user-pen"></i>
+                    <div class="soluong1">
+                        <span class="tenmuc">Số acc trong giỏ</span>
+                        <span class="giatri">{{soluong}}</span>
+                    </div>
+                </div>
+                <div class="accgiacaonhat">
+                    <i class="fa-solid fa-ranking-star"></i>
+                    <div class="accgiacaonhat1">
+                        <span class="tenmuc">Giá cao nhất</span>
+                        <span class="giatri">{{"{:,.0f}".format(gia_max).replace(",", ".")}}đ</span>
+                    </div>
+                </div>
             </div>
             <div class="thanhtimkiem">
                 <input type="text" placeholder="Tìm kiếm theo mã">
@@ -52,14 +84,28 @@
         <!--Xong phần div lớn 2 ------------------------------------------------------------------------------->
         <div class="danhsachacctronggio">
             {%for acc in dsacc%}
-            <div class="acctronggio" data-maacc = "{{acc.ma_acc}}" data-trangthai ="{{acc.trang_thai}}">
+            <div class="acctronggio" data-maacc = "{{acc.ma_acc}}" data-trangthai = "{{acc.trang_thai}}">
+                <div class="anh-wrapper">
+                    <img src="{{ acc.duong_dan }}">
+                    <div class="overlay">
+                        <div class="xem">
+                            <i class="fa-regular fa-eye"></i>
+                            <span class="xem">Xem</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="bentrai">
-                    <span>Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
-                    <span>
-                        <span>Giá: </span>
-                        <span class="gia">{{ "{:,.0f}".format(acc.gia) }}đ</span>
+                    <span class="ma">Mã acc: {{ "%03d"|format(acc.ma_acc) }}</span>
+                    <span class="gia">
+                        <span class="gia1">Giá: </span>
+                        <span class="gia2">
+                            {{"{:,.0f}".format(acc.gia).replace(",", ".")}}đ
+                        </span>
                     </span>
-                    <span>Đã thêm vào ngày: {{acc.thoi_diem}}</span>
+                    <span class="thoidiem">
+                        Đã thêm vào lúc:
+                        {{acc.thoi_diem.strftime("%d/%m/%Y")}}
+                    </span>
                     <span>
                         <span>Trạng thái: </span>
                         {% if acc.trang_thai == 'ACTIVE' %}
@@ -72,6 +118,10 @@
                 <div class="benphai">Xem</div>
             </div>
             {%endfor%}
+        </div>
+        <div class="modal">
+            <span class="dong">&times;</span>
+            <img class="modal-img">
         </div>
         <div class="trang">
             <i class="fa-solid fa-angle-left"></i>

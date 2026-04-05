@@ -1,5 +1,6 @@
 body{
-    background-color:rgb(221, 221, 221)
+    background-color:rgb(242, 247, 249);
+    font-family: Arial, sans-serif;
 }
 .bangmenu{
     display:flex;
@@ -13,22 +14,61 @@ body{
     z-index:10;
     padding:10px;
     transform: translateX(-100%);
+    transition: transform 0.3s ease;
 }
 .bangmenu.hien{
     transform: translateX(0%);
 }
 .bangmenu .tenshop{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     margin-top:15px;
     margin-left:30px;
     font-size:30px;
     color: rgb(136, 185, 241);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:25px;
+    font-weight: bold;
 }
 .bangmenu .chumenu{
-    margin-top:20px;
-    opacity:0.5;
+    margin-top:40px;
+    margin-left:10px;
+    font-weight:bold;
+    font-size:14px;
+    color:rgb(122, 122, 122);
 }
-.bangmenu hr{
-    width:220px;
+.bangmenu .chucnang{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top:20px;
+}
+.bangmenu .chucnang div{
+    display:flex;
+    align-items: center;
+    padding:10px;
+    transition: background-color 0.2s ease;
+}
+.bangmenu .chucnang div:hover {
+    background-color: rgb(235, 235, 237);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.bangmenu .chucnang div i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:14px;
+    font-weight:bold;
+    width:20px;
+    margin-left:5px;
+}
+.bangmenu .chucnang div span{
+    margin-left:10px;
+    font-size:14px;
+    font-weight:bold;
+    color:rgb(84, 84, 84);
 }
 .ngoaibangmenu{
     position:fixed;
@@ -45,21 +85,45 @@ body{
     width:1200px;
     height:50px;
     top:0;
+    left:0;
     display:flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(247, 247, 249);
-    font-size: 25px;
+    font-size: 20px;
     padding: 10px;
-    border-radius: 20px;
-    margin:auto;
+    z-index:8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .tenshop-iconlist{
     display:flex;
     align-items: center;
-    font-size:40px;
+    font-size:25px;
+    font-weight: bold;
     gap:10px;
-    color:rgb(136, 185, 241);
+    margin-left:30px;
+}
+.tenshop-iconlist span{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tenshop-iconlist i {
+    font-size:30px;
+    padding: 8px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+}
+.tenshop-iconlist i:hover {
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .conlaitieude{
     display:flex;
@@ -67,12 +131,28 @@ body{
     gap: 15px;
 }
 .ten-sodu{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
     flex-direction: column;
-    font-size: 
+    font-size: 15px;
+    font-weight:bold; 
+    gap:6px;
 }
 .sodu{
     color:red;
+}
+.conlaitieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    font-size:30px;
+    padding: 8px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+}
+.conlaitieude i:hover {
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .iconcanhan{
     display:flex;
@@ -81,20 +161,43 @@ body{
     gap:5px;
     font-size:20px;
     background-color:white;
-    padding:10px;
+    padding:15px;
     position:fixed;
     left:80%;
     width:150px;
     top:60px;
-    border-radius:10px;
+    border-radius:5px;
     z-index:10;
     transform: translateY(-150%);
 }
 .iconcanhan.hien{
     transform: translateY(0%);
 }
-.iconcanhan hr{
+.iconcanhan div{
+    display:flex;
+    align-items: center;
     width:100%;
+    transition: background-color 0.2s ease;
+    padding: 7px;
+}
+.iconcanhan div:hover {
+    background-color: rgb(235, 235, 237);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.iconcanhan div i{
+    margin-left:10px;
+    width:30px;
+    font-size:13px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.iconcanhan div span{
+    font-size:13px;
+    font-weight:bold;
+    margin-left:5px;
+    color:rgb(84, 84, 84)
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần tiêu đề */
@@ -103,24 +206,90 @@ body{
     justify-content:space-between;
     align-items:flex-end;
     margin-top:100px;
-    padding-left:100px;
-    padding-right:100px;
     font-size:22px;
+    padding-left:40px;
+    padding-right:35px;
 }
-.divto2 .soacctronggio{
-    background-color:white;
-    padding:20px;
+.divto2 .bentrai{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+.divto2 .bentrai > div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border: 1px solid rgb(216, 216, 216);
+    padding: 15px;
     border-radius: 10px;
+    background-color:white;
+    width:250px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
-.divto2 .soacctronggio span{
-    opacity:0.6;
+.divto2 .bentrai > div:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.divto2 .bentrai .soluong{
+    border-left: 5px solid rgb(63, 63, 63);
+}
+.divto2 .bentrai .accgiacaonhat{
+    border-left: 5px solid rgb(17, 241, 99);
+}
+.divto2 .bentrai .sotiendatieu{
+    border-left: 5px solid rgb(235, 167, 66);
+}
+.divto2 .bentrai > div > div{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+.divto2 .bentrai > div .fa-solid.fa-user-pen{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(226, 224, 224);
+    font-size:15px;
+}
+.divto2 .bentrai > div .fa-solid.fa-ranking-star{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(221, 246, 227);
+    color: green;
+    font-size:15px;
+}
+.divto2 .bentrai > div .fa-solid.fa-money-bill{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(249, 240, 220);
+    color:orange;
+    font-size:15px;
+}
+.divto2 .bentrai > div > div .tenmuc{
+    font-size:11px;
+    font-weight:bold;
+    opacity:0.4;
+}
+.divto2 .bentrai > div > div .giatri{
+    font-size:19px;
+    font-weight:bold;
+    opacity:0.9;
 }
 .divto2 .thanhtimkiem input{
     outline:none;
     font-size:15px;
     padding:4px;
     border-radius:5px;
-    border:1px solid rgb(175, 175, 176);
+    border:1px solid rgb(218, 218, 221);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+.divto2 .thanhtimkiem input::placeholder {
+    font-size: 12px;
+    opacity:0.6;
+}
+.divto2 .thanhtimkiem input:hover {
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần div lớn 2 */
@@ -128,31 +297,134 @@ body{
     display:flex;
     flex-direction: column;
     margin-top:10px;
-    gap:5px;
+    margin-left:40px;
+    gap:10px;
+    border-radius:10px;
+    border: 1px solid rgb(216, 216, 216);
+    padding:10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width:92%;
 }
 .danhsachacctronggio .acctronggio{
     display:flex;
-    justify-content:space-between;
     align-items: center;
-    gap:20px;
     background-color:white;
     padding:10px;
-    padding-left:80px;
+    padding-left:30px;
     padding-right:50px;
     border-radius: 10px;
-    font-size:18px;
+    font-weight:bold;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height:60px;
 }
+.danhsachacctronggio .acctronggio:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+/*-----------------*/
+.anh-wrapper {
+    position: relative;
+    overflow: hidden;
+    width:10%;
+    border-radius:5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.anh-wrapper img {
+    width: 100%;
+    display: block;
+    transition: 0.3s;
+    border-radius:5px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    border-radius:5px;
+    gap:7px;
+}
+
+.overlay div{
+    color: white;
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size:12px;
+    font-weight:bold;
+
+}
+
+.anh-wrapper:hover img {
+    filter: brightness(80%);
+}
+
+.anh-wrapper:hover .overlay {
+    background: rgba(55, 55, 55, 0.4);
+}
+
+.anh-wrapper:hover .overlay div {
+    opacity: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(85, 83, 83, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal .dong {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+/*-----------------*/
 .danhsachacctronggio .acctronggio .bentrai{
     display:flex;
     flex-direction:column;
+    width:700px;
+    font-size:15px;
+    margin-left:10px;
+    opacity:0.8;
 }
-.danhsachacctronggio .acctronggio .bentrai .gia{
+.danhsachacctronggio .acctronggio .bentrai .gia .gia2{
     color:red;
+}
+.danhsachacctronggio .acctronggio .bentrai .thoidiem{
+    opacity:0.4;
+    font-size:12px;
 }
 .danhsachacctronggio .acctronggio .benphai{
     padding:8px;
+    font-size:14px;
     border-radius:10px;
-    border: 1px solid rgb(175, 175, 176);
+    border: 1px solid rgb(205, 205, 206);
+    margin-left:200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+.danhsachacctronggio .acctronggio .benphai:hover{
+    transform: scale(1.1);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần danh sách acc trong giỏ hàng */
@@ -165,11 +437,28 @@ body{
     font-size:20px;
 }
 .trang div{
+    font-size:15px;
+    font-weight: bold;
+    opacity:0.6;
     background-color:white;
     padding:10px;
     border-radius: 10px;
     width: 150px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.trang i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.trang .fa-solid.fa-angle-left:hover {
+    transform: translateX(-5px) scale(1.05);
+}
+.trang .fa-solid.fa-angle-right:hover {
+    transform: translateX(5px) scale(1.05);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần trang*/
@@ -179,8 +468,11 @@ body{
     display:flex;
     flex-direction: column;
     justify-content: center;
-    background-color: white;
-    border-radius: 20px;
+    width:100%;
     align-items:center;
-    font-size:20px;
+    font-size:15px;
+    font-weight: bold;
+    color:white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #0a1f46, #1a2a6c, #000000);
 }

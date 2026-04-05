@@ -208,6 +208,7 @@ body{
     margin-top:100px;
     font-size:22px;
     padding-left:40px;
+    padding-right:35px;
 }
 .divto2 .bentrai{
     display:flex;
@@ -302,7 +303,7 @@ body{
     border: 1px solid rgb(216, 216, 216);
     padding:10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width:95%;
+    width:92%;
 }
 .danhsachacctronggio .acctronggio{
     display:flex;
@@ -324,6 +325,8 @@ body{
     position: relative;
     overflow: hidden;
     width:10%;
+    border-radius:5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .anh-wrapper img {
@@ -402,6 +405,7 @@ body{
     width:700px;
     font-size:15px;
     margin-left:10px;
+    opacity:0.8;
 }
 .danhsachacctronggio .acctronggio .bentrai .gia .gia2{
     color:red;
@@ -470,6 +474,7 @@ body{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 .trang .fa-solid.fa-angle-left:hover {
     transform: translateX(-5px) scale(1.05);
@@ -490,6 +495,6 @@ body{
     font-size:15px;
     font-weight: bold;
     color:white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #0a1f46, #1a2a6c, #000000);
 }

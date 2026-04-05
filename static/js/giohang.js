@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     const danhsachacctronggio = document.querySelectorAll('.danhsachacctronggio .acctronggio');
     const soacctronggio = danhsachacctronggio.length;
-    const hienthisoacctronggio = document.querySelector('.soacctronggio span');
-    hienthisoacctronggio.textContent = `Số lượng acc trong giỏ hàng: ${soacctronggio}`;
+    const hienthisoacctronggio = document.querySelector('.divto2 .bentrai .soluong .soluong1 .giatri');
+    hienthisoacctronggio.textContent = `${soacctronggio}`;
     //Xong phần hiển thị số lượng acc trong giỏ hàng----------------------------------------------------------------------------
     const soacc1trang = 5;
     let tongsotrang = Math.ceil(soacctronggio / soacc1trang);
@@ -72,9 +72,13 @@ document.addEventListener("DOMContentLoaded", function() {
         ngoaibangmenu.style.display = "none";
     });
     //Xong phần click icon cá nhân ----------------------------------------------------------------------------
+    const nuttrangchu = document.querySelector('.chucnang .trangchu');
     const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
     const nutnaptien = document.querySelector('.naptien');
     const nutgiohang = document.querySelector('.giohang');
+    nuttrangchu.addEventListener('click', function(){
+        window.location.href = "/";
+    });
     nutlichsumuaacc.addEventListener('click', function(){
         window.location.href = "/lichsumuaacc";
     });
@@ -121,4 +125,24 @@ document.addEventListener("DOMContentLoaded", function() {
             hienthitranghientai.textContent = `Trang ${tranghientai}/${tongsotrang}`
         }
     })
+    //Xem ảnh lớn----------------------
+    const modal = document.querySelector(".modal");
+    const modalImg = document.querySelector(".modal-img");
+    const nutDong = document.querySelector(".dong");
+
+    document.querySelectorAll(".overlay div").forEach(btn => {
+        btn.addEventListener("click", function(e) {
+            e.stopPropagation();
+
+            const img = this.closest(".anh-wrapper").querySelector("img");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        });
+    });
+
+    nutDong.onclick = () => modal.style.display = "none";
+
+    modal.onclick = function(e) {
+        if (e.target === modal) modal.style.display = "none";
+    };
 })

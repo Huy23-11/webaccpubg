@@ -1,5 +1,6 @@
 body{
-    background-color:rgb(221, 221, 221)
+    background-color:rgb(242, 247, 249);
+    font-family: Arial, sans-serif;
 }
 .bangmenu{
     display:flex;
@@ -13,22 +14,61 @@ body{
     z-index:10;
     padding:10px;
     transform: translateX(-100%);
+    transition: transform 0.3s ease;
 }
 .bangmenu.hien{
     transform: translateX(0%);
 }
 .bangmenu .tenshop{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     margin-top:15px;
     margin-left:30px;
     font-size:30px;
     color: rgb(136, 185, 241);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:25px;
+    font-weight: bold;
 }
 .bangmenu .chumenu{
-    margin-top:20px;
-    opacity:0.5;
+    margin-top:40px;
+    margin-left:10px;
+    font-weight:bold;
+    font-size:14px;
+    color:rgb(122, 122, 122);
 }
-.bangmenu hr{
-    width:220px;
+.bangmenu .chucnang{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top:20px;
+}
+.bangmenu .chucnang div{
+    display:flex;
+    align-items: center;
+    padding:10px;
+    transition: background-color 0.2s ease;
+}
+.bangmenu .chucnang div:hover {
+    background-color: rgb(235, 235, 237);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.bangmenu .chucnang div i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:14px;
+    font-weight:bold;
+    width:20px;
+    margin-left:5px;
+}
+.bangmenu .chucnang div span{
+    margin-left:10px;
+    font-size:14px;
+    font-weight:bold;
+    color:rgb(84, 84, 84);
 }
 .ngoaibangmenu{
     position:fixed;
@@ -45,21 +85,45 @@ body{
     width:1200px;
     height:50px;
     top:0;
+    left:0;
     display:flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(247, 247, 249);
-    font-size: 25px;
+    font-size: 20px;
     padding: 10px;
-    border-radius: 20px;
-    margin:auto;
+    z-index:8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .tenshop-iconlist{
     display:flex;
     align-items: center;
-    font-size:40px;
+    font-size:25px;
+    font-weight: bold;
     gap:10px;
-    color:rgb(136, 185, 241);
+    margin-left:30px;
+}
+.tenshop-iconlist span{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tenshop-iconlist i {
+    font-size:30px;
+    padding: 8px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+}
+.tenshop-iconlist i:hover {
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .conlaitieude{
     display:flex;
@@ -67,12 +131,28 @@ body{
     gap: 15px;
 }
 .ten-sodu{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
     flex-direction: column;
-    font-size: 
+    font-size: 15px;
+    font-weight:bold; 
+    gap:6px;
 }
 .sodu{
     color:red;
+}
+.conlaitieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    font-size:30px;
+    padding: 8px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+}
+.conlaitieude i:hover {
+    box-shadow: 0 0 0 2px rgb(218, 218, 220);
 }
 .iconcanhan{
     display:flex;
@@ -81,20 +161,43 @@ body{
     gap:5px;
     font-size:20px;
     background-color:white;
-    padding:10px;
+    padding:15px;
     position:fixed;
     left:80%;
     width:150px;
     top:60px;
-    border-radius:10px;
+    border-radius:5px;
     z-index:10;
     transform: translateY(-150%);
 }
 .iconcanhan.hien{
     transform: translateY(0%);
 }
-.iconcanhan hr{
+.iconcanhan div{
+    display:flex;
+    align-items: center;
     width:100%;
+    transition: background-color 0.2s ease;
+    padding: 7px;
+}
+.iconcanhan div:hover {
+    background-color: rgb(235, 235, 237);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.iconcanhan div i{
+    margin-left:10px;
+    width:30px;
+    font-size:13px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.iconcanhan div span{
+    font-size:13px;
+    font-weight:bold;
+    margin-left:5px;
+    color:rgb(84, 84, 84)
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần tiêu đề */
@@ -110,19 +213,29 @@ body{
     width:880px;
     height:150px;
     margin-left:150px;
+    border:1px solid rgb(216, 216, 216);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    font-weight:bold;
 }
 .thongtinchuacc .dong1{
-    font-size:23px;
+    font-size:20px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 .thongtinchuacc .dong2{
-    font-size:18px;
-    opacity:0.5;
+    font-size:15px;
+    opacity:0.3;
     gap:20px;
     display:flex;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
-.thongtinchuacc .dong3{
+.thongtinchuacc .dong3 .tenmuc{
+    font-size:20px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.thongtinchuacc .dong3 .giatri{
     color:red;
     font-size:25px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 .thongtinchuacc .dong4{
     display:flex;
@@ -134,24 +247,38 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    background-color:rgb(241, 168, 66);
+    gap:10px;
     color:white;
-    padding:10px;
+    padding:15px;
     border-radius:10px;
-    font-size:25px;
+    font-size:20px;
     width:300px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    border:1px solid rgb(242, 192, 121);
+    background: linear-gradient(135deg, #ff7a00, #ffb347, #ff3c00);
+    transition: all 0.3s ease;
 }
 .thongtinchuacc .dong4 .nutmua{
     display:flex;
     background-color:rgb(136, 185, 241);
     align-items:center;
     justify-content:center;
+    gap:10px;
     margin:auto;
     color:white;
-    padding:10px;
+    padding:15px;
     border-radius:10px;
-    font-size:25px;
+    font-size:20px;
     width:300px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgb(136, 185, 241);
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    transition: all 0.3s ease;
+}
+.thongtinchuacc .dong4 div:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần thông tin chữ acc */
@@ -162,11 +289,15 @@ body{
     align-items:center;
     justify-content:center;
     margin:20px auto;
-    width:800px;
+    margin-left:150px;
+    width:900px;
     border-radius:20px;
+    border: solid 1px rgb(216, 216, 216);
+    padding:10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
 }
 .anhchitiet img{
-    width:125%;
+    width:99%;
     border-radius:10px;
 }
 .popuptkmk{
@@ -199,8 +330,11 @@ body{
     display:flex;
     flex-direction: column;
     justify-content: center;
-    background-color: white;
-    border-radius: 20px;
+    width:100%;
     align-items:center;
-    font-size:20px;
+    font-size:15px;
+    font-weight: bold;
+    color:white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #0a1f46, #1a2a6c, #000000);
 }
