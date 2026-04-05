@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(221, 221, 221)
+    background-color:rgb(242, 247, 249);
 }
 .tieude{
     display:flex;
@@ -12,38 +12,76 @@ body{
     font-size:30px;
     gap:15px;
     z-index:10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .tieude span{
-    margin-left:240px;
-    color: rgb(136, 185, 241);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    margin-left:270px;
+    font-weight:bold;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight:bold;
+}
+.tieude i:hover{
+    transform: translateY(-5px) scale(1.1);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
 }
 /*Xong phần tiêu đề----------------------------------------------------------------------------------*/
 .bangmenu{
     display:flex;
     flex-direction: column;
+    align-items:center;
     gap: 20px;
     position:fixed;
     top:0;
     left:0;
     color:white;
-    width:180px;
+    width:240px;
     height:100%;
-    padding:20px;
-    background-color:rgb(123, 192, 248);
+    padding-top:20px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
     z-index:10;
-}
-.bangmenu span{
-    font-size:40px;
     font-weight:bold;
+}
+.bangmenu > span{
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+    font-size:40px;
     margin-top:13px;
-    margin-left:18px;
 }
 .bangmenu .danhsachchucnang{
     margin-top:50px;
-    font-size:20px;
     display:flex;
     flex-direction: column;
-    gap:20px;
+    gap:7px;
+    width:90%;
+}
+.bangmenu .danhsachchucnang > div{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:10px;
+    font-size:17px;
+    border-radius:5px;
+    transition: all 0.3s ease;
+}
+.bangmenu .danhsachchucnang > div:hover{
+    transform: scale(1.05);
+    background-color: rgb(4, 94, 221);
+}
+.bangmenu .danhsachchucnang > div i{
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width:30px;
 }
 /*Xong phần bảng menu----------------------------------------------------------------------------------*/
 .noibat{
@@ -51,30 +89,81 @@ body{
     margin-left:240px;
     display:flex;
     align-items:center;
-    gap:40px;
+    gap:20px;
 }
-.noibat div{
-    background-color:white;
-    width:200px;
-    height:80px;
-    border-radius:10px;
+.noibat > div{
     display:flex;
-    flex-direction: column;
     align-items:center;
-    justify-content:center;
-    gap:7px;
-    padding:5px;
+    gap:10px;
+    border: 1px solid rgb(216, 216, 216);
+    padding: 15px;
+    border-radius: 10px;
+    background-color:white;
+    width:250px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
-.noibat div .ten{
+.noibat > div:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.noibat .soacctuyetpham{
+    border-left: 5px solid rgb(63, 63, 63);
+}
+.noibat .xemnhieunhat{
+    border-left: 5px solid rgb(17, 241, 99);
+}
+.noibat .giacaonhat{
+    border-left: 5px solid rgb(235, 167, 66);
+}
+.noibat .soacctren10tr{
+    border-left: 5px solid rgb(66, 66, 235);
+}
+.noibat > div > div{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+.noibat > div .fa-solid.fa-user-pen{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(226, 224, 224);
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-face-grin-stars{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(221, 246, 227);
+    color: green;
+    font-size:15px;
+}
+.noibat > div .fa-regular.fa-gem{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(249, 240, 220);
+    color:orange;
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-bolt{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(220, 234, 249);
+    color:blue;
+    font-size:15px;
+}
+.noibat > div > div .tenmuc{
+    font-size:11px;
     font-weight:bold;
+    opacity:0.4;
 }
-.noibat div .giatri{
-    color:rgb(12, 171, 55);
+.noibat > div > div .giatri{
+    font-size:17px;
+    font-weight:bold;
+    opacity:0.9;
 }
 /*Xong phần nổi bật --------------------------------------------------------------------------------------*/
 .linhtinh{
     margin-top:30px;
-    margin-left:260px;
+    margin-left:273px;
     margin-right:20px;
     display:flex;
     align-items:center;
@@ -85,73 +174,111 @@ body{
     align-items:center;
     gap:15px;
 }
-.linhtinh .trai .sapxep{
-    background-color:white;
-    width:65px;
-    height:17px;
-    border-radius:5px;
-    padding:7px;
+.linhtinh .trai .nutchon{
     display:flex;
     align-items:center;
-    justify-content:center;
+    gap:10px;
 }
-.linhtinh .trai .chonthem{
-    background-color:blue;
-    width:80px;
+.linhtinh .trai .nutchon > div{
+    background-color:white;
+    width:100px;
     height:17px;
-    border-radius:5px;
+    border-radius:10px;
     padding:7px;
     display:flex;
     align-items:center;
+    gap:5px;
     justify-content:center;
-    color:white;
+    border: solid 1px rgb(200, 200, 201);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-weight:bold;
+    color:rgb(110, 109, 109);
+}
+.linhtinh .trai .nutchon > div > i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+}
+.linhtinh .trai .nutchon > div:hover{
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                    0 4px 12px rgba(0, 0, 0, 0.2);
+    color:rgb(63, 63, 63);
+}
+.linhtinh .trai .dachon{
+    font-size:17px;
+    font-weight:bold;
+    opacity:0.8;
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
 }
 .linhtinh input{
     width:250px;
     height:30px;
-    border-radius:5px;
+    border-radius:10px;
     outline:none;
     border:none;
     padding:5px;
-    margin-right:20px;
+    margin-right:9px;
+    border: solid 1px rgb(200, 200, 201);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.linhtinh input:hover{
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.linhtinh input::placeholder{
+    font-weight:bold;
+    opacity:0.6;
 }
 /*Xong phần linh tinh----------------------------------------------------------------------------------*/
 .bang{
     margin-top:10px;
-    margin-left:245px;
+    margin-left:273px;
     margin-right:20px;
     background-color:white;
     border-radius:5px;
     display:flex;
     flex-direction:column;
+    border: solid 1px rgb(200, 200, 201);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width:900px;
 }
 .bang .hangtieude{
     display:flex;
     align-items:center;
-    gap:60px;
+    gap:5px;
     padding:10px;
     background-color: rgb(241, 239, 239);
     border-radius:5px 5px 0 0;
-    opacity:0.6;
+    opacity:0.7;
     font-size:15px;
+    font-weight:bold;
 }
 .bang .hangtieude .cot1{
-    margin-left:50px;
+    width:40px;
+    display:flex;
+    justify-content:center;
+    margin-left:46px;
 }
-.bang .hangtieude .cot2{
-    margin-left:10px;
+.bang .hangtieude .cactickchon{
+    display:flex;
+    gap:27px;
+    justify-content:center;
+    margin-left:20px;
 }
-.bang .hangtieude .cot3{
-    margin-left:10px;
-}
-.bang .hangtieude .cot4{
-    margin-left:10px;
-}
-.bang .hangtieude .cot5{
-    margin-left:-10px;
+.bang .hangtieude .cactickchon span{
+    width:80px;
+    display:flex;
+    justify-content:center;
 }
 .bang .hangtieude .cot6{
-    margin-left:60px;
+    width:200px;
+    display:flex;
+    justify-content:center;
+    margin-left:17px;
 }
 .bang .hang{
     display:flex;
@@ -160,50 +287,44 @@ body{
     background-color: white;
     font-size:15px;
     height:35px;
-    border-bottom: 1px solid #ccc
+    border-bottom: 1px solid #dfdcdc;
+    gap:20px;
+    font-weight:bold;
 }
-.bang .hang input{
+.bang .hang .nuttichhang{
     margin-left:10px;
 }
 .bang .hang .cot1{
-    margin-left:27px;
+    width:40px;
     display:flex;
-    gap:3px;
-    flex-direction:column;
-    width:30px;
+    justify-content:center;
 }
-.bang .hang .cot2{
-    margin-left:89px;
+.bang .hang .cactickchon{
+    display:flex;
+    gap:20px;
+    justify-content:center;
 }
-.bang .hang .cot3{
-    margin-left:92px;
-}
-.bang .hang .cot4{
-    margin-left:93px;
-}
-.bang .hang .cot5{
-    margin-left:92px;
+.bang .hang .cactickchon input{
+    width:80px;
 }
 .bang .hang .cot6{
-    margin-left:70px;
-    width:170px;
+    width:200px;
     color:red;
     display:flex;
     justify-content:center;
 }
+.bang .hang .tuychon{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-right:10px;
+}
 .bang .hang i{
     opacity:0.5;
-}
-.fa-solid.fa-delete-left{
-    margin-left: 30px;
-}
-.fa-solid.fa-pen{
-    margin-left:16px;
 }
 .bang .hang .trangthai{
     width:50px;
     font-size: 12px;
-    margin-left:20px;
     display:flex;
     justify-content:center;
 }
@@ -271,6 +392,7 @@ body{
     display:flex;
     align-items:center;
     padding:10px;
+    background-color:green;
 }
 .bang .cuoibang .trangtruoc{
     display:flex;
@@ -294,7 +416,7 @@ body{
     border: 1px solid rgb(200, 200, 201);
     border-radius:5px;
     padding:5px;
-    margin-left:363px;
+    margin-left:320px;
     margin-top:-8px;
     opacity:0.8;
     width:40px;

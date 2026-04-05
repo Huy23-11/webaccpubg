@@ -260,7 +260,6 @@ body{
 }
 .thongtinchuacc .dong4 .nutmua{
     display:flex;
-    background-color:rgb(136, 185, 241);
     align-items:center;
     justify-content:center;
     gap:10px;

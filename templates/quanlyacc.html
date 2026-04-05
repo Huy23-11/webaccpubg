@@ -15,47 +15,77 @@
         <div class="bangmenu">
             <span>ADMIN</span>
             <div class="danhsachchucnang">
-                <div>Doanh thu</div>
-                <div>Quản lý người mua</div>
-                <div>Quản lý acc</div>
+                <div class="doanhthu">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Doanh thu</span>
+                </div>
+                <div class="quanlynguoimua">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Quản lý người mua</span>
+                </div>
+                <div class="quanlyacc">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Quản lý acc</span>
+                </div>
             </div>
         </div>
         <div class="noibat">
-            <div>
-                <span>Số acc có tuyệt phẩm</span>
-                <span class="giatri">{{ tuyetpham }}</span>
+            <div class="soacctuyetpham">
+                <i class="fa-solid fa-user-pen"></i>
+                <div class="soacctuyetpham1">
+                    <span class="tenmuc">Số acc có tuyệt phẩm</span>
+                    <span class="giatri">{{ tuyetpham }}</span>
+                </div>
             </div>
-            <div>
-                <span>Được xem nhiều nhất</span>
-                <span class="ten">#{{ "%03d"|format(xemnhieu.ma_acc) }}</span>
-                <span class="giatri">{{ xemnhieu.so_luot_xem }}</span>
+            <div class="xemnhieunhat">
+                <i class="fa-solid fa-face-grin-stars"></i>
+                <div class="xemnhieunhat1">
+                    <span class="tenmuc">Được xem nhiều nhất</span>
+                    <span class="giatri">#{{ "%03d"|format(xemnhieu.ma_acc) }}: {{ xemnhieu.so_luot_xem }}</span>
+                </div>
             </div>
-            <div>
-                <span>Giá cao nhất</span>
-                <span class="ten">#{{ "%03d"|format(giacao.ma_acc) }}</span>
-                <span class="giatri">{{ "{:,.0f}".format(giacao.gia) }}đ</span>
+            <div class="giacaonhat">
+                <i class="fa-regular fa-gem"></i>
+                <div class="giacaonhat1">
+                    <span class="tenmuc">Giá cao nhất</span>
+                    <span class="giatri">#{{ "%03d"|format(giacao.ma_acc) }}: {{ "{:,.0f}".format(giacao.gia).replace(',', '.') }}đ</span>
+                </div>
             </div>
-            <div>
-                <span>Số acc trên 10tr</span>
-                <span class="giatri">{{ tren10tr }}</span>
+            <div class="soacctren10tr">
+                <i class="fa-solid fa-bolt"></i>
+                <div class="soacctren10tr1">
+                    <span class="tenmuc">Số acc trên 10tr</span>
+                    <span class="giatri">{{ tren10tr }}</span>
+                </div>
             </div>
         </div>
+        <!--Xong phần nổi bật----------------------------------------------------------------------------------->
         <div class="linhtinh">
             <div class="trai">
-                <div class="sapxep">Sắp xếp</div>
-                <div class="chonthem">Chọn thêm</div>
-                <i class="fa-solid fa-plus"></i>
+                <div class="nutchon">
+                    <div class="sapxep">
+                        <i class="fa-solid fa-sort"></i>
+                        Sắp xếp
+                    </div>
+                    <div class="themacc">
+                        <i class="fa-solid fa-plus"></i>
+                        Thêm acc
+                    </div>
+                </div>
                 <div class="dachon">Đã chọn 0 hàng</div>
             </div>
             <input type="text" placeholder="Tìm kiếm theo tên người mua">
         </div>
+        <!--Xong phần linh tinh---------------------------------------------------------------------------------->
         <div class="bang">
             <div class="hangtieude">
                 <span class="cot1">Mã số</span>
-                <span class="cot2">Siêu xe</span>
-                <span class="cot3">Bape</span>
-                <span class="cot4">Mũ đinh</span>
-                <span class="cot5">Găng băng</span>
+                <div class="cactickchon">
+                    <span class="cot2">Siêu xe</span>
+                    <span class="cot3">Bape</span>
+                    <span class="cot4">Mũ đinh</span>
+                    <span class="cot5">Găng băng</span>
+                </div>
                 <span class="cot6">Giá</span>
             </div>
             <div class="dsacc">
@@ -63,16 +93,20 @@
                 <div class="hang" data-gia = "{{acc.gia}}" data-ma="{{acc.ma_acc}}" data-trangthai="{{acc.trang_thai}}">
                     <input class="nuttichhang" type="checkbox">
                     <span class="cot1">#{{ "%03d"|format(acc.ma_acc) }}</span>
-                    <input class="cot2" type="checkbox" {% if acc.sieu_xe %}checked{% endif %} disabled>
-                    <input class="cot3" type="checkbox" {% if acc.bape %}checked{% endif %} disabled>
-                    <input class="cot4" type="checkbox" {% if acc.mu_dinh %}checked{% endif %} disabled>
-                    <input class="cot5" type="checkbox" {% if acc.gang_tay %}checked{% endif %} disabled>
+                    <div class="cactickchon">
+                        <input class="cot2" type="checkbox" {% if acc.sieu_xe %}checked{% endif %} disabled>
+                        <input class="cot3" type="checkbox" {% if acc.bape %}checked{% endif %} disabled>
+                        <input class="cot4" type="checkbox" {% if acc.mu_dinh %}checked{% endif %} disabled>
+                        <input class="cot5" type="checkbox" {% if acc.gang_tay %}checked{% endif %} disabled>
+                    </div>
                     <span class="cot6">
-                        {{ "{:,.0f}".format(acc.gia) }}đ
+                        {{ "{:,.0f}".format(acc.gia).replace(',','.') }}đ
                     </span>
-                    <i class="fa-solid fa-delete-left" data-ma="{{ acc.ma_acc }}"></i>
-                    <i class="fa-solid fa-pen" data-ma="{{ acc.ma_acc }}" data-mota="{{ acc.mo_ta }}" data-gia="{{ acc.gia }}" data-anh="{{ acc.anh }}"></i>
-                    <button class="trangthai">{{acc.trang_thai}}</button>
+                    <div class="tuychon">
+                        <i class="fa-solid fa-delete-left" data-ma="{{ acc.ma_acc }}"></i>
+                        <i class="fa-solid fa-pen" data-ma="{{ acc.ma_acc }}" data-mota="{{ acc.mo_ta }}" data-gia="{{ acc.gia }}" data-anh="{{ acc.anh }}"></i>
+                        <button class="trangthai">{{acc.trang_thai}}</button>
+                    </div>
                 </div>
                 {% endfor %}
             </div>

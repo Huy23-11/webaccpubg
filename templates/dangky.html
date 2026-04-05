@@ -5,17 +5,30 @@
         <link rel="stylesheet" href="{{url_for('static',filename='css/dangky.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <script src="{{url_for('static',filename='js/dangky.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/dangxuat.js')}}" defer></script>
     </head>
     <body>
         <div class="bangmenu">
             <span class="tenshop">Shop Huy2k5</span>
             <span class="chumenu">menu</span>
-            <hr>
-            <span class="lichsumuaacc">Lịch sử mua acc</span>
-            <hr>
-            <span class="naptien">Nạp tiền</span>
-            <hr>
-            <span class="giohang">Giỏ hàng của bạn</span>
+            <div class="chucnang">
+                <div class="trangchu">
+                    <i class="fa-regular fa-house"></i>
+                    <span class="trangchu">Trang chủ</span>
+                </div>
+                <div class="lichsumuaacc">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="lichsumua">Lịch sử mua acc</span>
+                </div>
+                <div class="naptien">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="naptien">Nạp tiền</span>
+                </div>
+                <div class="giohang">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="giohang">Giỏ hàng của bạn</span>
+                </div>
+            </div>
         </div>
         <div class="ngoaibangmenu"></div>
         <div class="tieude">
@@ -26,18 +39,25 @@
             <div class="conlaitieude">
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
-                    <span class="ten">User</span>
-                    <span class="sodu">0đ</span>
+                    <span class="ten">{{session.get("ten","ten")}}</span>
+                    <span class="sodu">{{"{:,.0f}".format(session.get("so_du",0)).replace(",", ".")}}đ</span>
                 </div>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
         </div>
         <div class="iconcanhan">
-            <span class="dangnhap">Đăng nhập</span>
-            <hr>
-            <span class="taotaikhoan">Tạo tài khoản</span>
-            <hr>
-            <span class="doimatkhau">Đổi mật khẩu</span>
+            <div class="dangnhap">
+                <i class="fa-solid fa-person-arrow-down-to-line"></i>
+                <span class="dangnhap">Đăng nhập</span>
+            </div>
+            <div class="taotaikhoan">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span class="taotaikhoan">Tạo tài khoản</span>
+            </div>
+            <div class="doimatkhau">
+                <i class="fa-solid fa-arrows-turn-to-dots"></i>
+                <span class="doimatkhau">Đổi mật khẩu</span>
+            </div>
         </div>
         <!--Xong phần tiêu đề ------------------------------------------------------------------------------->
         <div class="khoichinh">

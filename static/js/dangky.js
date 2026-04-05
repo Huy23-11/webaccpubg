@@ -22,9 +22,13 @@ document.addEventListener("DOMContentLoaded", function() {
         ngoaibangmenu.style.display = "none";
     });
     //Xong phần click icon cá nhân ----------------------------------------------------------------------------
+    const nuttrangchu = document.querySelector('.chucnang .trangchu');
     const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
     const nutnaptien = document.querySelector('.naptien');
     const nutgiohang = document.querySelector('.giohang');
+    nuttrangchu.addEventListener('click', function(){
+        window.location.href = "/";
+    });
     nutlichsumuaacc.addEventListener('click', function(){
         window.location.href = "/lichsumuaacc";
     });

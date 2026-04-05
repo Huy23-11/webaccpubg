@@ -254,13 +254,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }))
 
     // Chuyển hướng Menu ----------------------------------------------------------
-    const doanhthu = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(1)")
+    const doanhthu = document.querySelector(".bangmenu .danhsachchucnang .doanhthu")
     doanhthu.addEventListener('click', function () {
         window.location.href = "/doanhthu"
     })
-    const quanlynguoimua = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(2)")
+    const quanlynguoimua = document.querySelector(".bangmenu .danhsachchucnang .quanlynguoimua")
     quanlynguoimua.addEventListener('click', function () {
         window.location.href = "/quanlynguoimua"
+    })
+    const quanlyacc = document.querySelector(".bangmenu .danhsachchucnang .quanlyacc")
+    quanlyacc.addEventListener('click', function () {
+        window.location.href = "/quanlyacc"
     })
 
     // Sắp xếp theo giá -----------------------------------------------------------
