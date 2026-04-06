@@ -80,7 +80,7 @@
                     <i class="fa-solid fa-money-bill"></i>
                     <div class="sotiendatieu1">
                         <span class="tenmuc">Số tiền đã tiêu</span>
-                        <span class="giatri">100.000.000đ</span>
+                        <span class="giatri">{{"{:,.0f}".format(datieu or 0).replace(",", ".")}}đ</span>
                     </div>
                 </div>
             </div>

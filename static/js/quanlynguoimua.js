@@ -19,29 +19,19 @@ document.addEventListener('DOMContentLoaded', function () {
         return res;
     }
 
-    // Xử lý đếm số hàng đã chọn -----------------------------------------
-    const danhsachnuttich = document.querySelectorAll('.bang .hang input[type="checkbox"]');
-    danhsachnuttich.forEach(nuttich => {
-        nuttich.addEventListener('change', function () {
-            const soluongdatich = document.querySelectorAll('.bang .hang input[type="checkbox"]:checked').length;
-            const dachon = document.querySelector('.linhtinh .trai .dachon');
-            dachon.textContent = `Đã chọn ${soluongdatich} hàng`;
-        });
-    });
-
     // Phân trang --------------------------------------------------------
     let danhsachnguoimua = Array.from(document.querySelectorAll('.bang .hang'));
     let tranghientai = 1;
     const tongsohang = danhsachnguoimua.length;
-    let tongsotrang = Math.ceil(tongsohang / 5);
+    let tongsotrang = Math.ceil(tongsohang / 8);
     const sotrang = document.querySelector('.bang .cuoibang span');
 
     function hientrang(trang) {
         for (let i = 0; i < tongsohang; i++) {
             danhsachnguoimua[i].style.display = 'none';
         }
-        const batdau = (trang - 1) * 5;
-        const ketthuc = Math.min(batdau + 5, tongsohang);
+        const batdau = (trang - 1) * 8;
+        const ketthuc = Math.min(batdau + 8, tongsohang);
         for (let i = batdau; i < ketthuc; i++) {
             danhsachnguoimua[i].style.display = 'flex';
         }

@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(221, 221, 221)
+    background-color:rgb(242, 247, 249);
 }
 .tieude{
     display:flex;
@@ -11,39 +11,77 @@ body{
     height:16%;
     font-size:30px;
     gap:15px;
-    z-index:9;
+    z-index:10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .tieude span{
-    margin-left:240px;
-    color: rgb(136, 185, 241);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    margin-left:270px;
+    font-weight:bold;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight:bold;
+}
+.tieude i:hover{
+    transform: translateY(-5px) scale(1.1);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
 }
 /*Xong phần tiêu đề----------------------------------------------------------------------------------*/
 .bangmenu{
     display:flex;
     flex-direction: column;
+    align-items:center;
     gap: 20px;
     position:fixed;
     top:0;
     left:0;
     color:white;
-    width:180px;
+    width:240px;
     height:100%;
-    padding:20px;
-    background-color:rgb(123, 192, 248);
+    padding-top:20px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
     z-index:10;
-}
-.bangmenu span{
-    font-size:40px;
     font-weight:bold;
+}
+.bangmenu > span{
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+    font-size:40px;
     margin-top:13px;
-    margin-left:18px;
 }
 .bangmenu .danhsachchucnang{
     margin-top:50px;
-    font-size:20px;
     display:flex;
     flex-direction: column;
-    gap:20px;
+    gap:7px;
+    width:90%;
+}
+.bangmenu .danhsachchucnang > div{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:10px;
+    font-size:17px;
+    border-radius:5px;
+    transition: all 0.3s ease;
+}
+.bangmenu .danhsachchucnang > div:hover{
+    transform: scale(1.05);
+    background-color: rgb(4, 94, 221);
+}
+.bangmenu .danhsachchucnang > div i{
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width:30px;
 }
 /*Xong phần bảng menu----------------------------------------------------------------------------------*/
 .noibat{
@@ -51,30 +89,82 @@ body{
     margin-left:240px;
     display:flex;
     align-items:center;
-    gap:40px;
+    gap:20px;
 }
-.noibat div{
-    background-color:white;
-    width:200px;
-    height:80px;
-    border-radius:10px;
+.noibat > div{
     display:flex;
-    flex-direction: column;
     align-items:center;
-    justify-content:center;
-    gap:7px;
-    padding:5px;
+    gap:10px;
+    border: 1px solid rgb(216, 216, 216);
+    padding: 15px;
+    border-radius: 10px;
+    background-color:white;
+    width:250px;
+    height:60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
-.noibat div .ten{
+.noibat > div:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.noibat .muanhieunhatthang{
+    border-left: 5px solid rgb(63, 63, 63);
+}
+.noibat .napnhieunhatthang{
+    border-left: 5px solid rgb(17, 241, 99);
+}
+.noibat .muanhieunhat{
+    border-left: 5px solid rgb(235, 167, 66);
+}
+.noibat .napnhieunhat{
+    border-left: 5px solid rgb(66, 66, 235);
+}
+.noibat > div > div{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+.noibat > div .fa-brands.fa-shopify{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(226, 224, 224);
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-money-bill-trend-up{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(221, 246, 227);
+    color: green;
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-shop{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(249, 240, 220);
+    color:orange;
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-money-bill-1-wave{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(220, 234, 249);
+    color:blue;
+    font-size:15px;
+}
+.noibat > div > div .tenmuc{
+    font-size:11px;
     font-weight:bold;
+    opacity:0.4;
 }
-.noibat div .giatri{
-    color:rgb(12, 171, 55);
+.noibat > div > div .giatri{
+    font-size:17px;
+    font-weight:bold;
+    opacity:0.9;
 }
 /*Xong phần nổi bật --------------------------------------------------------------------------------------*/
 .linhtinh{
     margin-top:30px;
-    margin-left:260px;
+    margin-left:273px;
     margin-right:20px;
     display:flex;
     align-items:center;
@@ -85,61 +175,92 @@ body{
     align-items:center;
     gap:15px;
 }
-.linhtinh .trai .sapxep{
-    background-color:white;
-    width:65px;
-    height:17px;
-    border-radius:5px;
-    padding:7px;
+.linhtinh .trai .nutchon{
     display:flex;
     align-items:center;
-    justify-content:center;
+    gap:10px;
 }
-.linhtinh .trai .chonthem{
-    background-color:blue;
-    width:80px;
+.linhtinh .trai .nutchon > div{
+    background-color:white;
+    width:100px;
     height:17px;
-    border-radius:5px;
+    border-radius:10px;
     padding:7px;
     display:flex;
     align-items:center;
+    gap:5px;
     justify-content:center;
-    color:white;
+    border: solid 1px rgb(200, 200, 201);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-weight:bold;
+    color:rgb(110, 109, 109);
+}
+.linhtinh .trai .nutchon > div > i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+}
+.linhtinh .trai .nutchon > div:hover{
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                    0 4px 12px rgba(0, 0, 0, 0.2);
+    color:rgb(63, 63, 63);
 }
 .linhtinh input{
     width:250px;
     height:30px;
-    border-radius:5px;
+    border-radius:10px;
     outline:none;
     border:none;
     padding:5px;
-    margin-right:20px;
+    margin-right:9px;
+    border: solid 1px rgb(200, 200, 201);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.linhtinh input:hover{
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.linhtinh input::placeholder{
+    font-weight:bold;
+    opacity:0.6;
 }
 /*Xong phần linh tinh----------------------------------------------------------------------------------*/
 .bang{
     margin-top:10px;
-    margin-left:245px;
+    margin-left:273px;
     margin-right:20px;
     background-color:white;
     border-radius:5px;
     display:flex;
     flex-direction:column;
+    font-weight:bold;
+    border: solid 1px rgb(200, 200, 201);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width:900px;
 }
 .bang .hangtieude{
     display:flex;
     align-items:center;
-    gap:60px;
+    gap:2px;
     padding:10px;
     background-color: rgb(241, 239, 239);
     border-radius:5px 5px 0 0;
-    opacity:0.6;
     font-size:15px;
+    color:white;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+}
+.bang .hangtieude span{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:150px;
 }
 .bang .hangtieude .cot1{
-    margin-left:50px;
-}
-.bang .hangtieude .cot2{
-    margin-left:60px;
+    width: 210px;
 }
 .bang .hang{
     display:flex;
@@ -147,58 +268,51 @@ body{
     padding:10px;
     background-color: white;
     font-size:15px;
-    border-bottom: solid 1px #ccc
+    border-bottom: solid 1px #e8e7e7;
+    gap:2px;
 }
-.bang .hang input{
-    margin-left:10px;
+.bang .hang > span{
+    display:flex;
+    justify-content:center;
+    height:40px;
+    align-items:center;
+    width:150px;
+    opacity:0.8;
 }
-.bang .hang .cot1{
-    margin-left:20px;
+.bang .hang > div{
+    opacity:0.8;
+    display:flex;
     display:flex;
     gap:3px;
     flex-direction:column;
-    width:200px;
+    width:210px;
+    height:40px;
+    justify-content:center;
+    align-items:center;
 }
 .bang .hang .cot1 .email{
     opacity:0.6;
-    font-size:13px;
-}
-.bang .hang .cot2{
-    margin-left:15px;
-    color:rgb(12, 171, 55);
-    display:flex;
-    justify-content:center;
-    width:60px;
+    font-size:11px;
 }
 .bang .hang .cot3{
-    margin-left:65px;
-    color:rgb(12, 171, 55);
-    display:flex;
-    justify-content:center;
-    width:150px;
-}
-.bang .hang .cot4{
-    margin-left:65px;
-    color:rgb(12, 171, 55);
-    display:flex;
-    justify-content:center;
-    width:30px;
+    color:red;
 }
 .bang .hang .cot5{
-    margin-left:47px;
-    color:rgb(12, 171, 55);
-    display:flex;
-    justify-content:center;
-    width:150px;
+    color:red;
 }
-.bang .hang i{
-    opacity:0.5;
+.bang .hang > i{
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
-.fa-solid.fa-delete-left{
-    margin-left:30px;
+.bang .hang > i:hover{
+    transition:all 0.3s ease;
+    transform:scale(1.2);
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
 }
-.fa-solid.fa-pen{
-    margin-left:15px;
+.bang .hang .fa-solid.fa-delete-left{
+    margin-right:10px;
 }
 .popupsodu{
     display:flex;
@@ -207,42 +321,97 @@ body{
     width:200px;
     flex-direction:column;
     background-color: white;
-    border: 1px solid rgb(134, 133, 133);
+    border: 1px solid rgb(213, 211, 211);
     padding: 20px;
     border-radius: 5px;
-    gap: 10px;
+    gap: 5px;
     left: 45%;
     top: 40%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    font-weight:bold;
+}
+.popupsodu .soducua{
+    opacity:0.6;
+    font-size:14px;
+}
+.popupsodu input{
+    border: 1px solid rgb(235, 233, 233);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    padding:5px;
+    border-radius:5px;
+    outline:none;
+    height:25px;
+    font-weight:bold;
+    opacity:0.8;
+    color:red;
+}
+.popupsodu input:hover{
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.popupsodu .luusodu{
+    margin-top:10px;
+    font-size:16px;
+    font-weight:bold;
+    color:white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 7px;
+    border:none;
+    border-radius:5px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+}
+.popupsodu .luusodu:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .bang .cuoibang{
     display:flex;
     align-items:center;
+    justify-content:space-between;
     padding:10px;
+    padding-left:20px;
+    padding-right:20px;
+    font-weight:bold;
+    margin-top:5px;
 }
 .bang .cuoibang .trangtruoc{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(200, 200, 201);
     display:flex;
     align-items:center;
     justify-content:center;
     border: 1px solid rgb(200, 200, 201);
     border-radius:5px;
     padding:5px;
-    margin-left:20px;
-    margin-top:-8px;
+    opacity:0.6;
+}
+.bang .cuoibang .trangtruoc:hover{
+    transition:all 0.3s ease;
+    transform: scale(1.05);
     opacity:0.8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 .bang .cuoibang span{
-    margin-left:363px;
-    margin-top:-8px;
+    position:absolute;
+    margin-left:34%;
 }
 .bang .cuoibang .trangsau{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(200, 200, 201);
     display:flex;
     align-items:center;
     justify-content:center;
     border: 1px solid rgb(200, 200, 201);
     border-radius:5px;
     padding:5px;
-    margin-left:363px;
-    margin-top:-8px;
-    opacity:0.8;
+    opacity:0.6;
     width:40px;
+}
+.bang .cuoibang .trangsau:hover{
+    transition:all 0.3s ease;
+    transform: scale(1.05);
+    opacity:0.8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }

@@ -16,7 +16,8 @@ def lichsumuaacc():
     "lichsumuaacc.html",
     dsacc=data["dsacc"],
     soluong=data["soluong"],
-    gia_max=data["gia_max"]
+    gia_max=data["gia_max"],
+    datieu=data["datieu"]
   )
 
 @lichsumuaacc_bp.route("/api/lichsumuaacc", methods=["GET"])
@@ -91,9 +92,11 @@ def get_data(ma):
 
   soluong = len(dsacc)
   gia_max = max([acc["gia"] for acc in dsacc], default=0)
+  datieu = sum(acc["gia"] for acc in dsacc)
 
   return {
     "dsacc": dsacc,
     "soluong": soluong,
-    "gia_max": gia_max
+    "gia_max": gia_max,
+    "datieu": datieu
   }

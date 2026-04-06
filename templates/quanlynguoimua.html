@@ -7,6 +7,7 @@
         <script src="{{url_for('static',filename='js/quanlynguoimua.js')}}" defer></script>
     </head>
     <body>
+        <div class="ngoaibangmenu"></div>
         <div class="tieude">
             <span>Xin chào, Huy</span>
             <i class="fa-regular fa-hand-spock"></i>
@@ -14,43 +15,64 @@
         <div class="bangmenu">
             <span>ADMIN</span>
             <div class="danhsachchucnang">
-                <div>Doanh thu</div>
-                <div>Quản lý người mua</div>
-                <div>Quản lý acc</div>
+                <div class="doanhthu">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Doanh thu</span>
+                </div>
+                <div class="quanlynguoimua">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Quản lý người mua</span>
+                </div>
+                <div class="quanlyacc">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Quản lý acc</span>
+                </div>
             </div>
         </div>
+        <!--Xong phần bảng menu + tiêu đề--------------------->
         <div class="noibat">
-            <div>
-                <span>Mua nhiều nhất tháng</span>
-                <span class="ten">{{muathang.ten}}</span>
-                <span class="giatri">{{muathang.soluong}}</span>
+            <div class="muanhieunhatthang">
+                <i class="fa-brands fa-shopify"></i>
+                <div class="muanhieunhatthang1">
+                    <span class="tenmuc">Mua nhiều nhất tháng</span>
+                    <span class="giatri">{{muathang.ten}}: {{muathang.soluong}}</span>
+                </div>
             </div>
-            <div>
-                <span>Nạp nhiều nhất tháng</span>
-                <span class="ten">{{napthang.ten}}</span>
-                <span class="giatri">
-                    {{ "{:,.0f}".format(napthang.tongtien) if napthang and napthang.tongtien else "0" }}đ
-                </span>
+            <div class="napnhieunhatthang">
+                <i class="fa-solid fa-money-bill-trend-up"></i>
+                <div class="napnhieunhatthang1">
+                    <span class="tenmuc">Nạp nhiều nhất tháng</span>
+                    <span class="giatri">{{napthang.ten}}: {{ "{:,.0f}".format(napthang.tongtien).replace(",",".") if napthang and napthang.tongtien else "0" }}đ</span>
+                </div>
             </div>
-            <div>
-                <span>Mua nhiều nhất</span>
-                <span class="ten">{{muanhieu.ten}}</span>
-                <span class="giatri">{{muanhieu.soluong}}</span>
+            <div class="muanhieunhat">
+                <i class="fa-solid fa-shop"></i>
+                <div class="muanhieunhat1">
+                    <span class="tenmuc">Mua nhiều nhất</span>
+                    <span class="giatri">{{muanhieu.ten}}: {{muanhieu.soluong}}</span>
+                </div>
             </div>
-            <div>
-                <span>Nạp nhiều nhất</span>
-                <span class="ten">{{napnhieu.ten}}</span>
-                <span class="giatri">{{"{:,.0f}".format(napnhieu.tongtien)}}đ</span>
+            <div class="napnhieunhat">
+                <i class="fa-solid fa-money-bill-1-wave"></i>
+                <div class="napnhieunhat1">
+                    <span class="tenmuc">Nạp nhiều nhất</span>
+                    <span class="giatri">{{napnhieu.ten}}: {{"{:,.0f}".format(napnhieu.tongtien).replace(",",".")}}đ</span>
+                </div>
             </div>
         </div>
+        <!--Xong phần nổi bật----------------------------------------------------------------------------------->
         <div class="linhtinh">
             <div class="trai">
-                <div class="sapxep">Sắp xếp</div>
-                <div class="chonthem">Chọn thêm</div>
-                <div class="dachon">Đã chọn 0 hàng</div>
+                <div class="nutchon">
+                    <div class="sapxep">
+                        <i class="fa-solid fa-sort"></i>
+                        Sắp xếp
+                    </div>
+                </div>
             </div>
             <input type="text" placeholder="Tìm kiếm theo tên người mua">
         </div>
+        <!--Xong phần linh tinh---------------------------------------------------------------------------------->
         <div class="bang">
             <div class="hangtieude">
                 <span class="cot1">Người mua</span>
@@ -62,15 +84,14 @@
             <div class = "dsnguoimua">
                 {% for nguoimua in dsnguoi%}
                 <div class="hang" data-ten = "{{nguoimua.ten}}" data-naptong = "{{nguoimua.nap_tong}}">
-                    <input type="checkbox">
                     <div class="cot1">
                         <span>{{nguoimua.ten}}</span>
                         <span class="email">{{nguoimua.email}}</span>
                     </div>
                     <span class="cot2">{{nguoimua.mua_thang}}</span>
-                    <span class="cot3">{{"{:,.0f}".format(nguoimua.nap_thang)}}đ</span>
+                    <span class="cot3">{{"{:,.0f}".format(nguoimua.nap_thang).replace(",",".")}}đ</span>
                     <span class="cot4">{{nguoimua.mua_tong}}</span>
-                    <span class="cot5">{{"{:,.0f}".format(nguoimua.nap_tong)}}đ</span>
+                    <span class="cot5">{{"{:,.0f}".format(nguoimua.nap_tong).replace(",",".")}}đ</span>
                     <i class="fa-solid fa-delete-left" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
                     <i class="fa-solid fa-pen" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
                 </div>

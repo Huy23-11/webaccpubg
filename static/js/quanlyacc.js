@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Popup xem danh sách ảnh ----------------------------------------------------
-    const anhSpan = document.querySelector(".suaacc .anh > div > span");
+    const anhSpan = document.querySelector(".suaacc .anh > div");
     anhSpan.addEventListener("click", async function () {
         const res = await fetchWithAuth("/hienthianhacc", {
             method: "POST",
@@ -103,9 +103,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     let html = '';
                     arr.forEach(anh => {
                         html += `
-                        <div class="anh" data-ma="${anh.ma_anh}" style="width:98%;height:auto">
-                            <img src="${anh.duong_dan}" alt="ảnh acc" style="width:98%;height:auto;border-radius:6px">
-                            <button class="btn-xoa">Xóa</button>
+                        <div class="anh-wrapper" data-ma="${anh.ma_anh}">
+                            <img src="${anh.duong_dan}">
+                            <div class="overlay">
+                                <div class="xoa">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    <span class="xoa1">Xóa</span>
+                                </div>
+                            </div>
                         </div>`;
                     });
                     divCacAnh.innerHTML = html;
@@ -121,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Xóa từng ảnh trong popup ---------------------------------------------------
     divCacAnh.addEventListener("click", async function (e) {
-        if (e.target.classList.contains("btn-xoa")) {
+        if (e.target.classList.contains("xoa")) {
             const maAnh = e.target.parentElement.dataset.ma;
             const res = await fetchWithAuth('/xoaanhacc', {
                 method: 'POST',
@@ -231,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Thêm Account mới -----------------------------------------------------------
-    const nutthemacc = document.querySelector(".fa-solid.fa-plus")
+    const nutthemacc = document.querySelector(".linhtinh .trai .nutchon .themacc")
     nutthemacc.addEventListener('click', async function () {
         const res = await fetchWithAuth("/themacc", {
             method: 'POST'

@@ -54,7 +54,7 @@ def get_data():
   sql = """
     SELECT *
     FROM Acc
-    ORDER BY ma_acc ASC
+    ORDER BY ma_acc DESC
   """
   result = db.session.execute(text(sql))
 
