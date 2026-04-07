@@ -246,6 +246,7 @@ body{
     border: solid 1px rgb(200, 200, 201);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width:900px;
+    margin-bottom:20px;
 }
 .bang .hangtieude{
     display:flex;

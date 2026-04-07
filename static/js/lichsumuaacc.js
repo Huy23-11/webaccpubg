@@ -88,17 +88,17 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "/doimatkhau";
     });
     //Xem tài khoản mật khẩu
-    const popuptkmk = document.querySelector(".popuptkmk")
+    const popuptkmk = document.querySelectorAll(".popuptkmk")
     const dsnutxem = document.querySelectorAll(".danhsachacctronggio .acctronggio .benphai")
-    dsnutxem.forEach(nutxem=>{
+    dsnutxem.forEach((nutxem,index)=>{
         nutxem.addEventListener('click',function(){
-            popuptkmk.style.display = "flex"
+            popuptkmk[index].classList.add("active")
             ngoaibangmenu.style.display = "block"
         })
     })
     ngoaibangmenu.addEventListener("click",function(){
         ngoaibangmenu.style.display = "none"
-        popuptkmk.style.display = "none"
+        popuptkmk.forEach(popup=>popup.classList.remove("active"))
     })
     const inputma = document.querySelector(".divto2 .thanhtimkiem input")
     inputma.addEventListener("keydown",function(e){

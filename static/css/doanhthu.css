@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(221, 221, 221)
+    background-color:rgb(242, 247, 249);
 }
 .tieude{
     display:flex;
@@ -11,39 +11,77 @@ body{
     height:16%;
     font-size:30px;
     gap:15px;
-    z-index:9;
+    z-index:10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .tieude span{
-    margin-left:240px;
-    color: rgb(136, 185, 241);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    margin-left:270px;
+    font-weight:bold;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tieude i{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight:bold;
+}
+.tieude i:hover{
+    transform: translateY(-5px) scale(1.1);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
 }
 /*Xong phần tiêu đề----------------------------------------------------------------------------------*/
 .bangmenu{
     display:flex;
     flex-direction: column;
+    align-items:center;
     gap: 20px;
     position:fixed;
     top:0;
     left:0;
     color:white;
-    width:180px;
+    width:240px;
     height:100%;
-    padding:20px;
-    background-color:rgb(123, 192, 248);
+    padding-top:20px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
     z-index:10;
-}
-.bangmenu span{
-    font-size:40px;
     font-weight:bold;
+}
+.bangmenu > span{
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+    font-size:40px;
     margin-top:13px;
-    margin-left:18px;
 }
 .bangmenu .danhsachchucnang{
     margin-top:50px;
-    font-size:20px;
     display:flex;
     flex-direction: column;
-    gap:20px;
+    gap:7px;
+    width:90%;
+}
+.bangmenu .danhsachchucnang > div{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:10px;
+    font-size:17px;
+    border-radius:5px;
+    transition: all 0.3s ease;
+}
+.bangmenu .danhsachchucnang > div:hover{
+    transform: scale(1.05);
+    background-color: rgb(4, 94, 221);
+}
+.bangmenu .danhsachchucnang > div i{
+    filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width:30px;
 }
 /*Xong phần bảng menu----------------------------------------------------------------------------------*/
 .noibat{
@@ -51,31 +89,98 @@ body{
     margin-left:240px;
     display:flex;
     align-items:center;
-    gap:40px;
+    gap:20px;
 }
-.noibat div{
-    background-color:white;
-    width:200px;
-    height:80px;
-    border-radius:10px;
+.noibat > div{
     display:flex;
-    flex-direction: column;
     align-items:center;
-    justify-content:center;
-    gap:7px;
-    padding:5px;
+    gap:10px;
+    border: 1px solid rgb(216, 216, 216);
+    padding: 15px;
+    border-radius: 10px;
+    background-color:white;
+    width:250px;
+    height:60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
-.noibat div .giatri{
-    color:rgb(12, 171, 55);
+.noibat > div:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.noibat .banthang{
+    border-left: 5px solid rgb(63, 63, 63);
+}
+.noibat .banngay{
+    border-left: 5px solid rgb(17, 241, 99);
+}
+.noibat .napthang{
+    border-left: 5px solid rgb(235, 167, 66);
+}
+.noibat .napngay{
+    border-left: 5px solid rgb(66, 66, 235);
+}
+.noibat > div > div{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+.noibat > div .fa-brands.fa-sellsy{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(226, 224, 224);
+    font-size:15px;
+}
+.noibat > div .fa-brands.fa-sellcast{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(221, 246, 227);
+    color: green;
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-money-bill-trend-up{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(249, 240, 220);
+    color:orange;
+    font-size:15px;
+}
+.noibat > div .fa-solid.fa-comment-dollar{
+    padding: 10px;
+    border-radius: 8px;
+    background-color:rgb(220, 234, 249);
+    color:blue;
+    font-size:15px;
+}
+.noibat > div > div .tenmuc{
+    font-size:11px;
+    font-weight:bold;
+    opacity:0.4;
+}
+.noibat > div > div .giatri{
+    font-size:17px;
+    font-weight:bold;
+    opacity:0.9;
 }
 /*Xong phần nổi bật --------------------------------------------------------------------------------------*/
 .theotuan{
     display:flex;
     justify-content:center;
-    margin-left:220px;
+    margin-left:240px;
     gap:60px;
+    font-weight:bold;
 }
-/*----------------------------------------------------------------------------------------------------------*/
+.chu1{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.chu2{
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    background: linear-gradient(135deg, #ffb300, #ff7a00, #ffd54f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .dabantheotuan{
     position:relative;
     display:flex;
@@ -83,9 +188,15 @@ body{
     border-radius:10px;
     padding:30px;
     background-color:white;
-    width:370px;
+    width:385px;
     height:220px;
     margin-top:30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.dabantheotuan:hover{
+    transition:all 0.3s ease;
+    transform:translateY(-5px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .dabantheotuan .phandau{
     display:flex;
@@ -101,15 +212,18 @@ body{
 }
 .dabantheotuan .cacmoc div{
     display:flex;
+    align-items:center;
 }
 .dabantheotuan .cacmoc div span{
     width:40px;
-    margin-right:0px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 .dabantheotuan .cacmoc div hr{
     flex:1;
     margin-top:20px;
-    opacity:0.6;
+    opacity:0.3;
 }
 .dabantheotuan .caccot{
     position:absolute;
@@ -120,20 +234,41 @@ body{
     align-items: flex-end;
     bottom:26px;
 }
-.dabantheotuan .caccot div{
+.dabantheotuan .caccot > div{
+    position:relative;
+    padding-top:20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    width:21px;
 }
-.dabantheotuan .caccot div div{
+.dabantheotuan .caccot > div > div{
     background-color:rgb(169, 169, 247);
     width:15px;
-    height:70px;
+    height:0px;
     border-radius:5px 5px 0 0;
+    background: linear-gradient(135deg, #4a148c, #6a1b9a, #8e24aa);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
-.dabantheotuan .caccot div span{
-    opacity:0.6;
+.dabantheotuan .caccot > div > .giatri{
+    position:absolute;
+    opacity:0;
+    top:5px;
+    background: linear-gradient(135deg, #4a148c, #6a1b9a, #8e24aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dabantheotuan .caccot > div > div:hover{
+    transition:all 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
+}
+.dabantheotuan .caccot > div > div:hover ~ .giatri{
+    transition:all 0.3s ease;
+    opacity:1;
+}
+.dabantheotuan .caccot > div .thoidiem{
+    opacity:0.4;
 }
 /*-------------------------------------------------------------------------------------------------------------*/
 .doanhthutheotuan{
@@ -143,9 +278,15 @@ body{
     border-radius:10px;
     padding:30px;
     background-color:white;
-    width:370px;
+    width:385px;
     height:220px;
     margin-top:30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.doanhthutheotuan:hover{
+    transition:all 0.3s ease;
+    transform:translateY(-5px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .doanhthutheotuan .phandau{
     display:flex;
@@ -161,15 +302,18 @@ body{
 }
 .doanhthutheotuan .cacmoc div{
     display:flex;
+    align-items:center;
 }
 .doanhthutheotuan .cacmoc div span{
     width:40px;
-    margin-right:0px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 .doanhthutheotuan .cacmoc div hr{
     flex:1;
     margin-top:20px;
-    opacity:0.6;
+    opacity:0.3;
 }
 .doanhthutheotuan .caccot{
     position:absolute;
@@ -180,20 +324,41 @@ body{
     align-items: flex-end;
     bottom:26px;
 }
-.doanhthutheotuan .caccot div{
+.doanhthutheotuan .caccot > div{
+    position:relative;
+    padding-top:20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    width:21px;
 }
-.doanhthutheotuan .caccot div div{
-    background-color:rgb(147, 243, 179);
+.doanhthutheotuan .caccot > div > div{
+    background-color:rgb(169, 169, 247);
     width:15px;
-    height:158px;
+    height:0px;
     border-radius:5px 5px 0 0;
+    background: linear-gradient(135deg, #4a148c, #6a1b9a, #8e24aa);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
-.doanhthutheotuan .caccot div span{
-    opacity:0.6;
+.doanhthutheotuan .caccot > div > .giatri{
+    position:absolute;
+    opacity:0;
+    top:5px;
+    background: linear-gradient(135deg, #4a148c, #6a1b9a, #8e24aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.doanhthutheotuan .caccot > div > div:hover{
+    transition:all 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
+}
+.doanhthutheotuan .caccot > div > div:hover ~ .giatri{
+    transition:all 0.3s ease;
+    opacity:0.8;
+}
+.doanhthutheotuan .caccot > div .thoidiem{
+    opacity:0.4;
 }
 /*------------------------------------------------------------------------------------------------------------*/
 .doanhthutheonam{
@@ -203,11 +368,18 @@ body{
     border-radius:10px;
     padding:30px;
     background-color:white;
-    width:370px;
     height:220px;
     margin-top:40px;
     margin-left:385px;
-    width:600px;
+    width:615px;
+    font-weight:bold;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom:20px;
+}
+.doanhthutheonam:hover{
+    transition:all 0.3s ease;
+    transform:translateY(-5px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .doanhthutheonam .phandau{
     display:flex;
@@ -223,15 +395,19 @@ body{
 }
 .doanhthutheonam .cacmoc div{
     display:flex;
+    align-items:center;
 }
 .doanhthutheonam .cacmoc div span{
     width:40px;
     margin-right:0px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 .doanhthutheonam .cacmoc div hr{
     flex:1;
     margin-top:20px;
-    opacity:0.6;
+    opacity:0.3;
 }
 .doanhthutheonam .caccot{
     position:absolute;
@@ -242,18 +418,38 @@ body{
     align-items: flex-end;
     bottom:26px;
 }
-.doanhthutheonam .caccot div{
+.doanhthutheonam .caccot > div{
+    position:relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    width:21px;
+    padding-top:20px;
 }
-.doanhthutheonam .caccot div div{
-    background-color:rgb(147, 243, 179);
+.doanhthutheonam .caccot > div > div{
+    background: linear-gradient(135deg, #00695c, #00a86b, #00c853);
     width:15px;
-    height:158px;
+    height:0px;
     border-radius:5px 5px 0 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
-.doanhthutheonam .caccot div span{
-    opacity:0.6;
+.doanhthutheonam .caccot > div > .giatri{
+    position:absolute;
+    opacity:0;
+    top:5px;
+    background: linear-gradient(135deg, #00695c, #00a86b, #00c853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.doanhthutheonam .caccot > div > div:hover{
+    transition:all 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
+}
+.doanhthutheonam .caccot > div > div:hover ~ .giatri{
+    transition:all 0.3s ease;
+    opacity:1;
+}
+.doanhthutheonam .caccot > div .thoidiem{
+    opacity:0.4;
 }

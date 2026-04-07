@@ -94,13 +94,14 @@
                     <span class="cot5">{{"{:,.0f}".format(nguoimua.nap_tong).replace(",",".")}}đ</span>
                     <i class="fa-solid fa-delete-left" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
                     <i class="fa-solid fa-pen" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
+                    <div class="popupsodu">
+                        <span class="soducua">Số dư của: {{nguoimua.ten}}</span>
+                        <input type="text" class="inputsodu" 
+                        value="{{ '{:,.0f}'.format(nguoimua.so_du or 0).replace(',', '.') }}">
+                        <button class="luusodu">Lưu</button>
+                    </div>
                 </div>
                 {% endfor %}
-            </div>
-            <div class="popupsodu">
-                <span class="soducua">Số dư của: </span>
-                <input type="text" class="inputsodu">
-                <button class="luusodu">Lưu</button>
             </div>
             <div class="cuoibang">
                 <div class="trangtruoc">Trước</div>

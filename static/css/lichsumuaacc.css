@@ -309,6 +309,7 @@ body{
     width:92%;
 }
 .danhsachacctronggio .acctronggio{
+    position:relative;
     display:flex;
     align-items: center;
     background-color:white;
@@ -430,26 +431,53 @@ body{
     transform: scale(1.1);
 }
 .popuptkmk{
-    position:fixed;
+    transition:all 0.3s ease;
+    position:absolute;
     z-index:10;
-    display: none;
+    display: flex;
     border-radius: 5px;
     flex-direction: column;
-    background-color:white;
     align-items: center;
     justify-content:center;
-    top:30%;
-    width:300px;
+    width:270px;
     height:150px;
-    font-size: 16px;
     gap:15px;
-    left: 38.5%;
+    background-color:white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    font-weight:bold;
+    padding-bottom:10px;
+    transition:all 0.3s ease;
+    left:65%;
+    top:-130px;
+    visibility:hidden;
 }
-.popuptkmk span{
-    border: solid 1px rgb(156, 154, 154);
-    border-radius: 5px;
-    padding: 7px;
-    width:80%
+.popuptkmk.active{
+    visibility:visible;
+    transition:all 0.3s ease;
+    top:-40px;
+}
+.popuptkmk > div{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+}
+.popuptkmk > div > span{
+    font-size:14px;
+    opacity:0.5;
+}
+.popuptkmk > div > div{
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius:6px;
+    padding:8px;
+    width:200px;
+    font-size:15px;
+    opacity:0.8;
+}
+.popuptkmk > div > div:hover{
+    transition:all 0.3s ease;
+    transform:translateY(-5px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
 }
 /*-------------------------------------------------------------------------------------------------
  Xong phần danh sách acc trong lịch sử mua */

@@ -116,8 +116,14 @@
                 </div>
                 <div class="benphai">Xem</div>
                 <div class = "popuptkmk">
-                    <span class="tk">Tài khoản: {{acc.tai_khoan}}</span>
-                    <span class="mk">Mật khẩu: {{acc.mat_khau}}</span>
+                    <div class="tk">
+                        <span>Tài khoản</span>
+                        <div>{{acc.tai_khoan}}</div>
+                    </div>
+                    <div class="mk">
+                        <span>Mật khẩu</span>
+                        <div>{{acc.mat_khau}}</div>
+                    </div>
                 </div>
             </div>
             {% endfor %}

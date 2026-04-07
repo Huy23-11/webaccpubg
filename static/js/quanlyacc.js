@@ -126,8 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Xóa từng ảnh trong popup ---------------------------------------------------
     divCacAnh.addEventListener("click", async function (e) {
-        if (e.target.classList.contains("xoa")) {
-            const maAnh = e.target.parentElement.dataset.ma;
+        if (e.target.closest(".xoa")) {
+            console.log(1)
+            const maAnh = e.target.closest(".anh-wrapper").dataset.ma;
             const res = await fetchWithAuth('/xoaanhacc', {
                 method: 'POST',
                 body: JSON.stringify({ ma_anh: maAnh })
@@ -135,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (res) {
                 const data = await res.json();
                 if (data.status === 'success') {
-                    e.target.parentElement.remove();
+                    e.target.closest(".anh-wrapper").remove();
                 }
             }
         }

@@ -8,6 +8,7 @@
         <script src="{{url_for('static',filename='js/doanhthu.js')}}" defer></script>
     </head>
     <body>
+        <div class="ngoaibangmenu"></div>
         <div class="tieude">
             <span>Xin chào, Huy</span>
             <i class="fa-regular fa-hand-spock"></i>
@@ -15,51 +16,73 @@
         <div class="bangmenu">
             <span>ADMIN</span>
             <div class="danhsachchucnang">
-                <div>Doanh thu</div>
-                <div>Quản lý người mua</div>
-                <div>Quản lý acc</div>
+                <div class="doanhthu">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Doanh thu</span>
+                </div>
+                <div class="quanlynguoimua">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Quản lý người mua</span>
+                </div>
+                <div class="quanlyacc">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Quản lý acc</span>
+                </div>
             </div>
         </div>
+        <!--Xong phần bảng menu + tiêu đề--------------------->
         <div class="noibat">
-            <div>
-                <span>Đã bán(Tháng này)</span>
-                <span class="giatri">{{ ban_thang }}</span>
+            <div class="banthang">
+                <i class="fa-brands fa-sellsy"></i>
+                <div class="banthang1">
+                    <span class="tenmuc">Đã bán(Tháng này)</span>
+                    <span class="giatri">{{ ban_thang }}</span>
+                </div>
             </div>
-            <div>
-                <span>Đã bán(Hôm nay)</span>
-                <span class="giatri">{{ ban_homnay }}</span>
+            <div class="banngay">
+                <i class="fa-brands fa-sellcast"></i>
+                <div class="banngay1">
+                    <span class="tenmuc">Đã bán(Hôm nay)</span>
+                    <span class="giatri">{{ ban_homnay }}</span>
+                </div>
             </div>
-            <div>
-                <span>Tổng nạp(Tháng này)</span>
-                <span class="giatri">+{{ "{:,.0f}".format(nap_thang) }}đ</span>
+            <div class="napthang">
+                <i class="fa-solid fa-money-bill-trend-up"></i>
+                <div class="napthang1">
+                    <span class="tenmuc">Tổng nạp(Tháng này)</span>
+                    <span class="giatri">+{{ "{:,.0f}".format(nap_thang).replace(",",".") }}đ</span>
+                </div>
             </div>
-            <div>
-                <span>Tổng nạp(Hôm nay)</span>
-                <span class="giatri">+{{ "{:,.0f}".format(nap_homnay) }}đ</span>
+            <div class="napngay">
+                <i class="fa-solid fa-comment-dollar"></i>
+                <div class="napngay1">
+                    <span class="tenmuc">Tổng nạp(Hôm nay)</span>
+                    <span class="giatri">+{{ "{:,.0f}".format(nap_homnay).replace(",",".") }}đ</span>
+                </div>
             </div>
         </div>
         <!----------------------------------------------------------------------------------->
         <div class="theotuan">
             <div class="dabantheotuan">
                 <div class="phandau">
-                    <span>Đã bán</span>
-                    <span>Tuần này</span>
+                    <span class="chu1">Đã bán</span>
+                    <span class="chu2">Tuần này</span>
                 </div>
                 <div class="cacmoc">
                     <div class="moc200">
-                        <span>200</span>
+                        <span>20</span>
                         <hr>
                     </div>
                     <div class="moc150">
-                        <span>150</span>
+                        <span>15</span>
                         <hr>
                     </div>
                     <div class="moc100">
-                        <span>100</span>
+                        <span>10</span>
                         <hr>
                     </div>
                     <div class="moc50">
-                        <span>50</span>
+                        <span>5</span>
                         <hr>
                     </div>
                     <div class="moc0">
@@ -70,54 +93,61 @@
                 <div class="caccot">
                     <div>
                         <div></div>
-                        <span>T2</span>
+                        <span class="giatri">10000</span>
+                        <span class="thoidiem">T2</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T3</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T3</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T4</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T4</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T5</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T5</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T6</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T6</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T7</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T7</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>CN</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">CN</span>
                     </div>
                 </div>
             </div>
             <div class="doanhthutheotuan">
                 <div class="phandau">
-                    <span>Tổng đã nạp</span>
-                    <span>Tuần này</span>
+                    <span class="chu1">Tổng đã nạp</span>
+                    <span class="chu2">Tuần này</span>
                 </div>
                 <div class="cacmoc">
                     <div class="moc200">
-                        <span>200</span>
+                        <span>40</span>
                         <hr>
                     </div>
                     <div class="moc150">
-                        <span>150</span>
+                        <span>30</span>
                         <hr>
                     </div>
                     <div class="moc100">
-                        <span>100</span>
+                        <span>20</span>
                         <hr>
                     </div>
                     <div class="moc50">
-                        <span>50</span>
+                        <span>10</span>
                         <hr>
                     </div>
                     <div class="moc0">
@@ -128,39 +158,46 @@
                 <div class="caccot">
                     <div>
                         <div></div>
-                        <span>T2</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T2</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T3</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T3</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T4</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T4</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T5</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T5</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T6</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T6</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>T7</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">T7</span>
                     </div>
                     <div>
                         <div></div>
-                        <span>CN</span>
+                        <span class="giatri"></span>
+                        <span class="thoidiem">CN</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="doanhthutheonam">
             <div class="phandau">
-                <span>Tổng đã nạp</span>
-                <span>Năm nay</span>
+                <span class="chu1">Tổng đã nạp</span>
+                <span class="chu2">Năm nay</span>
             </div>
             <div class="cacmoc">
                 <div class="moc200">
@@ -187,51 +224,63 @@
             <div class="caccot">
                 <div>
                     <div></div>
-                    <span>T1</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T1</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T2</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T2</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T3</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T3</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T4</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T4</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T5</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T5</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T6</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T6</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T7</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T7</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T8</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T8</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T9</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T9</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T10</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T10</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T11</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T11</span>
                 </div>
                 <div>
                     <div></div>
-                    <span>T12</span>
+                    <span class="giatri"></span>
+                    <span class="thoidiem">T12</span>
                 </div>
             </div>
         </div>

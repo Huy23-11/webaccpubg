@@ -86,55 +86,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Sửa số dư (Mở popup) ---------------------------------------------------
-    const popup = document.querySelector(".popupsodu");
-    const spanTen = document.querySelector(".popupsodu .soducua");
-    const inputSoDu = document.querySelector(".popupsodu input");
-    const btnLuu = document.querySelector(".popupsodu .luusodu");
-    let maNguoiMuaDangSua = null;
-    
-    if (popup) popup.style.display = "none";
-
     const danhsachnutsua = document.querySelectorAll(".fa-solid.fa-pen");
     danhsachnutsua.forEach(nut => {
+        const hang = nut.closest(".hang")
+        const popup = hang.querySelector(".popupsodu");
+        const inputSoDu = popup.querySelector("input");
+        const btnLuu = popup.querySelector(".luusodu");
         nut.addEventListener("click", async function () {
-            const ma = this.dataset.ma;
-            const res = await fetchWithAuth("/popupsodunguoimua", {
-                method: "POST",
-                body: JSON.stringify({
-                    ma_nguoi_mua: ma
-                })
-            });
+            popup.classList.add("active")
+            // Lưu số dư mới ---------------------------------------------------------
+            btnLuu.addEventListener("click", async function () {
+                const sodumoi = inputSoDu.value.replace(/\./g, '');
+                const res = await fetchWithAuth("/suasodu", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        ma_nguoi_mua: nut.dataset.ma,
+                        so_du_moi: sodumoi
+                    })
+                });
 
-            if (res) {
-                const data = await res.json();
-                if (data.status === "success") {
-                    maNguoiMuaDangSua = ma;
-                    spanTen.textContent = `Số dư của: ${data.ten}`;
-                    inputSoDu.value = Number(data.so_du).toLocaleString("vi-VN");
-                    popup.style.display = "flex";
+                if (res) {
+                    const data = await res.json();
+                    if (data.status === "success") {
+                        popup.classList.remove("active")
+                        location.reload();
+                    }
                 }
-            }
+            });
         });
-    });
-
-    // Lưu số dư mới ---------------------------------------------------------
-    btnLuu.addEventListener("click", async function () {
-        const sodumoi = inputSoDu.value.replace(/\./g, '');
-        const res = await fetchWithAuth("/suasodu", {
-            method: "POST",
-            body: JSON.stringify({
-                ma_nguoi_mua: maNguoiMuaDangSua,
-                so_du_moi: sodumoi
-            })
-        });
-
-        if (res) {
-            const data = await res.json();
-            if (data.status === "success") {
-                popup.style.display = "none";
-                location.reload();
-            }
-        }
     });
 
     // Chuyển hướng Menu -----------------------------------------------------

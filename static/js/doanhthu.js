@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded',function(){
     const socket = io()
     const max_height = 158
-    const max_value = 200
     const token = localStorage.getItem("token");
 
     async function fetchWithAuth(url) {
@@ -24,9 +23,13 @@ document.addEventListener('DOMContentLoaded',function(){
     function updateChartDB(data) {
         if (!data) return;
         const cot = document.querySelectorAll(".theotuan .dabantheotuan .caccot > div > div")
+        const giatri = document.querySelectorAll(".theotuan .dabantheotuan .caccot > div > .giatri")
         data.forEach((value, index) => {
-            let height = (value / max_value) * max_height
-            if (cot[index]) cot[index].style.height = height + "px"
+            let height = (value / 20) * max_height
+            if (cot[index]){
+                cot[index].style.height = height + "px";
+                giatri[index].textContent = `${value}`;
+            }
         })
     }
     async function loadData() {
@@ -42,9 +45,13 @@ document.addEventListener('DOMContentLoaded',function(){
     function updateChartDTTT(data) {
         if (!data) return;
         const cot = document.querySelectorAll(".theotuan .doanhthutheotuan .caccot > div > div")
+        const giatri = document.querySelectorAll(".theotuan .doanhthutheotuan .caccot > div > .giatri")
         data.forEach((value, index) => {
-            let height = (value / max_value) * max_height
-            if (cot[index]) cot[index].style.height = height + "px"
+            let height = (value / 40) * max_height
+            if (cot[index]){
+                cot[index].style.height = height + "px"
+                giatri[index].textContent = `${value}`
+            }
         })
     }
     async function loadDoanhThuNap() {
@@ -60,9 +67,13 @@ document.addEventListener('DOMContentLoaded',function(){
     function updateChartDTTN(data) {
         if (!data) return;
         const cot = document.querySelectorAll(".doanhthutheonam .caccot > div > div")
+        const giatri = document.querySelectorAll(".doanhthutheonam .caccot > div .giatri")
         data.forEach((value, index) => {
-            let height = (value / max_value) * max_height
-            if (cot[index]) cot[index].style.height = height + "px"
+            let height = (value / 200) * max_height
+            if (cot[index]){
+                cot[index].style.height = height + "px"
+                giatri[index].textContent = `${value}`
+            }
         })
     }
     async function loadDataNam() {

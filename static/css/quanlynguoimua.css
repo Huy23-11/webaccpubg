@@ -241,6 +241,7 @@ body{
     border: solid 1px rgb(200, 200, 201);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width:900px;
+    margin-bottom:20px;
 }
 .bang .hangtieude{
     display:flex;
@@ -270,6 +271,7 @@ body{
     font-size:15px;
     border-bottom: solid 1px #e8e7e7;
     gap:2px;
+    position:relative;
 }
 .bang .hang > span{
     display:flex;
@@ -279,7 +281,7 @@ body{
     width:150px;
     opacity:0.8;
 }
-.bang .hang > div{
+.bang .hang .cot1{
     opacity:0.8;
     display:flex;
     display:flex;
@@ -316,8 +318,7 @@ body{
 }
 .popupsodu{
     display:flex;
-    position: fixed;
-    margin: auto;
+    position: absolute;
     width:200px;
     flex-direction:column;
     background-color: white;
@@ -325,10 +326,16 @@ body{
     padding: 20px;
     border-radius: 5px;
     gap: 5px;
-    left: 45%;
-    top: 40%;
+    transform:translateX(270%);
+    visibility:hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     font-weight:bold;
+    z-index:8;
+    transition: all 0.3s ease;
+}
+.popupsodu.active{
+    visibility:visible;
+    transform:translateX(230%);
 }
 .popupsodu .soducua{
     opacity:0.6;
