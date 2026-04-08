@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function(){
     const nutsieuxe = document.getElementById("sieuxe")
     const nutmudinh = document.getElementById("mudinh")
     const nutgangbang = document.getElementById("gangbang")
-    const nutSapXep = document.querySelector(".linhtinh .nutsapxep")
+    const sxmoidang = document.querySelector(".linhtinh .nutsapxep .moidang")
+    const sxgiatang = document.querySelector(".linhtinh .nutsapxep .giatang")
+    const sxgiagiam = document.querySelector(".linhtinh .nutsapxep .giagiam")
     let dsacchien = []
     let tongsotrang = Math.ceil(soacc/6)
     let trang = 1
@@ -24,9 +26,25 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
     }
-    nutSapXep.addEventListener("click", function(){
+    sxmoidang.addEventListener("click", function(){
+        dsacchien.sort(function(a, b){
+            return parseInt(b.dataset.ma) - parseInt(a.dataset.ma);
+        });
+        const container = document.querySelector(".danhsachacc");
+        dsacchien.forEach(acc => container.appendChild(acc));
+        hienacc()
+    });
+    sxgiatang.addEventListener("click", function(){
         dsacchien.sort(function(a, b){
             return parseInt(a.dataset.gia) - parseInt(b.dataset.gia);
+        });
+        const container = document.querySelector(".danhsachacc");
+        dsacchien.forEach(acc => container.appendChild(acc));
+        hienacc()
+    });
+    sxgiagiam.addEventListener("click", function(){
+        dsacchien.sort(function(a, b){
+            return parseInt(b.dataset.gia) - parseInt(a.dataset.gia);
         });
         const container = document.querySelector(".danhsachacc");
         dsacchien.forEach(acc => container.appendChild(acc));

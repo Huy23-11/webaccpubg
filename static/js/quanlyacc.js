@@ -281,9 +281,21 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = "/quanlyacc"
     })
 
-    // Sắp xếp theo giá -----------------------------------------------------------
-    const nutsapxep = document.querySelector(".linhtinh .trai .sapxep")
-    nutsapxep.addEventListener('click', function () {
+    // Sắp xếp -----------------------------------------------------------
+    const sxmoidang = document.querySelector(".linhtinh .trai .sapxep .moidang")
+    const sxgiatang = document.querySelector(".linhtinh .trai .sapxep .giatang")
+    const sxgiagiam = document.querySelector(".linhtinh .trai .sapxep .giagiam")
+    sxmoidang.addEventListener('click', function () {
+        danhsachnguoimua.sort((a, b) => {
+            return b.dataset.ma - a.dataset.ma
+        })
+        const container = document.querySelector(".bang .dsacc")
+        danhsachnguoimua.forEach(acc => {
+            container.appendChild(acc)
+        })
+        hientrang(1)
+    })
+    sxgiatang.addEventListener('click', function () {
         danhsachnguoimua.sort((a, b) => {
             return a.dataset.gia - b.dataset.gia
         })
@@ -293,7 +305,16 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         hientrang(1)
     })
-
+    sxgiagiam.addEventListener('click', function () {
+        danhsachnguoimua.sort((a, b) => {
+            return b.dataset.gia - a.dataset.gia
+        })
+        const container = document.querySelector(".bang .dsacc")
+        danhsachnguoimua.forEach(acc => {
+            container.appendChild(acc)
+        })
+        hientrang(1)
+    })
     // Tìm kiếm theo Mã Acc -------------------------------------------------------
     const inputma = document.querySelector(".linhtinh input")
     inputma.addEventListener("keydown", function (e) {

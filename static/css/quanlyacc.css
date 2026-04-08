@@ -202,11 +202,45 @@ body{
     filter: drop-shadow(5px 6px 8px rgba(0,0,0,0.5));
 }
 .linhtinh .trai .nutchon > div:hover{
-    transform: scale(1.03);
     transition: all 0.3s ease;
     box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
                     0 4px 12px rgba(0, 0, 0, 0.2);
-    color:rgb(63, 63, 63);
+}
+.linhtinh .trai .sapxep{
+    position:relative;
+    z-index: 8;
+}
+.linhtinh .trai .sapxep .theo{
+    display:flex;
+    position:absolute;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    box-shadow:0 4px 12px rgba(0, 0, 0, 0.4);
+    border-radius:6px;
+    padding:9px;
+    gap:5px;
+    background-color:white;
+    transition:all 0.3s ease;
+    top:10%;
+    visibility:hidden;
+}
+.linhtinh .trai .sapxep:hover .theo{
+    visibility:visible;
+    transform:translateY(26%);
+}
+.linhtinh .trai .sapxep .theo span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:6px;
+    padding:5px;
+    gap:5px;
+    width:85px;
+}
+.linhtinh .trai .sapxep .theo span:hover{
+    transition:all 0.3s ease;
+    background-color:rgb(218, 216, 216);
 }
 .linhtinh .trai .dachon{
     font-size:17px;

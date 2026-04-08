@@ -131,21 +131,73 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Sắp xếp người mua theo tổng nạp ---------------------------------------
-    const nutsapxep = document.querySelector(".linhtinh .trai .sapxep");
-    if (nutsapxep) {
-        nutsapxep.addEventListener("click", function () {
-            danhsachnguoimua.sort((b, a) => {
-                return (a.dataset.naptong || 0) - (b.dataset.naptong || 0);
-            });
-            const container = document.querySelector(".bang .dsnguoimua");
-            danhsachnguoimua.forEach(nguoimua => {
-                container.appendChild(nguoimua);
-            });
-            hientrang(1);
+    // Sắp xếpxếp--------------------------------------------------
+    const sxnapthangtang = document.querySelector(".linhtinh .trai .sapxep .napthangtang");
+    const sxnapthanggiam = document.querySelector(".linhtinh .trai .sapxep .napthanggiam");
+    const sxtongnaptang = document.querySelector(".linhtinh .trai .sapxep .tongnaptang");
+    const sxtongnapgiam = document.querySelector(".linhtinh .trai .sapxep .tongnapgiam");
+    const sxsodutang = document.querySelector(".linhtinh .trai .sapxep .sodutang");
+    const sxsodugiam = document.querySelector(".linhtinh .trai .sapxep .sodugiam");
+    sxnapthangtang.addEventListener("click", function () {
+        danhsachnguoimua.sort((a, b) => {
+            return (a.dataset.napthang || 0) - (b.dataset.napthang || 0);
         });
-    }
-
+        const container = document.querySelector(".bang .dsnguoimua");
+        danhsachnguoimua.forEach(nguoimua => {
+            container.appendChild(nguoimua);
+        });
+        hientrang(1);
+    });
+    sxnapthanggiam.addEventListener("click", function () {
+        danhsachnguoimua.sort((b, a) => {
+            return (a.dataset.napthang || 0) - (b.dataset.napthang || 0);
+        });
+        const container = document.querySelector(".bang .dsnguoimua");
+        danhsachnguoimua.forEach(nguoimua => {
+            container.appendChild(nguoimua);
+        });
+        hientrang(1);
+    });
+    sxtongnaptang.addEventListener("click", function () {
+        danhsachnguoimua.sort((a, b) => {
+            return (a.dataset.naptong || 0) - (b.dataset.naptong || 0);
+        });
+        const container = document.querySelector(".bang .dsnguoimua");
+        danhsachnguoimua.forEach(nguoimua => {
+            container.appendChild(nguoimua);
+        });
+        hientrang(1);
+    });
+    sxtongnapgiam.addEventListener("click", function () {
+        danhsachnguoimua.sort((b, a) => {
+            return (a.dataset.naptong || 0) - (b.dataset.naptong || 0);
+        });
+        const container = document.querySelector(".bang .dsnguoimua");
+        danhsachnguoimua.forEach(nguoimua => {
+            container.appendChild(nguoimua);
+        });
+        hientrang(1);
+    });
+    sxsodutang.addEventListener("click", function () {
+        danhsachnguoimua.sort((a, b) => {
+            return (a.dataset.sodu || 0) - (b.dataset.sodu || 0);
+        });
+        const container = document.querySelector(".bang .dsnguoimua");
+        danhsachnguoimua.forEach(nguoimua => {
+            container.appendChild(nguoimua);
+        });
+        hientrang(1);
+    });
+    sxsodugiam.addEventListener("click", function () {
+        danhsachnguoimua.sort((b, a) => {
+            return (a.dataset.sodu || 0) - (b.dataset.sodu || 0);
+        });
+        const container = document.querySelector(".bang .dsnguoimua");
+        danhsachnguoimua.forEach(nguoimua => {
+            container.appendChild(nguoimua);
+        });
+        hientrang(1);
+    });
     // Tìm kiếm người mua theo tên -------------------------------------------
     const inputten = document.querySelector(".linhtinh input");
     if (inputten) {

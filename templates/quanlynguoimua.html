@@ -67,6 +67,14 @@
                     <div class="sapxep">
                         <i class="fa-solid fa-sort"></i>
                         Sắp xếp
+                        <div class="theo">
+                            <span class="napthangtang">Nạp tháng tăng</span>
+                            <span class="napthanggiam">Nạp tháng giảm</span>
+                            <span class="tongnaptang">Tổng nạp tăng</span>
+                            <span class="tongnapgiam">Tổng nạp giảm</span>
+                            <span class="sodutang">Số dư tăng</span>
+                            <span class="sodugiam">Số dư giảm</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,7 +91,7 @@
             </div>
             <div class = "dsnguoimua">
                 {% for nguoimua in dsnguoi%}
-                <div class="hang" data-ten = "{{nguoimua.ten}}" data-naptong = "{{nguoimua.nap_tong}}">
+                <div class="hang" data-ten = "{{nguoimua.ten}}" data-naptong = "{{nguoimua.nap_tong}}" data-napthang = "{{nguoimua.nap_thang}}" data-sodu = "{{nguoimua.so_du}}">
                     <div class="cot1">
                         <span>{{nguoimua.ten}}</span>
                         <span class="email">{{nguoimua.email}}</span>

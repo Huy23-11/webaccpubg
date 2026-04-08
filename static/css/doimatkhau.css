@@ -170,6 +170,7 @@ body{
     z-index:10;
     transform: translateY(-160%);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition:all 0.3s ease;
 }
 .iconcanhan.hien{
     transition:all 0.3s ease;
@@ -216,6 +217,9 @@ body{
     padding:20px;
     font-weight:bold;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.khoichinh input{
+    outline:none;
 }
 .khoichinh .chu{
     font-size:35px;
