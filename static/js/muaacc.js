@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded",function(){
         .then(res=>res.json())
         .then(data =>{
             if(data.status === "success"){
-                popuptkmk.style.display = "flex"
-                ngoaibangmenu.style.display = "block"
+                alert("mua thành công, vào lịch sử mua để xem tài khoản, mật khẩu")
             }
             else if(data.status === "fail"){
                 alert("Số dư không đủ!")

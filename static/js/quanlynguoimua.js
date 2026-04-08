@@ -93,7 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputSoDu = popup.querySelector("input");
         const btnLuu = popup.querySelector(".luusodu");
         nut.addEventListener("click", async function () {
+            const ngoaimenu = document.querySelector(".ngoaibangmenu")
             popup.classList.add("active")
+            ngoaimenu.style.display = "block"
             // Lưu số dư mới ---------------------------------------------------------
             btnLuu.addEventListener("click", async function () {
                 const sodumoi = inputSoDu.value.replace(/\./g, '');
@@ -108,11 +110,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (res) {
                     const data = await res.json();
                     if (data.status === "success") {
+                        ngoaimenu.style.display = "none"
                         popup.classList.remove("active")
                         location.reload();
                     }
                 }
             });
+            ngoaimenu.addEventListener('click',function(){
+                ngoaimenu.style.display = "none"
+                popup.classList.remove("active")
+            })
         });
     });
 

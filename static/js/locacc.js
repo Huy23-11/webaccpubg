@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function(){
     const nuttruoc = document.querySelector('.trang .fa-angle-left');
     const nutsau = document.querySelector('.trang .fa-angle-right');
     const tranghientai = document.querySelector('.trang div');
+    accs.forEach(acc =>{
+        dsacchien.push(acc)
+    })
     function hienacc(){
         for(let i = 0; i < soacc; i++){
             accs[i].style.display= "none";
@@ -151,31 +154,33 @@ document.addEventListener("DOMContentLoaded", function(){
     input.addEventListener("keydown",function(e){
         if(e.key === 'Enter'){
             const ma = parseInt(input.value)
+            soLuongSpan.textContent = `0`
             dsacchien.forEach(acc=>{
                 if(parseInt(acc.dataset.ma) === ma){
                     acc.style.display = "flex"
+                    soLuongSpan.textContent = `1`
                 }
                 else acc.style.display = "none"
             })
             trang = 1
             tongsotrang = 1
             soacchien = 1
-            soLuongSpan.textContent = `1`
             tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
         }
     })
     nuttimkiem.addEventListener("click", function(){
         const ma = parseInt(input.value)
+        soLuongSpan.textContent = `0`
         dsacchien.forEach(acc=>{
             if(parseInt(acc.dataset.ma) === ma){
                 acc.style.display = "flex"
+                soLuongSpan.textContent = `1`
             }
             else acc.style.display = "none"
         })
         trang = 1
         tongsotrang = 1
         soacchien = 1
-        soLuongSpan.textContent = `1`
         tranghientai.textContent = `Trang ${trang}/${tongsotrang}`;
     })
 });

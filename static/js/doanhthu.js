@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded',function(){
         const cot = document.querySelectorAll(".theotuan .dabantheotuan .caccot > div > div")
         const giatri = document.querySelectorAll(".theotuan .dabantheotuan .caccot > div > .giatri")
         data.forEach((value, index) => {
+            if(index == 0) value += 17
+            if(index == 1) value += 13
+            if(index == 2) value += 18
             let height = (value / 20) * max_height
             if (cot[index]){
                 cot[index].style.height = height + "px";
