@@ -17,7 +17,8 @@ def lichsumuaacc():
     dsacc=data["dsacc"],
     soluong=data["soluong"],
     gia_max=data["gia_max"],
-    datieu=data["datieu"]
+    datieu=data["datieu"],
+    vip=data["vip"]
   )
 
 @lichsumuaacc_bp.route("/api/lichsumuaacc", methods=["GET"])
@@ -93,10 +94,19 @@ def get_data(ma):
   soluong = len(dsacc)
   gia_max = max([acc["gia"] for acc in dsacc], default=0)
   datieu = sum(acc["gia"] for acc in dsacc)
-
+  vip = 0
+  if "ma_nguoi_mua" in session:
+    ma_nguoi_mua = session["ma_nguoi_mua"]
+    sqlvip = """
+      SELECT vip
+      FROM NguoiMua
+      WHERE ma_nguoi_mua = :ma
+    """
+    vip = db.session.execute(text(sqlvip), {"ma": ma_nguoi_mua}).scalar()
   return {
     "dsacc": dsacc,
     "soluong": soluong,
     "gia_max": gia_max,
-    "datieu": datieu
+    "datieu": datieu,
+    "vip": vip
   }

@@ -47,6 +47,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const nutnaptien = document.querySelector('.chucnang .naptien');
     const nutgiohang = document.querySelector('.chucnang .giohang');
     const nutnaptienngay = document.querySelector('.naptien-ngay');
+    const nutlichsugiaodich = document.querySelector('.lichsugiaodich');
+    nutlichsugiaodich.addEventListener('click', function(){
+        window.location.href = "/lichsugiaodich";
+    });
     nuttrangchu.addEventListener('click', function(){
         window.location.href = "/";
     });

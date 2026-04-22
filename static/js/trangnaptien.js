@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
     const nutnaptien = document.querySelector('.naptien');
     const nutgiohang = document.querySelector('.giohang');
+    const nutlichsugiaodich = document.querySelector('.lichsugiaodich');
+    nutlichsugiaodich.addEventListener('click', function(){
+        window.location.href = "/lichsugiaodich";
+    });
     nuttrangchu.addEventListener('click', function(){
         window.location.href = "/";
     });
@@ -50,4 +54,39 @@ document.addEventListener("DOMContentLoaded", function() {
     nutdoimatkhau.addEventListener('click', function(){
         window.location.href = "/doimatkhau";
     });
+    // Tạo đơn---------------------------------------------------
+    const nut = document.querySelector(".nutnaptien")
+
+    nut.addEventListener("click", async function(){
+        const input = document.querySelector(".inputsotien")
+        const so_tien = input.value
+        const ma_nguoi_mua = this.dataset.manguoimua
+
+        if(!so_tien || isNaN(so_tien)){
+            alert("Nhập số tiền hợp lệ")
+            return
+        }
+
+        const res = await fetch("/tao-don-nap", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                so_tien: so_tien,
+                ma_nguoi_mua: ma_nguoi_mua
+            })
+        })
+
+        const data = await res.json()
+
+        document.querySelector(".noidung .giatri").innerText = data.noi_dung
+        const img = document.querySelector(".qrcode img")
+        const mota = document.querySelector(".qrcode .mota")
+
+        img.src = data.qr_url
+        img.style.display = "block"
+
+        mota.innerText = "Quét mã QR để thanh toán nhanh"
+    })
 })

@@ -18,7 +18,8 @@ def dsnguoimua():
     muathang = data["muathang"],
     napthang = data["napthang"],
     muanhieu = data["muanhieu"],
-    napnhieu = data["napnhieu"]
+    napnhieu = data["napnhieu"],
+    tongnm = data["tongnm"]
   )
 
 @dsnguoimua_bp.route("/api/quanlynguoimua", methods=["GET"])
@@ -57,6 +58,9 @@ def get_data():
       nm.ten,
       nm.email,
       nm.so_du,
+      nm.tai_khoan,
+      nm.mat_khau,
+      vip,
 
       (SELECT COUNT(*)
        FROM DonMuaAcc dm
@@ -100,7 +104,10 @@ def get_data():
       "mua_thang": row.mua_thang,
       "nap_thang": row.nap_thang,
       "mua_tong": row.mua_tong,
-      "nap_tong": row.nap_tong
+      "nap_tong": row.nap_tong,
+      "tai_khoan":row.tai_khoan,
+      "mat_khau":row.mat_khau,
+      "vip": row.vip
     })
 
   sql_muathang = """
@@ -148,11 +155,12 @@ def get_data():
   """
   row = db.session.execute(text(sql_napnhieu)).fetchone()
   napnhieu = {"ten": row.ten, "tongtien": row.tongtien} if row else None
-
+  tongnm = len(dsnguoi)
   return {
     "dsnguoi": dsnguoi,
     "muathang": muathang,
     "napthang": napthang,
     "muanhieu": muanhieu,
-    "napnhieu": napnhieu
+    "napnhieu": napnhieu,
+    "tongnm": tongnm
   }

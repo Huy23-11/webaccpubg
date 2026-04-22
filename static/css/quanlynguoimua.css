@@ -18,7 +18,7 @@ body{
     font-size:30px;
     gap:15px;
     z-index:10;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .tieude span{
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
@@ -105,7 +105,7 @@ body{
     padding: 15px;
     border-radius: 10px;
     background-color:white;
-    width:250px;
+    width:190px;
     height:60px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -163,7 +163,7 @@ body{
     opacity:0.4;
 }
 .noibat > div > div .giatri{
-    font-size:17px;
+    font-size:15px;
     font-weight:bold;
     opacity:0.9;
 }
@@ -171,10 +171,10 @@ body{
 .linhtinh{
     margin-top:30px;
     margin-left:273px;
-    margin-right:20px;
     display:flex;
     align-items:center;
     justify-content: space-between;
+    width:900px;
 }
 .linhtinh .trai{
     display:flex;
@@ -249,6 +249,34 @@ body{
     transition:all 0.3s ease;
     background-color:rgb(218, 216, 216);
 }
+.linhtinh .trai .locvip{
+    display:flex;
+    gap:5px;
+}
+.linhtinh .trai .locvip > span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:6px;
+    padding:5px;
+    gap:5px;
+    width:60px;
+    background-color:rgb(221, 218, 218);
+    font-weight:bold;
+    font-size:14px;
+}
+.linhtinh .trai .locvip > span:hover{
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.linhtinh .trai .locvip > span.active{
+    background-color:rgb(0, 198, 255);
+    color:white;
+}
+.linhtinh .trai > span{
+    font-weight:bold;
+}
 .linhtinh input{
     width:250px;
     height:30px;
@@ -256,7 +284,6 @@ body{
     outline:none;
     border:none;
     padding:5px;
-    margin-right:9px;
     border: solid 1px rgb(200, 200, 201);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -304,6 +331,11 @@ body{
 .bang .hangtieude .cot1{
     width: 210px;
 }
+.bang .dsnguoimua{
+    min-height:485px;
+    max-height:485px;
+    border-bottom: solid 1px #e8e7e7;
+}
 .bang .hang{
     display:flex;
     align-items:center;
@@ -313,6 +345,33 @@ body{
     border-bottom: solid 1px #e8e7e7;
     gap:2px;
     position:relative;
+}
+.bang .hang.active{
+    background-color:rgb(200, 195, 195);
+}
+.bang .hang .vip{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:14px;
+    border-radius:0 0 5px 0;
+    padding:8px;
+}
+.bang .hang .vip .fa-regular.fa-star.star{
+    background: linear-gradient(90deg, #FFD700, #FF8C00, #FF2D00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.bang .hang .vip .fa-regular.fa-star.star:hover{
+    transform:scale(1.3);
+    transition:all 0.3s ease;
+}
+.bang .hang .vip .fa-regular.fa-star.star.active{
+    font-weight:900;
 }
 .bang .hang > span{
     display:flex;
@@ -358,39 +417,45 @@ body{
     margin-right:10px;
 }
 .popupsodu{
-    display:flex;
-    position: absolute;
-    width:200px;
+    display:none;
+    top:22%;
+    left:43%;
+    position: fixed;
+    width:270px;
     flex-direction:column;
     background-color: white;
     border: 1px solid rgb(213, 211, 211);
     padding: 20px;
-    border-radius: 5px;
-    gap: 5px;
-    transform:translateX(270%);
-    visibility:hidden;
+    border-radius: 10px;
+    gap: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     font-weight:bold;
     z-index:12;
-    transition: all 0.3s ease;
+    align-items:center;
 }
-.popupsodu.active{
-    visibility:visible;
-    transform:translateX(230%);
+.popupsodu .tt{
+    margin-bottom:10px;
 }
-.popupsodu .soducua{
-    opacity:0.6;
-    font-size:14px;
+.popupsodu > div{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    width:90%;
+}
+.popupsodu .muc{
+    opacity:0.5;
+    font-size:13px;
 }
 .popupsodu input{
-    border: 1px solid rgb(235, 233, 233);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgb(199, 197, 197);
     padding:5px;
     border-radius:5px;
     outline:none;
     height:25px;
     font-weight:bold;
     opacity:0.8;
+}
+.popupsodu .inputsodu{
     color:red;
 }
 .popupsodu input:hover{
@@ -399,7 +464,8 @@ body{
                 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 .popupsodu .luusodu{
-    margin-top:10px;
+    width:90%;
+    margin-top:15px;
     font-size:16px;
     font-weight:bold;
     color:white;
@@ -442,8 +508,7 @@ body{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 .bang .cuoibang span{
-    position:absolute;
-    margin-left:34%;
+    margin-left:3%;
 }
 .bang .cuoibang .trangsau{
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);

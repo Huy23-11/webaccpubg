@@ -27,6 +27,10 @@
                     <i class="fa-solid fa-gamepad"></i>
                     <span>Quản lý acc</span>
                 </div>
+                <div class="giaodich">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                    <span>Giao dịch</span>
+                </div>
             </div>
         </div>
         <!--Xong phần bảng menu + tiêu đề--------------------->
@@ -73,14 +77,18 @@
                             <span class="giagiam">Giá giảm</span>
                         </div>
                     </div>
+                    <div class="bolocgia">
+                        <input type="number" class="giatu" placeholder="Giá từ" step="1000000">
+                        <input type="number" class="giaden" placeholder="Giá đến" step="1000000">
+                        <button class="nutloc">Lọc</button>
+                    </div>
                     <div class="themacc">
                         <i class="fa-solid fa-plus"></i>
                         Thêm acc
                     </div>
                 </div>
-                <div class="dachon">Đã chọn 0 hàng</div>
             </div>
-            <input type="text" placeholder="Tìm kiếm theo tên người mua">
+            <input type="text" placeholder="Tìm kiếm theo mã acc">
         </div>
         <!--Xong phần linh tinh---------------------------------------------------------------------------------->
         <div class="bang">
@@ -117,6 +125,7 @@
                 {% endfor %}
             </div>
             <div class="suaacc">
+                <span class="tt">Thông tin account</span>
                 <div class="suamota">
                     <span>Mô tả</span>
                     <input type="text" id="input-mota" placeholder="...">

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect
+from flask import Blueprint, render_template, session, redirect,request
 from extensions import db
 from sqlalchemy import text
 from extensions import socketio
@@ -156,7 +156,7 @@ def doanhthu_theotuan():
     data = [0]*7
     for r in result:
         thu = (r.thu + 5) % 7
-        data[thu] = float(r.tongtien//1000000)
+        data[thu] = round(float(r.tongtien) / 1000000, 1)
     print(data)
     return {"data": data}
 
@@ -178,7 +178,7 @@ def emit_update_doanhthutheotuan():
     data = [0]*7
     for r in result:
         thu = (r.thu + 5) % 7
-        data[thu] = float(r.tongtien//1000000)
+        data[thu] = round(float(r.tongtien) / 1000000, 1)
     print("===========================================================================")
     print(data)
     socketio.emit("update_doanhthutheotuan", {"data": data})
@@ -219,7 +219,7 @@ def doanhthu_theonam():
     data = [0]*12
     for r in result:
         thang = r.thang - 1
-        data[thang] = float(r.tongtien//1000000)
+        data[thang] = round(float(r.tongtien) / 1000000, 1)
     return {"data": data}
 
 def emit_update_doanhthutheonam():
@@ -236,5 +236,224 @@ def emit_update_doanhthutheonam():
     data = [0]*12
     for r in result:
         thang = r.thang - 1
-        data[thang] = float(r.tongtien//1000000)
+        data[thang] = round(float(r.tongtien) / 1000000, 1)
     socketio.emit("update_doanhthutheonam", {"data": data})
+
+#Đã bán theo từng tuần
+@doanhthu_bp.route("/api/daban-theotungtuan",methods=["POST"])
+@admin_required
+def daban_theotungtuan():
+    data = request.get_json()
+    so = data.get("tuan")
+    sql0 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        COUNT(*) AS soluong
+    FROM DonMuaAcc
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    sql1 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    SET @Monday = DATEADD(DAY, -7, @Monday);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        COUNT(*) AS soluong
+    FROM DonMuaAcc
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    sql2 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    SET @Monday = DATEADD(DAY, -14, @Monday);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        COUNT(*) AS soluong
+    FROM DonMuaAcc
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    sql3 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    SET @Monday = DATEADD(DAY, -21, @Monday);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        COUNT(*) AS soluong
+    FROM DonMuaAcc
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    result = None
+    if so == 0: 
+        result = db.session.execute(text(sql0))
+    elif so == -1: 
+        result = db.session.execute(text(sql1))
+    elif so == -2: 
+        result = db.session.execute(text(sql2))
+    if so == -3: 
+        result = db.session.execute(text(sql3))
+    data = [0]*7
+    for r in result:
+        thu = (r.thu + 5) % 7
+        data[thu] = r.soluong
+    print(data,"=================================================================")
+    return {"data": data}
+
+#Đoanh thu theo từng tuần
+@doanhthu_bp.route("/api/doanhthu-theotungtuan",methods=["POST"])
+@admin_required
+def doanhthu_theotungtuan():
+    data = request.get_json()
+    so = data.get("tuan")
+    sql0 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    AND trang_thai = 'SUCCESS'
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    sql1 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    SET @Monday = DATEADD(DAY, -7, @Monday);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    AND trang_thai = 'SUCCESS'
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    sql2 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    SET @Monday = DATEADD(DAY, -14, @Monday);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    AND trang_thai = 'SUCCESS'
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    sql3 = """
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @Monday DATE = DATEADD(DAY, - (DATEDIFF(DAY, '19000101', @Today) % 7), @Today);
+    SET @Monday = DATEADD(DAY, -21, @Monday);
+    DECLARE @Sunday DATE = DATEADD(DAY, 6, @Monday);
+    SELECT 
+        DATEPART(WEEKDAY, thoi_diem) AS thu,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE CAST(thoi_diem AS DATE) >= @Monday
+    AND CAST(thoi_diem AS DATE) <= @Sunday
+    AND trang_thai = 'SUCCESS'
+    GROUP BY DATEPART(WEEKDAY, thoi_diem)
+    """
+
+    result = None
+    if so == 0: 
+        result = db.session.execute(text(sql0))
+    elif so == -1: 
+        result = db.session.execute(text(sql1))
+    elif so == -2: 
+        result = db.session.execute(text(sql2))
+    if so == -3: 
+        result = db.session.execute(text(sql3))
+    data = [0]*7
+    for r in result:
+        thu = (r.thu + 5) % 7
+        data[thu] = round(float(r.tongtien) / 1000000, 1)
+    print(data,"=================================================================")
+    return {"data": data}
+
+#Đoanh thu theo từng năm
+@doanhthu_bp.route("/api/doanhthu-theotungnam",methods=["POST"])
+@admin_required
+def doanhthu_theotungnam():
+    data = request.get_json()
+    so = data.get("tuan")
+    sql0 = """
+    SELECT 
+        MONTH(thoi_diem) AS thang,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE YEAR(thoi_diem) = YEAR(GETDATE())
+    AND trang_thai = 'SUCCESS'
+    GROUP BY MONTH(thoi_diem)
+    """
+
+    sql1 = """
+    SELECT 
+        MONTH(thoi_diem) AS thang,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE YEAR(thoi_diem) = YEAR(GETDATE())-1
+    AND trang_thai = 'SUCCESS'
+    GROUP BY MONTH(thoi_diem)
+    """
+
+    sql2 = """
+    SELECT 
+        MONTH(thoi_diem) AS thang,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE YEAR(thoi_diem) = YEAR(GETDATE())-2
+    AND trang_thai = 'SUCCESS'
+    GROUP BY MONTH(thoi_diem)
+    """
+
+    sql3 = """
+    SELECT 
+        MONTH(thoi_diem) AS thang,
+        SUM(so_tien) AS tongtien
+    FROM DonNapTien
+    WHERE YEAR(thoi_diem) = YEAR(GETDATE())-3
+    AND trang_thai = 'SUCCESS'
+    GROUP BY MONTH(thoi_diem)
+    """
+
+    result = None
+    if so == 0: 
+        result = db.session.execute(text(sql0))
+    elif so == -1: 
+        result = db.session.execute(text(sql1))
+    elif so == -2: 
+        result = db.session.execute(text(sql2))
+    if so == -3: 
+        result = db.session.execute(text(sql3))
+    data = [0]*12
+    for r in result:
+        thang = r.thang - 1
+        data[thang] = round(float(r.tongtien) / 1000000, 1)
+    return {"data": data}

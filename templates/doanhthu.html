@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
         <script src="{{url_for('static',filename='js/doanhthu.js')}}" defer></script>
+        <script src="{{url_for('static',filename='js/doanhthuchon.js')}}" defer></script>
     </head>
     <body>
         <div class="ngoaibangmenu"></div>
@@ -27,6 +28,10 @@
                 <div class="quanlyacc">
                     <i class="fa-solid fa-gamepad"></i>
                     <span>Quản lý acc</span>
+                </div>
+                <div class="giaodich">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                    <span>Giao dịch</span>
                 </div>
             </div>
         </div>
@@ -64,9 +69,19 @@
         <!----------------------------------------------------------------------------------->
         <div class="theotuan">
             <div class="dabantheotuan">
+                <span class="tong"></span>
                 <div class="phandau">
-                    <span class="chu1">Đã bán</span>
-                    <span class="chu2">Tuần này</span>
+                    <span class="chu1">Thống kê số acc đã bán trong tuần</span>
+                    <div class="chon">
+                        <span class="chu2">Tuần này</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <div class="cactuan">
+                            <div class="tuan0">Tuần này</div>
+                            <div class="tuan-1">Tuần trước</div>
+                            <div class="tuan-2">2 tuần trước</div>
+                            <div class="tuan-3">3 tuần trước</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="cacmoc">
                     <div class="moc200">
@@ -129,25 +144,35 @@
                 </div>
             </div>
             <div class="doanhthutheotuan">
+                <span class="tong"></span>
                 <div class="phandau">
-                    <span class="chu1">Tổng đã nạp</span>
-                    <span class="chu2">Tuần này</span>
+                    <span class="chu1">Doanh thu trong tuần</span>
+                    <div class="chon">
+                        <span class="chu2">Tuần này</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <div class="cactuan">
+                            <div class="tuan0">Tuần này</div>
+                            <div class="tuan-1">Tuần trước</div>
+                            <div class="tuan-2">2 tuần trước</div>
+                            <div class="tuan-3">3 tuần trước</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="cacmoc">
                     <div class="moc200">
-                        <span>40</span>
+                        <span>40m</span>
                         <hr>
                     </div>
                     <div class="moc150">
-                        <span>30</span>
+                        <span>30m</span>
                         <hr>
                     </div>
                     <div class="moc100">
-                        <span>20</span>
+                        <span>20m</span>
                         <hr>
                     </div>
                     <div class="moc50">
-                        <span>10</span>
+                        <span>10m</span>
                         <hr>
                     </div>
                     <div class="moc0">
@@ -195,25 +220,35 @@
             </div>
         </div>
         <div class="doanhthutheonam">
+            <span class="tong"></span>
             <div class="phandau">
-                <span class="chu1">Tổng đã nạp</span>
-                <span class="chu2">Năm nay</span>
+                <span class="chu1">Doanh thu trong năm</span>
+                <div class="chon">
+                    <span class="chu2">Năm 2026</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                    <div class="cactuan">
+                        <div class="tuan0">Năm 2026</div>
+                        <div class="tuan-1">Năm 2025</div>
+                        <div class="tuan-2">Năm 2024</div>
+                        <div class="tuan-3">Năm 2023</div>
+                    </div>
+                </div>
             </div>
             <div class="cacmoc">
                 <div class="moc200">
-                    <span>200</span>
+                    <span>200m</span>
                     <hr>
                 </div>
                 <div class="moc150">
-                    <span>150</span>
+                    <span>150m</span>
                     <hr>
                 </div>
                 <div class="moc100">
-                    <span>100</span>
+                    <span>100m</span>
                     <hr>
                 </div>
                 <div class="moc50">
-                    <span>50</span>
+                    <span>50m</span>
                     <hr>
                 </div>
                 <div class="moc0">

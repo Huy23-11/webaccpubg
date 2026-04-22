@@ -19,7 +19,26 @@ def trangnaptien():
     WHERE nm.ma_nguoi_mua = :ma
     """
     user = db.session.execute(text(sql), {"ma": ma}).fetchone()
+    sodu = session.get("so_du")
+    napthanhcong=False
+    sotien = 0
+    if float(user.so_du) > sodu:
+        sotien = float(user.so_du) -sodu
+        session["so_du"] = float(user.so_du)
+        napthanhcong=True
+    vip = 0
+    if "ma_nguoi_mua" in session:
+        ma_nguoi_mua = session["ma_nguoi_mua"]
+        sqlvip = """
+        SELECT vip
+        FROM NguoiMua
+        WHERE ma_nguoi_mua = :ma
+        """
+        vip = db.session.execute(text(sqlvip), {"ma": ma_nguoi_mua}).scalar()
     return render_template(
         "trangnaptien.html",
-        user=user
+        user=user,
+        napthanhcong=napthanhcong,
+        sotien=sotien,
+        vip=vip
     )

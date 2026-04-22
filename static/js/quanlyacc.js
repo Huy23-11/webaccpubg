@@ -65,18 +65,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const ngoaimenu = document.querySelector('.ngoaibangmenu');
     const divCacAnh = document.querySelector('.cacanhtheoacc');
     let maaccdangsua = null;
+    let mota = null;
+    let gia = null;
+    let anh = null;
+    let tk = null;
+    let mk = null;
 
     divCacAnh.style.display = 'none';
     divCacAnh.innerHTML = '';
 
     danhsachnutsua.forEach(nutsua => {
         nutsua.addEventListener('click', function () {
+            document.body.style.overflow = "hidden";
             maaccdangsua = this.dataset.ma;
-            const mota = this.dataset.mota || '';
-            const gia = this.dataset.gia || 0;
-            const anh = this.dataset.anh || '';
-            const tk = this.dataset.taikhoan || '';
-            const mk = this.dataset.matkhau || '';
+            mota = this.dataset.mota || '';
+            gia = this.dataset.gia || 0;
+            anh = this.dataset.anh || '';
+            tk = this.dataset.taikhoan || '';
+            mk = this.dataset.matkhau || '';
             document.getElementById('input-mota').value = mota;
             document.getElementById('input-gia').value = Number(gia).toLocaleString('vi-VN');
             document.getElementById('input-anh').value = anh;
@@ -84,6 +90,13 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('input-mk').value = mk;
             menusua.style.display = 'flex';
             ngoaimenu.style.display = 'block';
+            ngoaimenu.addEventListener('click', function () {
+                menusua.style.display = 'none';
+                ngoaimenu.style.display = 'none';
+                divCacAnh.style.display = 'none';
+                divCacAnh.innerHTML = '';
+                document.body.style.overflow = "auto";
+            });
         });
     });
 
@@ -103,15 +116,31 @@ document.addEventListener('DOMContentLoaded', function () {
                     let html = '';
                     arr.forEach(anh => {
                         html += `
-                        <div class="anh-wrapper" data-ma="${anh.ma_anh}">
+                        <div class="anh-wrapper ${anh.thu_tu == 1 ? 'anh-chinh' : ''}" 
+                            data-ma="${anh.ma_anh}" 
+                            data-thu="${anh.thu_tu}">
+
                             <img src="${anh.duong_dan}">
+
                             <div class="overlay">
-                                <div class="xoa">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span class="xoa1">Xóa</span>
+
+                                <div class="chinh ${anh.thu_tu == 1 ? 'active' : ''}">
+                                    <i class="fa-solid fa-star"></i>
+                                    ${anh.thu_tu == 1 ? 'Ảnh chính' : 'Đặt ảnh chính'}
                                 </div>
+
+                                ${
+                                    anh.thu_tu == 1 
+                                    ? '' 
+                                    : `<div class="xoa">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <span class="xoa1">Xóa</span>
+                                    </div>`
+                                }
+
                             </div>
-                        </div>`;
+                        </div>
+                        `;
                     });
                     divCacAnh.innerHTML = html;
                     divCacAnh.style.display = 'flex';
@@ -122,8 +151,114 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         }
+        ngoaimenu.addEventListener('click', function () {
+            divCacAnh.style.display = 'none';
+            divCacAnh.innerHTML = '';
+            document.body.style.overflow = "hidden";
+            document.getElementById('input-mota').value = mota;
+            document.getElementById('input-gia').value = Number(gia).toLocaleString('vi-VN');
+            document.getElementById('input-anh').value = anh;
+            document.getElementById('input-tk').value = tk;
+            document.getElementById('input-mk').value = mk;
+            menusua.style.display = 'flex';
+            ngoaimenu.style.display = 'block';
+            ngoaimenu.addEventListener('click', function () {
+                menusua.style.display = 'none';
+                ngoaimenu.style.display = 'none';
+                divCacAnh.style.display = 'none';
+                divCacAnh.innerHTML = '';
+                document.body.style.overflow = "auto";
+            });
+        });
     });
 
+    //Đặt ảnh chính
+    document.addEventListener("click", async function (e) {
+        const btn = e.target.closest(".chinh");
+        if (!btn) return;
+        const wrapper = btn.closest(".anh-wrapper");
+        const ma_anh = wrapper.dataset.ma;
+        const thu_tu = parseInt(wrapper.dataset.thu);
+        if (thu_tu === 1) return;
+        const res1 = await fetchWithAuth("/datanhchinh", {
+            method: "POST",
+            body: JSON.stringify({
+                ma_anh: ma_anh
+            })
+        });
+        if (res1) {
+            const data = await res1.json();
+            if (data.status === "success") {
+                const res = await fetchWithAuth("/hienthianhacc", {
+                    method: "POST",
+                    body: JSON.stringify({ ma_acc: maaccdangsua })
+                });
+
+                if (res) {
+                    const data = await res.json();
+                    if (data.status === 'success') {
+                        const arr = data.danhsachanh || [];
+                        if (arr.length) {
+                            let html = '';
+                            arr.forEach(anh => {
+                                html += `
+                                <div class="anh-wrapper ${anh.thu_tu == 1 ? 'anh-chinh' : ''}" 
+                                    data-ma="${anh.ma_anh}" 
+                                    data-thu="${anh.thu_tu}">
+
+                                    <img src="${anh.duong_dan}">
+
+                                    <div class="overlay">
+
+                                        <div class="chinh ${anh.thu_tu == 1 ? 'active' : ''}">
+                                            <i class="fa-solid fa-star"></i>
+                                            ${anh.thu_tu == 1 ? 'Ảnh chính' : 'Đặt ảnh chính'}
+                                        </div>
+
+                                        ${
+                                            anh.thu_tu == 1 
+                                            ? '' 
+                                            : `<div class="xoa">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                    <span class="xoa1">Xóa</span>
+                                            </div>`
+                                        }
+
+                                    </div>
+                                </div>
+                                `;
+                            });
+                            divCacAnh.innerHTML = html;
+                            divCacAnh.style.display = 'flex';
+                            menusua.style.display = 'none';
+                        } else {
+                            divCacAnh.style.display = 'none';
+                            divCacAnh.innerHTML = '';
+                        }
+                    }
+                }
+                ngoaimenu.addEventListener('click', function () {
+                    divCacAnh.style.display = 'none';
+                    divCacAnh.innerHTML = '';
+                    document.body.style.overflow = "hidden";
+                    document.getElementById('input-mota').value = mota;
+                    document.getElementById('input-gia').value = Number(gia).toLocaleString('vi-VN');
+                    document.getElementById('input-anh').value = anh;
+                    document.getElementById('input-tk').value = tk;
+                    document.getElementById('input-mk').value = mk;
+                    menusua.style.display = 'flex';
+                    ngoaimenu.style.display = 'block';
+                    ngoaimenu.addEventListener('click', function () {
+                        menusua.style.display = 'none';
+                        ngoaimenu.style.display = 'none';
+                        divCacAnh.style.display = 'none';
+                        divCacAnh.innerHTML = '';
+                        document.body.style.overflow = "auto";
+                    });
+                });
+            }
+        }
+    });
     // Xóa từng ảnh trong popup ---------------------------------------------------
     divCacAnh.addEventListener("click", async function (e) {
         if (e.target.closest(".xoa")) {
@@ -171,53 +306,75 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(data);
             menusua.style.display = 'none';
             ngoaimenu.style.display = 'none';
+            document.body.style.overflow = "auto";
             location.reload();
         }
     });
 
-    ngoaimenu.addEventListener('click', function () {
-        menusua.style.display = 'none';
-        ngoaimenu.style.display = 'none';
-        divCacAnh.style.display = 'none';
-        divCacAnh.innerHTML = '';
-    });
 
     // Phân trang -----------------------------------------------------------------
-    let danhsachnguoimua = Array.from(document.querySelectorAll('.bang .hang'))
-    let tranghientai = 1;
-    const tongsohang = danhsachnguoimua.length;
-    let tongsotrang = Math.ceil(tongsohang / 8);
+    let danhsachnguoimua = Array.from(document.querySelectorAll('.bang .hang'));
+    let dsa = [...danhsachnguoimua]; // danh sách hiện tại (ban đầu = tất cả)
 
-    function hientrang(trang) {
-        for (let i = 0; i < danhsachnguoimua.length; i++) {
-            danhsachnguoimua[i].style.display = 'none';
-        }
+    let tranghientai = 1;
+    let tongsotrang = Math.ceil(dsa.length / 8);
+
+    // ===== HIỂN TRANG =====
+    function hientrang(trang, dsa) {
+        // Ẩn hết tất cả
+        danhsachnguoimua.forEach(hang => hang.style.display = 'none');
+
         const batdau = (trang - 1) * 8;
-        const ketthuc = Math.min(batdau + 8, tongsohang);
+        const ketthuc = Math.min(batdau + 8, dsa.length);
+
         for (let i = batdau; i < ketthuc; i++) {
-            danhsachnguoimua[i].style.display = 'flex';
+            dsa[i].style.display = 'flex';
         }
+
         sotrang.textContent = `Trang ${trang}/${tongsotrang}`;
     }
 
+    // ===== PHÂN TRANG =====
     const nuttrangtruoc = document.querySelector('.bang .cuoibang .trangtruoc');
     const nuttrangsau = document.querySelector('.bang .cuoibang .trangsau');
 
     nuttrangtruoc.addEventListener('click', function () {
         if (tranghientai > 1) {
             tranghientai--;
-            hientrang(tranghientai);
+            hientrang(tranghientai, dsa);
         }
     });
 
     nuttrangsau.addEventListener('click', function () {
         if (tranghientai < tongsotrang) {
             tranghientai++;
-            hientrang(tranghientai);
+            hientrang(tranghientai, dsa);
         }
     });
-    hientrang(tranghientai);
 
+
+    // ===== FILTER =====
+    function loc() {
+        const min = document.querySelector(".giatu").value || 0;
+        const max = document.querySelector(".giaden").value || Infinity;
+
+        dsa = danhsachnguoimua.filter(hang => {
+            const gia = Number(hang.dataset.gia);
+            return gia >= min && gia <= max;
+        });
+
+        // cập nhật lại phân trang
+        tongsotrang = Math.ceil(dsa.length / 8) || 1;
+        tranghientai = 1;
+
+        hientrang(tranghientai, dsa);
+    }
+
+    // nút lọc
+    document.querySelector(".nutloc").addEventListener("click", loc);
+
+    // ===== INIT =====
+    hientrang(tranghientai, dsa);
     // Xóa Account ----------------------------------------------------------------
     const danhsachnutxoa = document.querySelectorAll('.bang .hang .fa-delete-left');
     danhsachnutxoa.forEach(nutxoa => {
@@ -280,55 +437,75 @@ document.addEventListener('DOMContentLoaded', function () {
     quanlyacc.addEventListener('click', function () {
         window.location.href = "/quanlyacc"
     })
-
+    const giaodich = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(4)")
+    giaodich.addEventListener('click',function(){
+        window.location.href = "/adminlsgiaodich"
+    })
     // Sắp xếp -----------------------------------------------------------
     const sxmoidang = document.querySelector(".linhtinh .trai .sapxep .moidang")
     const sxgiatang = document.querySelector(".linhtinh .trai .sapxep .giatang")
     const sxgiagiam = document.querySelector(".linhtinh .trai .sapxep .giagiam")
+    const container = document.querySelector(".bang .dsacc");
+
+    // Mới đăng
     sxmoidang.addEventListener('click', function () {
-        danhsachnguoimua.sort((a, b) => {
-            return b.dataset.ma - a.dataset.ma
-        })
-        const container = document.querySelector(".bang .dsacc")
-        danhsachnguoimua.forEach(acc => {
-            container.appendChild(acc)
-        })
-        hientrang(1)
-    })
+        dsa.sort((a, b) => b.dataset.ma - a.dataset.ma);
+
+        container.innerHTML = ""; // xóa hết
+        dsa.forEach(acc => container.appendChild(acc));
+
+        tranghientai = 1;
+        hientrang(tranghientai, dsa);
+    });
+
+    // Giá tăng
     sxgiatang.addEventListener('click', function () {
-        danhsachnguoimua.sort((a, b) => {
-            return a.dataset.gia - b.dataset.gia
-        })
-        const container = document.querySelector(".bang .dsacc")
-        danhsachnguoimua.forEach(acc => {
-            container.appendChild(acc)
-        })
-        hientrang(1)
-    })
+        dsa.sort((a, b) => a.dataset.gia - b.dataset.gia);
+
+        container.innerHTML = "";
+        dsa.forEach(acc => container.appendChild(acc));
+
+        tranghientai = 1;
+        hientrang(tranghientai, dsa);
+    });
+
+    // Giá giảm
     sxgiagiam.addEventListener('click', function () {
-        danhsachnguoimua.sort((a, b) => {
-            return b.dataset.gia - a.dataset.gia
-        })
-        const container = document.querySelector(".bang .dsacc")
-        danhsachnguoimua.forEach(acc => {
-            container.appendChild(acc)
-        })
-        hientrang(1)
-    })
+        dsa.sort((a, b) => b.dataset.gia - a.dataset.gia);
+
+        container.innerHTML = "";
+        dsa.forEach(acc => container.appendChild(acc));
+
+        tranghientai = 1;
+        hientrang(tranghientai, dsa);
+    });
     // Tìm kiếm theo Mã Acc -------------------------------------------------------
-    const inputma = document.querySelector(".linhtinh input")
+    const inputma = document.querySelector(".linhtinh > input");
+
     inputma.addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
-            danhsachnguoimua.forEach(acc => {
-                const maacc = parseInt(acc.dataset.ma)
-                if (maacc === parseInt(inputma.value)) acc.style.display = "flex"
-                else acc.style.display = "none"
-            })
-            tranghientai = 1
-            tongsotrang = 1
-            sotrang.textContent = `Trang ${tranghientai}/${tongsotrang}`
-        }
-    })
 
-    updateSoLuongDaTich();
+            const value = parseInt(inputma.value);
+
+            // nếu input rỗng → trả về toàn bộ
+            if (isNaN(value)) {
+                dsa = [...danhsachnguoimua];
+            } else {
+                dsa = danhsachnguoimua.filter(acc => {
+                    return parseInt(acc.dataset.ma) === value;
+                });
+            }
+
+            // render lại DOM
+            const container = document.querySelector(".bang .dsacc");
+            container.innerHTML = "";
+            dsa.forEach(acc => container.appendChild(acc));
+
+            // cập nhật phân trang
+            tongsotrang = Math.ceil(dsa.length / 8) || 1;
+            tranghientai = 1;
+
+            hientrang(tranghientai, dsa);
+        }
+    });
 });

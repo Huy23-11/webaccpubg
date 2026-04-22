@@ -3,6 +3,7 @@ from extensions import db, socketio
 from config import Config
 from flasgger import Swagger
 
+from routes.sepay_webhook import sepay_bp
 from routes.suatrangthaitimkiemacc import suatrangthaitimkiemacc_bp
 from routes.dsacc_quanlyacc import quanlyacc
 from routes.xoaanhacc import xoaanhacc_bp
@@ -26,6 +27,11 @@ from routes.hienthichitietacc import hienthichitietacc_bp
 from routes.congsoluotxem import congsoluotxem_bp
 from routes.muaacc import muaacc_bp
 from routes.themgiohang import themgiohang_bp
+from routes.taodon import taodon_bp
+from routes.lichsugiaodich import lichsugiaodich_bp
+from routes.suaanhchinh import suaanhchinh_bp
+from routes.adminlsgiaodich import adminlsgiaodich_bp
+from routes.setvip import setvip_bp
 
 WAG = Flask(__name__)
 WAG.config.from_object(Config)
@@ -62,6 +68,8 @@ swagger_template = {
 
 swagger = Swagger(WAG, template=swagger_template)
 
+
+WAG.register_blueprint(sepay_bp)
 WAG.register_blueprint(quanlyacc)
 WAG.register_blueprint(xoaanhacc_bp)
 WAG.register_blueprint(hienthianhacc_bp)
@@ -85,6 +93,11 @@ WAG.register_blueprint(hienthichitietacc_bp)
 WAG.register_blueprint(congsoluotxem_bp)
 WAG.register_blueprint(muaacc_bp)
 WAG.register_blueprint(themgiohang_bp)
+WAG.register_blueprint(taodon_bp)
+WAG.register_blueprint(lichsugiaodich_bp)
+WAG.register_blueprint(suaanhchinh_bp)
+WAG.register_blueprint(adminlsgiaodich_bp)
+WAG.register_blueprint(setvip_bp)
 
 @WAG.route('/quanlynguoimua')
 def quanlynguoimua():

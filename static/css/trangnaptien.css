@@ -130,6 +130,18 @@ body{
     align-items: center;
     gap: 15px;
 }
+.iconvip{
+    display:flex;
+    gap:5px;
+    align-items:center;
+    justify-content:center;
+    padding:10px;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    font-size:13px;
+    background: linear-gradient(90deg, #FFE259, #FFA751, #FF5F6D, #D7263D);
+}
 .ten-sodu{
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
@@ -225,6 +237,65 @@ body{
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
+.nhapsotien{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background-color:white;
+    border-radius:10px;
+    width:300px;
+    left:37%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    height:140px;
+    font-weight:bold;
+    padding:20px;
+    margin-top:20px;
+    gap:10px;
+    transition:all 0.3s ease;
+}
+.nhapsotien:hover{
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+.nhapsotien span{
+    font-size:13px;
+    opacity:0.7;
+}
+.nhapsotien .inputsotien{
+    border:1px solid rgb(234, 232, 232);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border:1px solid rgb(217, 214, 214);
+    outline: rgb(45, 78, 230);
+    border-radius:5px;
+    padding:8px;
+    width: 80%;
+    height:25px;
+}
+.nhapsotien .inputsotien:hover{
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.nhapsotien .inputsotien::placeholder{
+    font-weight:bold;
+    opacity:0.5;
+}
+.nutnaptien{
+    position:absolute;
+    background: linear-gradient(135deg, #0a1f46, #1a2a6c, #000000);
+    color:white;
+    padding:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius: 0 0 10px 10px;
+    width:320px;
+    left:0;
+    bottom:0;
+}
+.nutnaptien:hover{
+    box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+}
 .logovcb{
     width:160px;
     height:150px;
@@ -249,7 +320,6 @@ body{
     transition: all 0.3s ease;
 }
 .ttchuyenkhoan:hover{
-    transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 .ttchuyenkhoan .logo{
@@ -257,22 +327,22 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    bottom: 85%;
+    height:70px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.3s;
     border-top-left-radius:10px;
     border-top-right-radius:10px;
-    gap:10px;
+    gap:0px;
     color:white;
     font-size:19px;
     font-weight:bold;
     background: linear-gradient(135deg, #0a1f46, #1a2a6c, #000000);
 }
 .ttchuyenkhoan .logo .anh{
-    width:50px;
-    height:50px;
+    width:100px;
+    height:100px;
     border-radius:10px;
 }
 .ttchuyenkhoan .qrcode{
@@ -310,6 +380,7 @@ body{
     border-radius:10px;
     padding:13px;
     background-color:green;
+    height: 40px;
 }
 .ttchuyenkhoan .thongtinchuyenkhoan > div .tenmuc{
     font-size:12px;

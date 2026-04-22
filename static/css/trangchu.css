@@ -130,6 +130,18 @@ body{
     align-items: center;
     gap: 15px;
 }
+.iconvip{
+    display:flex;
+    gap:5px;
+    align-items:center;
+    justify-content:center;
+    padding:10px;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    font-size:13px;
+    background: linear-gradient(90deg, #FFE259, #FFA751, #FF5F6D, #D7263D);
+}
 .ten-sodu{
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
@@ -536,10 +548,12 @@ hr{
 
 .anh-wrapper img {
     width: 100%;
+    height:200px;
     display: block;
     transition: 0.3s;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    object-fit: cover;
 }
 .overlay {
     position: absolute;
@@ -663,11 +677,24 @@ hr{
 .acc .dong3 .chitiet:hover{
     background-color:rgb(175, 175, 177);
 }
+.acc .dong3 .giaacc{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
 .acc .dong3 .giaacc .gia{
     font-size:14px;
 }
-.acc .dong3 .giaacc .so{
-    color:red
+.acc .dong3 .giaacc > div{
+    display:flex;
+    flex-direction:column;
+}
+.acc .dong3 .giaacc > div > span{
+    color:red;
+}
+.acc .dong3 .giaacc .so.active{
+    color:black;
+    text-decoration: line-through;
 }
 .danhsachacc {
     display: grid;

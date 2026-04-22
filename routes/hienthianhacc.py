@@ -50,7 +50,7 @@ def hienthianhacc():
     ma_acc = data.get("ma_acc")
 
     query = text("""
-        SELECT ma_anh, duong_dan
+        SELECT ma_anh, duong_dan, thu_tu
         FROM AnhAcc
         WHERE ma_acc = :ma_acc
         ORDER BY thu_tu
@@ -59,7 +59,7 @@ def hienthianhacc():
     result = db.session.execute(query, {"ma_acc": ma_acc}).fetchall()
 
     danhsachanh = [
-        {"ma_anh": row[0], "duong_dan": row[1]}
+        {"ma_anh": row[0], "duong_dan": row[1], "thu_tu": row[2]}
         for row in result
     ]
 

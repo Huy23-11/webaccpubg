@@ -29,6 +29,10 @@
                     <i class="fa-solid fa-shopping-cart"></i>
                     <span class="giohang">Giỏ hàng của bạn</span>
                 </div>
+                <div class="lichsugiaodich">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                    <span class="giohang">Lịch sử giao dịch</span>
+                </div>
             </div>
         </div>
         <div class="ngoaibangmenu"></div>
@@ -38,6 +42,11 @@
                 <i class="fa-solid fa-list"></i>
             </div>
             <div class="conlaitieude">
+                {% if vip==1%}
+                <div class="iconvip">
+                    <span>VIP</span>
+                </div>
+                {% endif %}
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
                     <span class="ten">{{session.get("ten","ten")}}</span>
@@ -156,9 +165,16 @@
                 <div class="dong3">
                     <div class="giaacc">
                         <span class="gia">Giá:</span>
-                        <span class="so">
-                            {{"{:,.0f}".format(acc.gia).replace(',', '.')}}đ
-                        </span>
+                        <div>
+                            <span class="so {%if vip==1%}active{%endif%}">
+                                {{"{:,.0f}".format(acc.gia).replace(',', '.')}}đ
+                            </span>
+                            {%if vip==1%}
+                            <span class="sogiam">
+                                {{ "{:,.0f}".format(acc.gia|float * 0.9).replace(',', '.') }}đ
+                            </span>
+                            {%endif%}
+                        </div>
                     </div>
                     <div class="chitiet">Chi tiết</div>
                 </div>

@@ -27,6 +27,10 @@
                     <i class="fa-solid fa-gamepad"></i>
                     <span>Quản lý acc</span>
                 </div>
+                <div class="giaodich">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                    <span>Giao dịch</span>
+                </div>
             </div>
         </div>
         <!--Xong phần bảng menu + tiêu đề--------------------->
@@ -77,6 +81,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="locvip">
+                    <span data-loc="all" class="active">Tất cả</span>
+                    <span data-loc="vip">VIP</span>
+                    <span data-loc="nonvip">Thường</span>
+                </div>
+                <span class="tong">Tổng số người mua: {{tongnm}}</span>
             </div>
             <input type="text" placeholder="Tìm kiếm theo tên người mua">
         </div>
@@ -91,7 +101,10 @@
             </div>
             <div class = "dsnguoimua">
                 {% for nguoimua in dsnguoi%}
-                <div class="hang" data-ten = "{{nguoimua.ten}}" data-naptong = "{{nguoimua.nap_tong}}" data-napthang = "{{nguoimua.nap_thang}}" data-sodu = "{{nguoimua.so_du}}">
+                <div class="hang" data-ma = "{{nguoimua.ma_nguoi_mua}}" data-vip="{{nguoimua.vip}}" data-ten = "{{nguoimua.ten}}" data-naptong = "{{nguoimua.nap_tong}}" data-napthang = "{{nguoimua.nap_thang}}" data-sodu = "{{nguoimua.so_du}}">
+                    <div class="vip">
+                        <i class="fa-regular fa-star star {% if nguoimua.vip ==1 %}active{%endif%}"></i>
+                    </div>
                     <div class="cot1">
                         <span>{{nguoimua.ten}}</span>
                         <span class="email">{{nguoimua.email}}</span>
@@ -103,9 +116,27 @@
                     <i class="fa-solid fa-delete-left" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
                     <i class="fa-solid fa-pen" data-ma="{{nguoimua.ma_nguoi_mua}}"></i>
                     <div class="popupsodu">
-                        <span class="soducua">Số dư của: {{nguoimua.ten}}</span>
-                        <input type="text" class="inputsodu" 
-                        value="{{ '{:,.0f}'.format(nguoimua.so_du or 0).replace(',', '.') }}">
+                        <span class="tt">Thông tin tài khoản</span>
+                        <div class="khoiten">
+                            <span class="muc">Tên tài khoản</span>
+                            <input type="text" class="inputten" 
+                            value="{{ nguoimua.ten }}">
+                        </div>
+                        <div class="khoitaikhoan">
+                            <span class="muc">Tài khoản</span>
+                            <input type="text" class="inputtaikhoan" 
+                            value="{{ nguoimua.tai_khoan }}">
+                        </div>
+                        <div class="khoimatkhau">
+                            <span class="muc">Mật khẩu</span>
+                            <input type="text" class="inputmatkhau" 
+                            value="{{ nguoimua.mat_khau }}">
+                        </div>
+                        <div class="khoisodu">
+                            <span class="muc">Số dư</span>
+                            <input type="text" class="inputsodu" 
+                            value="{{ '{:,.0f}'.format(nguoimua.so_du or 0).replace(',', '.') }}">
+                        </div>
                         <button class="luusodu">Lưu</button>
                     </div>
                 </div>

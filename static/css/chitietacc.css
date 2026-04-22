@@ -130,6 +130,18 @@ body{
     align-items: center;
     gap: 15px;
 }
+.iconvip{
+    display:flex;
+    gap:5px;
+    align-items:center;
+    justify-content:center;
+    padding:10px;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    font-size:13px;
+    background: linear-gradient(90deg, #FFE259, #FFA751, #FF5F6D, #D7263D);
+}
 .ten-sodu{
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     display:flex;
@@ -214,7 +226,7 @@ body{
     padding:20px;
     border-radius:20px;
     width:880px;
-    height:150px;
+    height:auto;
     margin-left:150px;
     border:1px solid rgb(216, 216, 216);
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
@@ -231,14 +243,27 @@ body{
     display:flex;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
+.thongtinchuacc .dong3{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+.thongtinchuacc .dong3 >div{
+    display:flex;
+    flex-direction: column;
+}
 .thongtinchuacc .dong3 .tenmuc{
     font-size:20px;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
-.thongtinchuacc .dong3 .giatri{
+.thongtinchuacc .dong3 > div > span{
     color:red;
     font-size:25px;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.thongtinchuacc .dong3 > div .giatri.active{
+    color:black;
+    text-decoration: line-through;
 }
 .thongtinchuacc .dong4{
     display:flex;

@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const nutlichsumuaacc = document.querySelector('.lichsumuaacc');
     const nutnaptien = document.querySelector('.naptien');
     const nutgiohang = document.querySelector('.giohang');
+    const nutlichsugiaodich = document.querySelector('.lichsugiaodich');
+    nutlichsugiaodich.addEventListener('click', function(){
+        window.location.href = "/lichsugiaodich";
+    });
     nuttrangchu.addEventListener('click', function(){
         window.location.href = "/";
     });

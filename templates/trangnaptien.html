@@ -28,6 +28,10 @@
                     <i class="fa-solid fa-shopping-cart"></i>
                     <span class="giohang">Giỏ hàng của bạn</span>
                 </div>
+                <div class="lichsugiaodich">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                    <span class="giohang">Lịch sử giao dịch</span>
+                </div>
             </div>
         </div>
         <div class="ngoaibangmenu"></div>
@@ -37,6 +41,11 @@
                 <i class="fa-solid fa-list"></i>
             </div>
             <div class="conlaitieude">
+                {% if vip==1%}
+                <div class="iconvip">
+                    <span>VIP</span>
+                </div>
+                {% endif %}
                 <i class="fa-solid fa-user"></i>
                 <div class="ten-sodu">
                     <span class="ten">{{session.get("ten","ten")}}</span>
@@ -66,19 +75,24 @@
             <span>Nạp bằng copy số tài khoản cần ghi đúng nội dung, ghi sai sẽ không được cộng tiền</span>
             <span>Ghi sai nội dung hoặc nạp quá 30 phút mà chưa được cộng tiền trên shop liên hệ zalo 0966645030 để xử lý</span>
         </div>
+        <div class="nhapsotien">
+            <span>Nhập số tiền vào ô bên dưới và nhấn nút tạo QR để tạo QR</span>
+            <input class = "inputsotien" type="text" placeholder="Nhập số tiền">
+            <div class="nutnaptien" data-manguoimua = "{{session.get('ma_nguoi_mua')}}">Tạo QR</div>
+        </div>
         <div class="ttchuyenkhoan">
             <div class="logo">
-                <img src="{{url_for('static',filename='images/logovietcombank.png')}}" class="anh">
-                <span class="tennh">Vietcombank</span>
+                <img src="{{url_for('static',filename='images/logoocb.png')}}" class="anh">
+                <span class="tennh">OCB BANK</span>
             </div>
             <div class=qrcode>
-                <img src="{{url_for('static',filename='images/qrcode.png')}}" class="anh">
-                <span class="mota">Quét mã QR để thanh toán nhanh</span>
+                <img class="anh" style="display:none;">
+                <span class="mota">Nhập số tiền và nhấn tạo QR để tạo QR</span>
             </div>
             <div class="thongtinchuyenkhoan">
                 <div class="stk">
                     <span class="tenmuc">Số tài khoản</span>
-                    <span class="giatri">12345678920262016</span>
+                    <span class="giatri">0338949568</span>
                 </div>
                 <div class="tenchutk">
                     <span class="tenmuc">Tên chủ tài khoản</span>
@@ -86,7 +100,7 @@
                 </div>
                 <div class="noidung">
                     <span class="tenmuc">Nội dung chuyển khoản</span>
-                    <span class="giatri">pqh2026</span>
+                    <span class="giatri"></span>
                 </div>
             </div>
         </div>
@@ -96,4 +110,14 @@
             <span>Liên hệ: 0347132311</span>
         </div>
     </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const napThanhCong = {{ napthanhcong | tojson }};
+            const soTien = {{ sotien | tojson }};
+            if(napThanhCong){
+                const formatted = soTien.toLocaleString('vi-VN');
+                alert("Nạp thành công: " + formatted + "đ vào tài khoản");
+            }
+        })
+    </script>
 </html>

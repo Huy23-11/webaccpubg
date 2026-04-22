@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>webaccgame</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/adminlsgiaodich.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="{{url_for('static',filename='js/adminlsgiaodich.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="ngoaibangmenu"></div>
+        <div class="tieude">
+            <span>Xin chào, Huy</span>
+            <i class="fa-regular fa-hand-spock"></i>
+        </div>
+        <div class="bangmenu">
+            <span>ADMIN</span>
+            <div class="danhsachchucnang">
+                <div class="doanhthu">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Doanh thu</span>
+                </div>
+                <div class="quanlynguoimua">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Quản lý người mua</span>
+                </div>
+                <div class="quanlyacc">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Quản lý acc</span>
+                </div>
+                <div class="giaodich">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                    <span>Giao dịch</span>
+                </div>
+                <div class="don">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>Quản lý đơn</span>
+                </div>
+            </div>
+        </div>
+        <!--Xong phần bảng menu + tiêu đề--------------------->
+        <div class="linhtinh">
+            <div class="trai">
+                <div class="nutchon">
+                    <div class="bolocloai">
+                        <button class="locall active">Tất cả</button>
+                        <button class="locmua">Mua acc</button>
+                        <button class="locnap">Nạp tiền</button>
+                    </div>
+                </div>
+                <span class="soluonggd"></span>
+            </div>
+            <input type="text" placeholder="Tìm kiếm theo tên người mua">
+        </div>
+        <!--Xong phần linh tinh---------------------------------------------------------------------------------->
+        <div class="phan2">
+            <div class="bang">
+                <div class="hangtieude">
+                    <span class="cot1">Người mua</span>
+                    <span class="cot2">Nhóm giao dịch</span>
+                    <span class="cot3">số dư trước</span>
+                    <span class="cot4">Biến động số dư</span>
+                    <span class="cot5">Số dư sau</span>
+                    <span class="cot6">Thời điểm</span>
+                </div>
+                <div class = "dsgiaodich">
+                    {% for gd in danh_sach %}
+                    <div class="hang" data-loai="{{ gd.loai }}">
+                        <span class="cot1">{{ gd.nguoi_mua }}</span>
+
+                        <span class="cot2">
+                            {% if gd.loai == 'MUA' %}
+                                Mua acc
+                            {% elif gd.loai == 'NAP' %}
+                                Nạp tiền
+                            {% else %}
+                                {{ gd.loai }}
+                            {% endif %}
+                        </span>
+
+                        <span class="cot3">
+                            {{ "{:,.0f}".format(gd.so_du_truoc).replace(",",".") }} đ
+                        </span>
+
+                        <span class="cot4 
+                            {% if gd.loai == 'MUA' %}
+                                giam
+                            {% elif gd.loai == 'NAP' %}
+                                tang
+                            {% endif %}
+                        ">
+                            {% if gd.loai == 'MUA' %}
+                                -{{ "{:,.0f}".format(gd.so_tien).replace(",",".") }} đ
+                            {% elif gd.loai == 'NAP' %}
+                                +{{ "{:,.0f}".format(gd.so_tien).replace(",",".") }} đ
+                            {% else %}
+                                {{ "{:,.0f}".format(gd.so_tien).replace(",",".") }} đ
+                            {% endif %}
+                        </span>
+
+                        <span class="cot5">
+                            {{ "{:,.0f}".format(gd.so_du_sau).replace(",",".") }} đ
+                        </span>
+
+                        <span class="cot6">
+                            {{ gd.thoi_diem.strftime("%d/%m/%Y %H:%M") }}
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="cuoibang">
+                    <div class="trangtruoc">Trước</div>
+                    <span>Trang 0/0</span>
+                    <div class="trangsau">Tiếp</div>
+                </div>
+            </div>
+            <div class="phaiduoi">
+                <div class="top3datieu">
+                    <div class="tentop">
+                        <span>Top 3 tiêu nhiều nhất</span>
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                    <div class="top3">
+                        {% for i in range(3) %}
+                            {% set user = top3[i] if i < top3|length else None %}
+                            <div>
+                                <span class="ten">
+                                    {{i+1}}. {{ user.ten if user else "-" }}
+                                </span>
+                                <span class="giatri">
+                                    {% if user %}
+                                        {{ "{:,.0f}".format(user.tong_tien).replace(",", ".") }}đ
+                                    {% else %}
+                                        0đ
+                                    {% endif %}
+                                </span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="top3nap">
+                    <div class="tentop">
+                        <span>Top 3 nạp nhiều nhất</span>
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <div class="top3">
+                        {% for user in top_nap %}
+                        <div>
+                            <span class="ten">{{ loop.index }}. {{ user.ten}}</span>
+                            <span class="giatri xanh">
+                                {{ "{:,.0f}".format(user.tong_nap).replace(",", ".") }}đ
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="ganday">
+                    <div class="tentop">
+                        <span>Giao dịch gần đây</span>
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </div>
+                    <div class="top3">
+                        {% for gd in recent %}
+                        <div>
+                            <span class="ten">{{loop.index}}. {{ gd.ten }}</span>
+
+                            <span class="
+                                {% if gd.loai == 'NAP' %} xanh
+                                {% elif gd.loai == 'MUA' %} do
+                                {% endif %}
+                            ">
+                                {% if gd.loai == 'NAP' %}
+                                    +{{ "{:,.0f}".format(gd.so_tien).replace(",", ".") }}đ
+                                {% elif gd.loai == 'MUA' %}
+                                    -{{ "{:,.0f}".format(gd.so_tien).replace(",", ".") }}đ
+                                {% else %}
+                                    0đ
+                                {% endif %}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

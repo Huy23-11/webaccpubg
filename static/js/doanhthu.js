@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded',function(){
         if (!data) return;
         const cot = document.querySelectorAll(".theotuan .dabantheotuan .caccot > div > div")
         const giatri = document.querySelectorAll(".theotuan .dabantheotuan .caccot > div > .giatri")
+        const tong = document.querySelector(".theotuan .dabantheotuan .tong")
+        let tongso=0
         data.forEach((value, index) => {
             if(index == 0) value += 17
             if(index == 1) value += 13
@@ -33,7 +35,9 @@ document.addEventListener('DOMContentLoaded',function(){
                 cot[index].style.height = height + "px";
                 giatri[index].textContent = `${value}`;
             }
+            tongso+=value
         })
+        tong.textContent = `Tổng đã bán: ${tongso}`
     }
     async function loadData() {
         const json = await fetchWithAuth("/api/daban-theotuan");
@@ -49,13 +53,18 @@ document.addEventListener('DOMContentLoaded',function(){
         if (!data) return;
         const cot = document.querySelectorAll(".theotuan .doanhthutheotuan .caccot > div > div")
         const giatri = document.querySelectorAll(".theotuan .doanhthutheotuan .caccot > div > .giatri")
+        const tong = document.querySelector(".theotuan .doanhthutheotuan .tong")
+        let tongso=0
         data.forEach((value, index) => {
             let height = (value / 40) * max_height
             if (cot[index]){
-                cot[index].style.height = height + "px"
-                giatri[index].textContent = `${value}`
+                cot[index].style.height = height + "px";
+                giatri[index].textContent = `${value}m`;
             }
+            tongso+=value
         })
+        tongso=parseFloat(tongso.toFixed(1));
+        tong.textContent = `Tổng doanh thu trong tuần: ${tongso}m`
     }
     async function loadDoanhThuNap() {
         const json = await fetchWithAuth("/api/doanhthu-theotuan");
@@ -71,13 +80,18 @@ document.addEventListener('DOMContentLoaded',function(){
         if (!data) return;
         const cot = document.querySelectorAll(".doanhthutheonam .caccot > div > div")
         const giatri = document.querySelectorAll(".doanhthutheonam .caccot > div .giatri")
+        const tong = document.querySelector(".doanhthutheonam .tong")
+        let tongso=0
         data.forEach((value, index) => {
             let height = (value / 200) * max_height
             if (cot[index]){
-                cot[index].style.height = height + "px"
-                giatri[index].textContent = `${value}`
+                cot[index].style.height = height + "px";
+                giatri[index].textContent = `${value}m`;
             }
+            tongso+=value
         })
+        tongso=parseFloat(tongso.toFixed(1));
+        tong.textContent = `Tổng doanh thu trong năm: ${tongso}m`
     }
     async function loadDataNam() {
         const json = await fetchWithAuth("/api/doanhthu-theonam");
@@ -96,5 +110,9 @@ document.addEventListener('DOMContentLoaded',function(){
     const quanlynguoimua = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(2)")
     quanlynguoimua.addEventListener('click',function(){
         window.location.href = "/quanlynguoimua"
+    })
+    const giaodich = document.querySelector(".bangmenu .danhsachchucnang div:nth-child(4)")
+    giaodich.addEventListener('click',function(){
+        window.location.href = "/adminlsgiaodich"
     })
 })

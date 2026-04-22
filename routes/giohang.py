@@ -16,7 +16,8 @@ def giohang():
     "giohang.html",
     dsacc=data["dsacc"],
     soluong=data["soluong"],
-    gia_max=data["gia_max"]
+    gia_max=data["gia_max"],
+    vip=data["vip"]
   )
 
 @giohang_bp.route("/api/giohang", methods=["GET"])
@@ -86,9 +87,19 @@ def get_data(ma):
       "trang_thai": row.trang_thai,
       "duong_dan": row.duong_dan
     })
+  vip = 0
+  if "ma_nguoi_mua" in session:
+    ma_nguoi_mua = session["ma_nguoi_mua"]
+    sqlvip = """
+      SELECT vip
+      FROM NguoiMua
+      WHERE ma_nguoi_mua = :ma
+    """
+    vip = db.session.execute(text(sqlvip), {"ma": ma_nguoi_mua}).scalar()
   gia_max = max([acc["gia"] for acc in dsacc], default=0)
   return {
     "dsacc": dsacc,
     "soluong": len(dsacc),
-    "gia_max": gia_max
+    "gia_max": gia_max,
+    "vip": vip
   }

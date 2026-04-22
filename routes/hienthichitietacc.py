@@ -12,7 +12,8 @@ def hienthichitietacc(ma_acc):
     "chitietacc.html",
     acc=data["acc"],
     dsanh=data["dsanh"],
-    nguoimua=data["nguoimua"]
+    nguoimua=data["nguoimua"],
+    vip=data["vip"]
   )
 
 @hienthichitietacc_bp.route("/api/chitietacc/<int:ma_acc>", methods=["GET"])
@@ -98,9 +99,18 @@ def get_data(ma_acc):
       "ten": row.ten,
       "so_du": row.so_du
     } if row else None
-
+  vip = 0
+  if "ma_nguoi_mua" in session:
+    ma_nguoi_mua = session["ma_nguoi_mua"]
+    sqlvip = """
+      SELECT vip
+      FROM NguoiMua
+      WHERE ma_nguoi_mua = :ma
+    """
+    vip = db.session.execute(text(sqlvip), {"ma": ma_nguoi_mua}).scalar()
   return {
     "acc": acc,
     "dsanh": dsanh,
-    "nguoimua": nguoimua
+    "nguoimua": nguoimua,
+    "vip": vip
   }

@@ -49,7 +49,7 @@ def dangnhap():
     taikhoan = data.get("tai_khoan")
     matkhau = data.get("mat_khau")
     sql = """
-    SELECT ma_nguoi_mua, ten, so_du
+    SELECT ma_nguoi_mua, ten, so_du, vip
     FROM NguoiMua
     WHERE tai_khoan = :tk
     AND mat_khau = :mk
@@ -63,6 +63,7 @@ def dangnhap():
         session["ma_nguoi_mua"] = user.ma_nguoi_mua
         session["ten"] = user.ten
         session["so_du"] = float(user.so_du)
+        session["vip"] = user.vip
         token = _create_jwt({"role": "nguoimua", "ma_nguoi_mua": user.ma_nguoi_mua})
         return {"status": "success", "token": token}
     

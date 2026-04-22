@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, jsonify
+from flask import render_template, Blueprint, jsonify, session
 from extensions import db
 from sqlalchemy import text
 from datetime import datetime
@@ -13,7 +13,8 @@ def trangchu():
     "trangchu.html",
     topnap=data["topnap"],
     thang=data["thang"],
-    dsacc=data["dsacc"]
+    dsacc=data["dsacc"],
+    vip=data["vip"]
   )
 
 @hienthitrangchu_bp.route("/api/trangchu", methods=["GET"])
@@ -107,9 +108,18 @@ def get_data():
     })
 
   thang = datetime.now().month
-
+  vip = 0
+  if "ma_nguoi_mua" in session:
+    ma_nguoi_mua = session["ma_nguoi_mua"]
+    sqlvip = """
+      SELECT vip
+      FROM NguoiMua
+      WHERE ma_nguoi_mua = :ma
+    """
+    vip = db.session.execute(text(sqlvip), {"ma": ma_nguoi_mua}).scalar()
   return {
     "dsacc": dsacc,
     "topnap": topnap,
-    "thang": thang
+    "thang": thang,
+    "vip": vip
   }
