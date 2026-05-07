@@ -69,7 +69,7 @@ def api_lichsumuaacc():
 def get_data(ma):
   sql = """
     SELECT 
-      a.ma_acc, a.gia, a.tai_khoan, a.mat_khau,
+      a.ma_acc, d.gia, a.tai_khoan, a.mat_khau,
       d.thoi_diem, aa.duong_dan
     FROM DonMuaAcc d
     LEFT JOIN AnhAcc aa ON aa.ma_acc = d.ma_acc AND aa.thu_tu=1

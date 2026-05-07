@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect, session
 from extensions import db
 from sqlalchemy import text
 import time
+from decimal import Decimal
 
 muaacc_bp = Blueprint("muaacc_bp",__name__)
 
@@ -60,6 +61,12 @@ def muaacc():
     rs = db.session.execute(text(sql2),{"ma": ma_acc}).fetchone()
     gia = rs[0]
 
+    sql3 = """
+        select vip from NguoiMua where ma_nguoi_mua = :ma
+    """
+    vip = db.session.execute(text(sql3),{"ma":ma_nguoi_mua}).fetchone()[0]
+    if vip == 1:
+        gia = round(gia * Decimal(0.9))
     if sodu >= gia:
 
         so_du_truoc = sodu
@@ -80,12 +87,13 @@ def muaacc():
         db.session.execute(text(sql4), {"ma": ma_acc})
 
         sql5 = """
-            INSERT INTO DonMuaAcc(ma_acc, ma_nguoi_mua)
-            VALUES (:ma_acc, :ma_nguoi_mua)
+            INSERT INTO DonMuaAcc(ma_acc, ma_nguoi_mua, gia)
+            VALUES (:ma_acc, :ma_nguoi_mua, :gia)
         """
         db.session.execute(text(sql5), {
             "ma_acc": ma_acc,
-            "ma_nguoi_mua": ma_nguoi_mua
+            "ma_nguoi_mua": ma_nguoi_mua,
+            "gia": gia
         })
 
         sql6 = """

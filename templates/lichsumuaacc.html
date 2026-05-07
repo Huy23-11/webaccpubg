@@ -115,14 +115,14 @@
                     <span class="gia">
                         <span class="gia1">Giá: </span>
                         <div>
-                            <span class="gia2 {%if vip==1%}active{%endif%}">
+                            <span class="gia2">
                                 {{"{:,.0f}".format(acc.gia).replace(",", ".")}}đ
                             </span>
-                            {%if vip==1%}
+                            <!-- {%if vip==1%}
                             <span class="sogiam">
                                 {{ "{:,.0f}".format(acc.gia|float * 0.9).replace(',', '.') }}đ
                             </span>
-                            {%endif%}
+                            {%endif%} -->
                         </div>
                     </span>
                     <span class="thoidiem">
